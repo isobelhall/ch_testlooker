@@ -21,6 +21,7 @@ label: "Test CH Master Model"
 explore: users {
   persist_for: "24 hours"
   group_label: "Master Build Test IH"
+  label: "Master User Data"
 
   join: logins {
     sql_on: ${users.id} = ${logins.user_id}d ;;
