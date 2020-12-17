@@ -122,3 +122,9 @@ explore: pops_data_replica {
   group_label: "Master Build Test IH"
   label: "2. Demographics"
 }
+
+explore: derived_activity_tables {
+  persist_for: "24 hours"
+  group_label: "Master Build Test IH"
+  label: "7. Activity Data - Derived"
+}

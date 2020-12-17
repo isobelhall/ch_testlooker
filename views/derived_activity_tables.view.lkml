@@ -1,4 +1,5 @@
 view: derived_activity_tables {
+
   derived_table: {
     sql: SELECT
            article.articles_accessed.user_id "UID",
