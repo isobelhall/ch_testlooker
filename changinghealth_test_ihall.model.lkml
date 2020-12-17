@@ -65,5 +65,29 @@ explore: users {
     view_label: "7. Activity Data"
   }
 
+  join: weight_tracks {
+    sql_on: ${weight_tracks.user_id} = ${users.id} ;;
+    relationship: many_to_one
+    view_label: "7. Activity Data"
+  }
+
+  join: food_tracks {
+    sql_on: ${food_tracks.user_id} = ${users.id} ;;
+    relationship: many_to_one
+    view_label: "7. Activity Data"
+  }
+
+  join: fit_tracks {
+    sql_on: ${fit_tracks.user_id} = ${users.id} ;;
+    relationship: many_to_one
+    view_label: "7. Activity Data"
+  }
+
+  join: progress_statistics {
+    sql_on: ${progress_statistics.user_id} = ${users.id}  ;;
+    relationship: many_to_one
+    view_label: "7. Activity Data"
+  }
+
 
 }
