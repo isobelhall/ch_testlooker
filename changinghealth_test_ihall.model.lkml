@@ -21,18 +21,16 @@ label: "Test CH Master Model"
 explore: users {
   persist_for: "24 hours"
   group_label: "Master Build Test IH"
-  label: "Master User Data"
+  label: "1. User Account"
 
   join: logins {
     sql_on: ${users.id} = ${logins.user_id}d ;;
     relationship: many_to_one
-    view_label: "1. User Account"
   }
 
   join: units_users {
     sql_on: ${users.id} = ${units_users.user_id} ;;
     relationship: many_to_one
-    view_label: "1. User Account"
   }
 
   join: units {
@@ -115,10 +113,12 @@ explore: users {
 }
 explore:  user_data {
   persist_for: "24 hours"
+  group_label: "Master Build Test IH"
   label: "3. Identifiables / Contact"
 }
 
 explore: pops_data_replica {
   persist_for: "24 hours"
+  group_label: "Master Build Test IH"
   label: "2. Demographics"
 }
