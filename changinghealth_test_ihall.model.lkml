@@ -47,12 +47,6 @@ explore: users {
     view_label: "1. User Account"
   }
 
-  join: user_data {
-    sql_on: ${users.id} = ${user_data.user_id} ;;
-    relationship: one_to_one
-    view_label: "2. Identifiables"
-  }
-
   join: articles_accessed {
     sql_on: ${users.id} = ${articles_accessed.user_id} ;;
     relationship: many_to_one
@@ -89,16 +83,42 @@ explore: users {
     view_label: "7. Activity Data"
   }
 
-  join: pops_data_replica {
-    sql_on: ${pops_data_replica.user_id} = ${users.id} ;;
+  join: appointments {
+    sql_on: ${appointments.user_id} = ${users.id} ;;
     relationship: many_to_one
-    view_label: "2. Demographics and Other Attributes"
+    view_label: "7. Activity Data"
   }
 
-  join: optional_data {
-    sql_on: ${optional_data.user_id} = ${users.id} ;;
+  join: coaches{
+    sql_on: ${coaches.id}=${users.id} ;;
     relationship: many_to_one
-    view_label: "2. Demographics and Other Attributes"
+    view_label: "6. Coaching"
   }
 
+  join: coach_users {
+    sql_on: ${coach_users.user_id} = ${users.id} ;;
+    relationship: one_to_many
+    view_label: "6. Coaching"
+  }
+
+  join: goals {
+    sql_on: ${goals.user_id} = ${users.id} ;;
+    relationship: many_to_one
+    view_label: "7. Activity Data"
+  }
+
+  join: profiles {
+    sql_on: ${goals.profile_id} = ${profiles.id} ;;
+    relationship: many_to_one
+    view_label: "7. Activity Data"
+  }
+}
+explore:  user_data {
+  persist_for: "24 hours"
+  label: "3. Identifiables / Contact"
+}
+
+explore: pops_data_replica {
+  persist_for: "24 hours"
+  label: "2. Demographics"
 }
