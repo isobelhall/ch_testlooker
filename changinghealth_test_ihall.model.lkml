@@ -50,7 +50,7 @@ explore: users {
   join: user_data {
     sql_on: ${users.id} = ${user_data.user_id} ;;
     relationship: one_to_one
-    view_label: "1. User Account"
+    view_label: "2. Identifiables"
   }
 
   join: articles_accessed {
@@ -89,5 +89,16 @@ explore: users {
     view_label: "7. Activity Data"
   }
 
+  join: pops_data_replica {
+    sql_on: ${pops_data_replica.user_id} = ${users.id} ;;
+    relationship: many_to_one
+    view_label: "2. Demographics and Other Attributes"
+  }
+
+  join: optional_data {
+    sql_on: ${optional_data.user_id} = ${users.id} ;;
+    relationship: many_to_one
+    view_label: "2. Demographics and Other Attributes"
+  }
 
 }
