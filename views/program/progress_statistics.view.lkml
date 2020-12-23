@@ -25,6 +25,7 @@ view: progress_statistics {
   }
 
   dimension: program_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.program_id ;;
   }

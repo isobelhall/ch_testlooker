@@ -109,28 +109,23 @@ explore: users {
         }
 
 
+#23/12/2020 - hidden many headers and labelled
   join: coaches{
     sql_on: ${users.id} = ${coaches.user_id} ;;
     relationship: one_to_many
     view_label: "6. Coaching"
   }
 
+#23/12/2020 - hidden many headers and labelled
   join: coach_users {
     sql_on: ${users.id} = ${coach_users.user_id}  ;;
     relationship: one_to_many
     view_label: "6. Coaching"
   }
-        join: coach_details {
-          from: coaches
-          sql_on: ${coach_users.coach_id} = ${coaches.id}  ;;
-          relationship: many_to_one
-          view_label: "6. Coaching"
-        }
-#########
 
   join: goals {
-    sql_on: ${goals.user_id} = ${users.id} ;;
-    relationship: many_to_one
+    sql_on: ${users.id} =  ${goals.user_id};;
+    relationship: one_to_many
     view_label: "7. Activity Data"
   }
 
@@ -139,6 +134,7 @@ explore: users {
     relationship: many_to_one
     view_label: "7. Activity Data"
   }
+#########
 }
 explore:  user_data {
   persist_for: "24 hours"

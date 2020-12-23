@@ -3,12 +3,14 @@ view: goals {
   drill_fields: [id]
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
   }
 
   dimension_group: completed {
+    label: "Goals Completed"
     type: time
     timeframes: [
       raw,
@@ -23,6 +25,7 @@ view: goals {
   }
 
   dimension_group: created {
+    label: "Goal Set"
     type: time
     timeframes: [
       raw,
@@ -38,16 +41,18 @@ view: goals {
 
   dimension: profile_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.profile_id ;;
   }
 
   dimension: program_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.program_id ;;
   }
 
   dimension_group: updated {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -62,12 +67,14 @@ view: goals {
   }
 
   dimension: user_id {
+    hidden: yes
     type: number
     # hidden: yes
     sql: ${TABLE}.user_id ;;
   }
 
   measure: count {
+    label: "Count - Goals"
     type: count
     drill_fields: [id, profiles.id, profiles.name, users.id, answers.count]
   }
