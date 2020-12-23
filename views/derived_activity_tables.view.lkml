@@ -76,6 +76,15 @@ view: derived_activity_tables {
   dimension_group: object_accessed_date {
     label: "All Activities - Acivity Completed"
     type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.ObjectAccessedDate ;;
   }
 
