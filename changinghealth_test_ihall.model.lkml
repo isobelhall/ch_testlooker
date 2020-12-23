@@ -135,6 +135,12 @@ explore: users {
     relationship: many_to_one
     view_label: "7. Activity Data"
   }
+
+  join: derived_activity_tables {
+    sql_on: ${derived_activity_tables.uid} = ${users.id} ;;
+    relationship: many_to_one
+    view_label: "7. Activity Data"
+  }
 #########
 }
 explore:  user_data {
@@ -149,8 +155,8 @@ explore: pops_data_replica {
   label: "2. Demographics"
 }
 
-explore: derived_activity_tables {
-  persist_for: "24 hours"
-  group_label: "Master Build Test IH"
-  label: "7. Activity Data - Derived"
-}
+#explore: derived_activity_tables {
+#  persist_for: "24 hours"
+#  group_label: "Master Build Test IH"
+#  label: "7. Activity Data - Derived"
+#}

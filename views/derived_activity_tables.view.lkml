@@ -44,31 +44,37 @@ view: derived_activity_tables {
   }
 
   measure: count {
+    label: "Count - All Activities"
     type: count
     drill_fields: [detail*]
   }
 
   dimension: uid {
+    hidden: yes
     type: number
     sql: ${TABLE}.UID ;;
   }
 
   dimension: object_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.ObjectID ;;
   }
 
   dimension: object_value {
+    label: "All Activities - Value"
     type: string
     sql: ${TABLE}.ObjectValue ;;
   }
 
   dimension: object_type {
+    label: "All Activities - Type"
     type: string
     sql: ${TABLE}.ObjectType ;;
   }
 
   dimension_group: object_accessed_date {
+    label: "All Activities - Acivity Completed"
     type: time
     sql: ${TABLE}.ObjectAccessedDate ;;
   }
