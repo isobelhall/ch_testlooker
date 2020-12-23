@@ -96,18 +96,19 @@ explore: users {
     relationship: one_to_many
     view_label: "7. Activity Data"
   }
+
+
   join: appointments {
     sql_on: ${users.id} =  ${appointments.user_id};;
     relationship: one_to_many
-    view_label: "7. Activity Data"
+    view_label: "6. Coaching"
   }
         join: appointments_coaches {
           from: coaches
           sql_on: ${appointments.coach_id} =  ${coaches.id};;
           relationship: many_to_one
-          view_label: "7. Activity Data"
+          view_label: "6. Coaching"
         }
-
 
 #23/12/2020 - hidden many headers and labelled
   join: coaches{

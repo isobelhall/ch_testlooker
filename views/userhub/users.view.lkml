@@ -239,13 +239,13 @@ view: users {
   measure: count2 {
     view_label: "0. General"
     description: "Count of all participants against other selected criteria"
-    label: "Participant Count"
+    label: "Count - Participants"
     type: count
     drill_fields: [detail*]
   }
 
   measure: count1 {
-    label: "Participant Count"
+    label: "Count - Participants"
     description: "Count of all participants against other selected criteria"
     type: count
     drill_fields: [detail*]

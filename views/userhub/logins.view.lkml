@@ -40,6 +40,7 @@ view: logins {
   }
 
   dimension: user_id {
+    hidden: yes
     label: "Login User ID"
     type: number
     # hidden: yes
@@ -47,7 +48,7 @@ view: logins {
   }
 
   measure: count {
-    label: "Count Logins"
+    label: "Count - Logins"
     type: count
     drill_fields: [id, users.id, user_id]
   }
