@@ -3,12 +3,14 @@ view: units_users {
   drill_fields: [id]
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
   }
 
   dimension_group: connected {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -23,6 +25,7 @@ view: units_users {
   }
 
   dimension_group: created {
+    label: "Status Created"
     type: time
     timeframes: [
       raw,
@@ -37,6 +40,7 @@ view: units_users {
   }
 
   dimension_group: deleted {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -51,22 +55,26 @@ view: units_users {
   }
 
   dimension: role {
+    hidden: yes
     type: string
     sql: ${TABLE}.role ;;
   }
 
   dimension: status {
+    label: "Status"
     type: string
     sql: ${TABLE}.status ;;
   }
 
   dimension: unit_id {
+    hidden: yes
     type: number
     # hidden: yes
     sql: ${TABLE}.unit_id ;;
   }
 
   dimension_group: updated {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -81,6 +89,7 @@ view: units_users {
   }
 
   dimension: user_id {
+    hidden: yes
     type: number
     # hidden: yes
     sql: ${TABLE}.user_id ;;

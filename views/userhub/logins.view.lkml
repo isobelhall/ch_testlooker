@@ -3,12 +3,14 @@ view: logins {
   drill_fields: [id]
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
   }
 
   dimension_group: created {
+    label: "Account Created"
     type: time
     timeframes: [
       raw,
@@ -23,6 +25,7 @@ view: logins {
   }
 
   dimension_group: updated {
+    label: "Account Last Updated"
     type: time
     timeframes: [
       raw,
@@ -37,6 +40,7 @@ view: logins {
   }
 
   dimension: user_id {
+    label: "Login User ID"
     type: number
     # hidden: yes
     sql: ${TABLE}.user_id ;;
@@ -44,6 +48,6 @@ view: logins {
 
   measure: count {
     type: count
-    drill_fields: [id, users.id]
+    drill_fields: [id, users.id, user_id]
   }
 }

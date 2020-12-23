@@ -3,12 +3,15 @@ view: user_event_logs {
   drill_fields: [id]
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
   }
 
   dimension_group: created {
+    label: "User Account Events"
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -23,21 +26,25 @@ view: user_event_logs {
   }
 
   dimension: event_type {
+    label: "User Account Events Type"
     type: string
     sql: ${TABLE}.event_type ;;
   }
 
   dimension: payload {
+    hidden: yes
     type: string
     sql: ${TABLE}.payload ;;
   }
 
   dimension: program_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.program_id ;;
   }
 
   dimension_group: updated {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -52,12 +59,14 @@ view: user_event_logs {
   }
 
   dimension: user_id {
+    hidden: yes
     type: number
     # hidden: yes
     sql: ${TABLE}.user_id ;;
   }
 
   measure: count {
+    label: "User Event Count"
     type: count
     drill_fields: [id, users.id]
   }

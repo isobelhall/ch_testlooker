@@ -3,18 +3,21 @@ view: articles_accessed {
   drill_fields: [id]
 
   dimension: id {
+    hidden:  yes
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
   }
 
   dimension: article_id {
+    hidden:  yes
     type: number
     # hidden: yes
     sql: ${TABLE}.article_id ;;
   }
 
   dimension_group: created {
+    label: "Article Accessed"
     type: time
     timeframes: [
       raw,
@@ -29,11 +32,13 @@ view: articles_accessed {
   }
 
   dimension: program_id {
+    hidden:  yes
     type: number
     sql: ${TABLE}.program_id ;;
   }
 
   dimension_group: updated {
+    hidden:  yes
     type: time
     timeframes: [
       raw,
@@ -48,12 +53,14 @@ view: articles_accessed {
   }
 
   dimension: user_id {
+    hidden:  yes
     type: number
     # hidden: yes
     sql: ${TABLE}.user_id ;;
   }
 
   measure: count {
+    label: "Article Accessed Count"
     type: count
     drill_fields: [id, users.id, articles.id, articles.name]
   }
