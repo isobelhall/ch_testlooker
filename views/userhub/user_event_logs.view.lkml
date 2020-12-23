@@ -66,7 +66,7 @@ view: user_event_logs {
   }
 
   measure: count {
-    label: "User Event Count"
+    label: "Count - User Events"
     type: count
     drill_fields: [id, users.id]
   }

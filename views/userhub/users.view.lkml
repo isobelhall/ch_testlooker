@@ -62,6 +62,7 @@ view: users {
   }
 
   dimension_group: deleted {
+    label: "Account Deleted"
     type: time
     timeframes: [
       raw,
@@ -88,7 +89,8 @@ view: users {
   }
 
   dimension: enabled {
-    label: "Account Enabled"
+    #which is the value representing if a user account is enabled? This one, or account_enabled (row 13)
+    hidden: yes
     type: yesno
     sql: ${TABLE}.enabled ;;
   }
@@ -175,19 +177,22 @@ view: users {
   }
 # What is this?
   dimension: ppuid {
+    view_label: "0. General"
     label: "CHUID"
+    description: "Platform identifier for each participant"
     type: string
     sql: ${TABLE}.ppuid ;;
   }
 
   dimension: status {
-    label: "Status"
+    label: "Account Status"
     type: string
     sql: ${TABLE}.status ;;
   }
 
 # What is this?
   dimension: suid {
+    hidden: yes
     type: string
     sql: ${TABLE}.suid ;;
   }
@@ -231,11 +236,21 @@ view: users {
     sql: ${TABLE}.upload_id ;;
   }
 
-  measure: count {
+  measure: count2 {
+    view_label: "0. General"
+    description: "Count of all participants against other selected criteria"
     label: "Participant Count"
     type: count
     drill_fields: [detail*]
   }
+
+  measure: count1 {
+    label: "Participant Count"
+    description: "Count of all participants against other selected criteria"
+    type: count
+    drill_fields: [detail*]
+  }
+
 
   # ----- Sets of fields for drilling ------
   set: detail {

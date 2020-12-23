@@ -77,7 +77,7 @@ view: food_tracks {
   }
 
   measure: count {
-    label: "Food Track Count"
+    label: "Count - Food Tracker"
     type: count
     drill_fields: [id, users.id]
   }

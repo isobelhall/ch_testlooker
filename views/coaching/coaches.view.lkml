@@ -46,12 +46,14 @@ view: coaches {
   }
 
   dimension: icon_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.icon_id ;;
   }
 
   dimension: name {
-    label: "Coach Name"
+    description: "Name of coach who this appointment was assigned to"
+    label: "Appointment Coach Name"
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -85,7 +87,7 @@ view: coaches {
   }
 
   measure: count {
-    label: "Coach Count"
+    hidden: yes
     type: count
     drill_fields: [id, name, users.id]
   }

@@ -60,7 +60,7 @@ view: articles_accessed {
   }
 
   measure: count {
-    label: "Article Accessed Count"
+    label: "Count - Articles Accessed"
     type: count
     drill_fields: [id, users.id, articles.id, articles.name]
   }

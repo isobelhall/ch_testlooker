@@ -62,12 +62,12 @@ explore: users {
     relationship: one_to_many
     view_label: "7. Activity Data"
   }
-#23/12/2020 - hidden many headers and labelled
-  join: articles {
-    sql_on: ${articles_accessed.article_id} = ${articles.id} ;;
-    relationship: many_to_one
-    view_label: "7. Activity Data"
-  }
+      #23/12/2020 - hidden many headers and labelled
+        join: articles {
+          sql_on: ${articles_accessed.article_id} = ${articles.id} ;;
+          relationship: many_to_one
+          view_label: "7. Activity Data"
+        }
 
 #23/12/2020 - hidden many headers and labelled
   join: weight_tracks {
@@ -77,7 +77,7 @@ explore: users {
     view_label: "7. Activity Data"
   }
 
-#23/12/2020 - hidden many headers and labelled
+#23/12/2020 - hidden many headers and labelleD
   join: food_tracks {
     sql_on: ${users.id}= ${food_tracks.user_id};;
     relationship: one_to_many
@@ -85,6 +85,7 @@ explore: users {
   }
 
 #23/12/2020 - hidden many headers and labelled
+  #PROBLEM: FILTER SO ONLY STEP VALUES, AND VALUES GREATER THAN 0
   join: fit_tracks {
     sql_on: ${users.id} = ${fit_tracks.user_id};;
     relationship: one_to_many
@@ -114,18 +115,17 @@ explore: users {
     view_label: "6. Coaching"
   }
 
-    join: coaches_details{
-      from: coaches
-      sql_on: ${users.id} = ${coaches.user_id} ;;
-      relationship: one_to_many
-      view_label: "6. Coaching"
-    }
-
   join: coach_users {
     sql_on: ${users.id} = ${coach_users.user_id}  ;;
     relationship: one_to_many
     view_label: "6. Coaching"
   }
+        join: coach_details {
+          from: coaches
+          sql_on: ${coach_users.coach_id} = ${coaches.id}  ;;
+          relationship: many_to_one
+          view_label: "6. Coaching"
+        }
 #########
 
   join: goals {

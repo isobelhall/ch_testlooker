@@ -61,7 +61,7 @@ view: units_users {
   }
 
   dimension: status {
-    label: "Status"
+    label: "Account Programme Status"
     type: string
     sql: ${TABLE}.status ;;
   }

@@ -166,7 +166,7 @@ view: appointments {
   }
 
   measure: count {
-    label: "Appointment Count"
+    label: "Count - Appointments"
     type: count
     drill_fields: [id, users.id]
   }

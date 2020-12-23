@@ -63,7 +63,7 @@ view: fit_tracks {
   }
 
   measure: count {
-    label: "Fit Track Count"
+    label: "Count - Fit Track"
     type: count
     drill_fields: [id]
   }

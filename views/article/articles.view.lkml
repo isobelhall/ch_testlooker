@@ -82,6 +82,8 @@ view: articles {
   }
 
   dimension: type {
+    hidden: yes
+    #split into article and video.
     label: "Article Type (article/video)"
     type: string
     sql: ${TABLE}.type ;;
@@ -114,7 +116,8 @@ view: articles {
   }
 
   measure: count {
-    label: "Article Count"
+    hidden: yes
+    label: "Count - Article Names"
     type: count
     drill_fields: [id, name, articles_accessed.count]
   }

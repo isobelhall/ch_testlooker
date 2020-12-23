@@ -64,7 +64,7 @@ view: weight_tracks {
   }
 
   measure: count {
-    label: "Weight Recorded count"
+    label: "Count - Weights Tracked"
     type: count
     drill_fields: [id, users.id]
   }
