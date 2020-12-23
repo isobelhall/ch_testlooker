@@ -33,7 +33,14 @@ view: derived_activity_tables {
            'food tracker' as "ObjectType",
            plugin_food.food_tracks.created_at "ObjectAccessedDate"
       FROM  plugin_food.food_tracks
-       ;;
+       UNION
+      SELECT
+           coaching.appointments.user_id "UID",
+           coaching.appointments.id "ObjectID",
+           coaching.appointments.result "ObjectValue",
+           'appointment' as "ObjectType",
+           coaching.appointments.since "ObjectAccessedDate"
+      FROM  coaching.appointments      ;;
   }
 
   measure: count {
