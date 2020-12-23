@@ -3,12 +3,14 @@ view: units {
   drill_fields: [id]
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
   }
 
   dimension_group: created {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -23,16 +25,19 @@ view: units {
   }
 
   dimension: created_by {
+    hidden: yes
     type: number
     sql: ${TABLE}.created_by ;;
   }
 
   dimension: created_type {
+    hidden: yes
     type: string
     sql: ${TABLE}.created_type ;;
   }
 
   dimension_group: deleted {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -47,42 +52,51 @@ view: units {
   }
 
   dimension: display_name {
+    view_label: "9. Unit Information"
+    label: "Unit Name"
     type: string
     sql: ${TABLE}.display_name ;;
   }
 
   dimension: enabled {
+    hidden: yes
     type: yesno
     sql: ${TABLE}.enabled ;;
   }
 
   dimension: is_default {
+    hidden: yes
     type: yesno
     sql: ${TABLE}.is_default ;;
   }
 
   dimension: logo_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.logo_id ;;
   }
 
   dimension: name {
+    hidden: yes
     type: string
     sql: ${TABLE}.name ;;
   }
 
   dimension: organization_id {
+    hidden: yes
     type: number
     # hidden: yes
     sql: ${TABLE}.organization_id ;;
   }
 
   dimension: type {
+    hidden: yes
     type: string
     sql: ${TABLE}.type ;;
   }
 
   dimension_group: updated {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -97,22 +111,25 @@ view: units {
   }
 
   dimension: updated_by {
+    hidden: yes
     type: number
     sql: ${TABLE}.updated_by ;;
   }
 
   dimension: updated_type {
+    hidden: yes
     type: string
     sql: ${TABLE}.updated_type ;;
   }
 
   dimension: user_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.user_id ;;
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [detail*]
   }

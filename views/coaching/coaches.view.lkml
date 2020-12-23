@@ -3,12 +3,14 @@ view: coaches {
   drill_fields: [id]
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
   }
 
   dimension_group: created {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -23,6 +25,7 @@ view: coaches {
   }
 
   dimension_group: deleted {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -37,6 +40,7 @@ view: coaches {
   }
 
   dimension: description {
+    hidden: yes
     type: string
     sql: ${TABLE}.description ;;
   }
@@ -47,16 +51,19 @@ view: coaches {
   }
 
   dimension: name {
+    label: "Coach Name"
     type: string
     sql: ${TABLE}.name ;;
   }
 
   dimension: title {
+    hidden: yes
     type: string
     sql: ${TABLE}.title ;;
   }
 
   dimension_group: updated {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -71,12 +78,14 @@ view: coaches {
   }
 
   dimension: user_id {
+    hidden: yes
     type: number
     # hidden: yes
     sql: ${TABLE}.user_id ;;
   }
 
   measure: count {
+    label: "Coach Count"
     type: count
     drill_fields: [id, name, users.id]
   }

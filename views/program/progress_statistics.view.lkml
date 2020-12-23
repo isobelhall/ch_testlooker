@@ -3,12 +3,14 @@ view: progress_statistics {
   drill_fields: [id]
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
   }
 
   dimension_group: created {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -28,11 +30,13 @@ view: progress_statistics {
   }
 
   dimension: progress {
+    label: "Progress Percent"
     type: number
     sql: ${TABLE}.progress ;;
   }
 
   dimension_group: updated {
+    label: "Progress Updated"
     type: time
     timeframes: [
       raw,
@@ -47,12 +51,14 @@ view: progress_statistics {
   }
 
   dimension: user_id {
+    hidden: yes
     type: number
     # hidden: yes
     sql: ${TABLE}.user_id ;;
   }
 
   measure: count {
+    label: "Progress Count"
     type: count
     drill_fields: [id, users.id]
   }

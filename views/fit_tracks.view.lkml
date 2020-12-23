@@ -3,17 +3,20 @@ view: fit_tracks {
   drill_fields: [id]
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
   }
 
   dimension: activity {
+    label: "Fit Track Type"
     type: string
     sql: ${TABLE}.activity ;;
   }
 
   dimension_group: created {
+    label: "Fit Track Recorded"
     type: time
     timeframes: [
       raw,
@@ -33,11 +36,13 @@ view: fit_tracks {
   }
 
   dimension: logging_steps {
+    label: "Fit Track Steps"
     type: number
     sql: ${TABLE}.logging_steps ;;
   }
 
   dimension_group: updated {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -52,11 +57,13 @@ view: fit_tracks {
   }
 
   dimension: user_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.user_id ;;
   }
 
   measure: count {
+    label: "Fit Track Count"
     type: count
     drill_fields: [id]
   }

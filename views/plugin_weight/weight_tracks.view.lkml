@@ -3,12 +3,15 @@ view: weight_tracks {
   drill_fields: [id]
 
   dimension: id {
+    hidden: yes
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
   }
 
   dimension_group: created {
+    label: "Weight Recorded"
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -23,11 +26,13 @@ view: weight_tracks {
   }
 
   dimension: hit_half_target {
+    hidden: yes
     type: yesno
     sql: ${TABLE}.hit_half_target ;;
   }
 
   dimension: hit_target {
+    hidden: yes
     type: yesno
     sql: ${TABLE}.hit_target ;;
   }
@@ -53,11 +58,13 @@ view: weight_tracks {
   }
 
   dimension: weight_goal {
+    label: "Weight Recorded Value"
     type: number
     sql: ${TABLE}.weight_goal ;;
   }
 
   measure: count {
+    label: "Weight Recorded count"
     type: count
     drill_fields: [id, users.id]
   }

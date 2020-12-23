@@ -21,14 +21,14 @@ label: "Test CH Master Model"
 explore: users {
   persist_for: "24 hours"
   group_label: "Master Build Test IH"
-  label: "1. User Account"
+  label: "Platform Use Data"
 
 #23/12/2020
 # - Users, any unnecessary headers hidden
 # - Logins, any unnecessary headers hidden
   join: logins {
     view_label: "1. User Account"
-    sql_on: ${users.id} = ${logins.user_id}d ;;
+    sql_on: ${users.id} = ${logins.user_id} ;;
     #relationship changed from many_to_one, to one_to_many
     relationship: one_to_many
   }
@@ -41,42 +41,50 @@ explore: users {
     relationship: one_to_many
   }
 
-#Removed as replica of above?
-#  join: units {
-#    sql_on: ${units_users.unit_id} = ${units.id} ;;
-#    relationship: many_to_one
-#    view_label: "1. User Account"
-#  }
+#23/12/2020 - hidden many headers and labelled
+  join: units {
+    sql_on: ${units_users.unit_id} = ${units.id} ;;
+    relationship: many_to_one
+    view_label: "1. User Account"
+  }
 
+#23/12/2020 - hidden many headers and labelled
   join: user_event_logs {
     sql_on: ${users.id} = ${user_event_logs.user_id} ;;
     relationship:  many_to_one
     view_label: "1. User Account"
   }
 
+#23/12/2020 - hidden many headers and labelled
   join: articles_accessed {
     sql_on: ${users.id} = ${articles_accessed.user_id} ;;
     #changed to "one to many"
     relationship: one_to_many
     view_label: "7. Activity Data"
   }
+#23/12/2020 - hidden many headers and labelled
   join: articles {
     sql_on: ${articles_accessed.article_id} = ${articles.id} ;;
     relationship: many_to_one
     view_label: "7. Activity Data"
   }
 
+#23/12/2020 - hidden many headers and labelled
   join: weight_tracks {
     #swapped order round (from Weight -> users, to users -> weights) for consistency
     sql_on: ${users.id} = ${weight_tracks.user_id} ;;
     relationship: one_to_many
     view_label: "7. Activity Data"
   }
+
+#23/12/2020 - hidden many headers and labelled
   join: food_tracks {
     sql_on: ${users.id}= ${food_tracks.user_id};;
     relationship: one_to_many
     view_label: "7. Activity Data"
   }
+
+#23/12/2020 - hidden many headers and labelled
   join: fit_tracks {
     sql_on: ${users.id} = ${fit_tracks.user_id};;
     relationship: one_to_many
@@ -92,20 +100,33 @@ explore: users {
     relationship: one_to_many
     view_label: "7. Activity Data"
   }
+        join: appointments_coaches {
+          from: coaches
+          sql_on: ${appointments.coach_id} =  ${coaches.id};;
+          relationship: many_to_one
+          view_label: "7. Activity Data"
+        }
+
 
   join: coaches{
-    sql_on: ${users.id} = ${coaches.id} ;;
+    sql_on: ${users.id} = ${coaches.user_id} ;;
     relationship: one_to_many
     view_label: "6. Coaching"
   }
 
+    join: coaches_details{
+      from: coaches
+      sql_on: ${users.id} = ${coaches.user_id} ;;
+      relationship: one_to_many
+      view_label: "6. Coaching"
+    }
 
-#########
   join: coach_users {
-    sql_on: ${coach_users.user_id} = ${users.id} ;;
+    sql_on: ${users.id} = ${coach_users.user_id}  ;;
     relationship: one_to_many
     view_label: "6. Coaching"
   }
+#########
 
   join: goals {
     sql_on: ${goals.user_id} = ${users.id} ;;
@@ -122,7 +143,7 @@ explore: users {
 explore:  user_data {
   persist_for: "24 hours"
   group_label: "Master Build Test IH"
-  label: "3. Identifiables / Contact"
+  #label: "3. Identifiables / Contact"
 }
 
 explore: pops_data_replica {
