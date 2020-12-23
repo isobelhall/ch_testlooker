@@ -47,6 +47,7 @@ view: logins {
   }
 
   measure: count {
+    label: "Count Logins"
     type: count
     drill_fields: [id, users.id, user_id]
   }

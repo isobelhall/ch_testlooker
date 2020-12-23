@@ -96,6 +96,7 @@ view: units_users {
   }
 
   measure: count {
+    hidden: yes
     type: count
     drill_fields: [id, users.id, units.id, units.name, units.display_name]
   }

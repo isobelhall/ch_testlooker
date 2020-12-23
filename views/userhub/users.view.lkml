@@ -1,4 +1,5 @@
 view: users {
+  view_label: "1. User Account"
   sql_table_name: userhub.users ;;
   drill_fields: [id]
 
@@ -174,6 +175,7 @@ view: users {
   }
 # What is this?
   dimension: ppuid {
+    label: "CHUID"
     type: string
     sql: ${TABLE}.ppuid ;;
   }
@@ -230,6 +232,7 @@ view: users {
   }
 
   measure: count {
+    label: "Participant Count"
     type: count
     drill_fields: [detail*]
   }
