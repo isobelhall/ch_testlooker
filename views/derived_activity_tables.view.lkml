@@ -44,12 +44,11 @@ view: derived_activity_tables {
       FROM  coaching.appointments
       SELECT
       UID,
-      ObjectAccessedDate
-      LAG(ObjectAccessedDate)
-      OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS previous_date
-      ObjectAccessedDate - LAG(ObjectAccessedDate)
-      OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS difference_between_dates
-      FROM derived_activity_tables
+      ObjectAccessedDate,
+      LAG(ObjectAccessedDate),
+      OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS previous_date,
+      ObjectAccessedDate - LAG(ObjectAccessedDate),
+      OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS difference_between_dates,
       ORDER BY UID, ObjectAccessedDate;;
   }
 
@@ -65,7 +64,17 @@ view: derived_activity_tables {
 #FROM   housing
 #ORDER BY city, year
 
-
+### code for attempt at using SQL LAG
+#      SELECT
+#      UID,
+#      ObjectAccessedDate
+#      LAG(ObjectAccessedDate)
+#      OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS previous_date
+#      ObjectAccessedDate - LAG(ObjectAccessedDate)
+#      OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS difference_between_dates
+#      FROM derived_activity_tables
+#      ORDER BY UID, ObjectAccessedDate
+##
 
   measure: count {
     label: "Count - All Activities"
