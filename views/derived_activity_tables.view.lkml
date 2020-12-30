@@ -49,7 +49,9 @@ view: derived_activity_tables {
       LAG(ObjectAccessedDate)
       OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS previous_date
       ObjectAccessedDate - LAG(ObjectAccessedDate)
-      OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS difference_between_dates ;;
+      OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS difference_between_dates
+      FROM derived_activity_tables
+      ORDER BY UID, ObjectAccessedDate;;
   }
 
 ##DIMENSION GROUP - difference between activity and one before it
