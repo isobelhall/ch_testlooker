@@ -47,7 +47,7 @@ view: derived_activity_tables {
       ObjectAccessedDate,
       LAG(ObjectAccessedDate),
       OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS previous_date,
-      ObjectAccessedDate - LAG(ObjectAccessedDate),
+      ObjectAccessedDate - LAG(ObjectAccessedDate)
       OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS difference_between_dates,
       ORDER BY UID, ObjectAccessedDate;;
   }
@@ -57,8 +57,8 @@ view: derived_activity_tables {
 #city,
 # year,
 #      population_needing_house,
-#      LAG(population_needing_house)
-#      OVER (PARTITION BY city ORDER BY year ) AS previous_year
+#      LAG(population_needing_house),
+#      OVER (PARTITION BY city ORDER BY year ) AS previous_year,
 #      population_needing_house - LAG(population_needing_house)
 #   OVER (PARTITION BY city ORDER BY year ) AS difference_previous_year
 #FROM   housing
