@@ -43,12 +43,13 @@ view: derived_activity_tables {
            coaching.appointments.since "ObjectAccessedDate"
       FROM  coaching.appointments
       SELECT
-      UID,
-      ObjectAccessedDate,
-      LAG(ObjectAccessedDate),
-      OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS previous_date,
-      ObjectAccessedDate - LAG(ObjectAccessedDate)
-      OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS difference_between_dates,
+        UID,
+        ObjectAccessedDate,
+        LAG(ObjectAccessedDate),
+        OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS previous_date,
+        ObjectAccessedDate - LAG(ObjectAccessedDate)
+        OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS difference_between_dates
+      FROM derived_activity_table
       ORDER BY UID, ObjectAccessedDate;;
   }
 
@@ -67,13 +68,13 @@ view: derived_activity_tables {
 ### code for attempt at using SQL LAG
 #      SELECT
 #      UID,
-#      ObjectAccessedDate
-#      LAG(ObjectAccessedDate)
-#      OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS previous_date
+#      ObjectAccessedDate,
+#      LAG(ObjectAccessedDate),
+#      OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS previous_date,
 #      ObjectAccessedDate - LAG(ObjectAccessedDate)
 #      OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS difference_between_dates
-#      FROM derived_activity_tables
-#      ORDER BY UID, ObjectAccessedDate
+#      FROM derived_activity_table
+#      ORDER BY UID, ObjectAccessedDate;;
 ##
 
   measure: count {
