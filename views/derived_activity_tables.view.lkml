@@ -42,7 +42,6 @@ view: derived_activity_tables {
            'appointment' as "ObjectType",
            coaching.appointments.since "ObjectAccessedDate"
       FROM  coaching.appointments
-      ORDER BY ObjectAccessedDate, UID
       SELECT
       UID,
       ObjectAccessedDate
