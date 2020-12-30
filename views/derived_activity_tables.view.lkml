@@ -42,7 +42,14 @@ view: derived_activity_tables {
            'appointment' as "ObjectType",
            coaching.appointments.since "ObjectAccessedDate"
       FROM  coaching.appointments
-      ORDER BY ObjectAccessedDate, uid;;
+      ORDER BY ObjectAccessedDate, UID
+      SELECT
+      UID,
+      ObjectAccessedDate
+      LAG(ObjectAccessedDate)
+      OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS previous_date
+      ObjectAccessedDate - LAG(ObjectAccessedDate)
+      OVER (PARTITION BY UID ORDER BY ObjectAccessedDate) AS difference_between_dates ;;
   }
 
 ##DIMENSION GROUP - difference between activity and one before it
