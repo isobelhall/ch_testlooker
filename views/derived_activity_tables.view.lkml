@@ -1,6 +1,7 @@
 view: derived_activity_tables {
 
   derived_table: {
+    #PROBLEM: must be ordered by date, and by ppt ID
     sql: SELECT
            article.articles_accessed.user_id "UID",
            article.articles.id "ObjectID",
@@ -40,8 +41,24 @@ view: derived_activity_tables {
            coaching.appointments.result "ObjectValue",
            'appointment' as "ObjectType",
            coaching.appointments.since "ObjectAccessedDate"
-      FROM  coaching.appointments      ;;
+      FROM  coaching.appointments
+      ORDER BY ObjectAccessedDate, uid;;
   }
+
+##DIMENSION GROUP - difference between activity and one before it
+#SELECT
+#city,
+# year,
+#      population_needing_house,
+#      LAG(population_needing_house)
+#      OVER (PARTITION BY city ORDER BY year ) AS previous_year
+#      population_needing_house - LAG(population_needing_house)
+#   OVER (PARTITION BY city ORDER BY year ) AS difference_previous_year
+#FROM   housing
+#ORDER BY city, year
+
+
+
 
   measure: count {
     label: "Count - All Activities"
@@ -73,6 +90,8 @@ view: derived_activity_tables {
     sql: ${TABLE}.ObjectType ;;
   }
 
+
+  #PROBLEM: need output with full date-time stamp, not just date as yyyy-mm-dd
   dimension_group: object_accessed_date {
     label: "All Activities - Acivity Completed"
     type: time
@@ -87,6 +106,8 @@ view: derived_activity_tables {
     ]
     sql: ${TABLE}.ObjectAccessedDate ;;
   }
+
+  #PROBLEM: dimension group - time between next object accessed date
 
   set: detail {
     fields: [uid, object_id, object_value, object_type, object_accessed_date_time]

@@ -52,8 +52,8 @@ view: units {
   }
 
   dimension: display_name {
-    view_label: "9. Unit Information"
-    label: "Unit Name"
+    view_label: "1. User Account"
+    label: "Unit/Programme Name"
     type: string
     sql: ${TABLE}.display_name ;;
   }

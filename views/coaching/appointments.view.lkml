@@ -88,10 +88,31 @@ view: appointments {
   }
 
   dimension: result {
-    label: "Appointment Outcome"
+    label: "Appointment Outcome (Code)"
     #PROBLEM: Map outcomes (1,2,3) to string value (attended, missed, not recorded)
     type: number
     sql: ${TABLE}.result ;;
+  }
+
+  dimension: result_english {
+    label: "Appointment Outcome"
+    #PROBLEM: Map outcomes (1,2,3) to string value (attended, missed, not recorded)
+    type: string
+    case: {
+      when: {
+        sql:  ${TABLE}.result = 1;;
+        label: "No Answer"
+        }
+      when: {
+          sql: ${TABLE}.result = 2 ;;
+          label: "Rescheduled"
+        }
+      when: {
+          sql: ${TABLE}.result = 3 ;;
+          label: "Complete"
+        }
+      else: "Not Recorded"
+      }
   }
 
   dimension_group: since {
@@ -170,4 +191,24 @@ view: appointments {
     type: count
     drill_fields: [id, users.id]
   }
+
+  measure: count_attended {
+    type: count
+    label: "Count - Appointments Attended"
+    filters: [result: "3", cancelled: "No"]
+  }
+
+  measure: count_cancelled {
+    label: "Count - Appointments Cancelled"
+    type: count
+    filters: [cancelled: "Yes"]
+  }
+
+  measure: percent_attended {
+    label: "Count - Percent Appointments Attended"
+    type: number
+    value_format_name: percent_1
+    sql: 1.0*${count_attended}/nullif(${count},0) ;;
+  }
+
 }
