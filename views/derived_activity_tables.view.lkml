@@ -59,7 +59,6 @@ view: derived_activity_tables {
 
 
 
-
   measure: count {
     label: "Count - All Activities"
     type: count
@@ -73,6 +72,7 @@ view: derived_activity_tables {
   }
 
   dimension: object_id {
+    primary_key: yes
     hidden: yes
     type: number
     sql: ${TABLE}.ObjectID ;;
@@ -110,6 +110,6 @@ view: derived_activity_tables {
   #PROBLEM: dimension group - time between next object accessed date
 
   set: detail {
-    fields: [uid, object_id, object_value, object_type, object_accessed_date_time]
+    fields: [object_id, object_value, object_type, object_accessed_date_time]
   }
 }

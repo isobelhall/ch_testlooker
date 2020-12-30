@@ -158,5 +158,5 @@ explore: pops_data_replica {
 #explore: derived_activity_tables {
 #  persist_for: "24 hours"
 #  group_label: "Master Build Test IH"
-#  label: "7. Activity Data - Derived"
+#  view_label: "7. Activity Data"
 #}

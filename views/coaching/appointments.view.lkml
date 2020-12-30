@@ -96,7 +96,8 @@ view: appointments {
 
   dimension: result_english {
     label: "Appointment Outcome"
-    #PROBLEM: Map outcomes (1,2,3) to string value (attended, missed, not recorded)
+    description: "Appointment outcome as Complete (attended/successful appointment),     Missed (call did not take place as participant didn't answer) or Rescheduled (call did not take place but has been re-arranged)"
+    #Map outcomes (1,2,3) to string value (attended, missed, not recorded)
     type: string
     case: {
       when: {
