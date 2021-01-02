@@ -1,7 +1,7 @@
 #Attempt to copy the code from the testing team to create derived table with time difference and sessions
 
 view: events {
-  view_label: "Test Events"
+  view_label: "8. Platform Events"
   derived_table: {
     sql: SELECT
       *,
@@ -34,13 +34,19 @@ view: events {
                 created_at  AS `event`,
                 "food_tracks" as `type`
               FROM plugin_food.food_tracks
+              SELECT
+                concat(id, "-", "fit_tracks") as `pk`,
+                user_id,
+                created_at  AS `event`,
+                "fit_tracks" as `type`
+              FROM step.fit_tracks
             ) as events ) as events_lag
             ) events_session_flag
        ;;
   }
 
   measure: count {
-    label: "Count - Events"
+    label: "Count - Platform Use"
     type: count
     drill_fields: [detail*]
   }
@@ -59,6 +65,7 @@ view: events {
   }
 
   dimension_group: event {
+    #label: ""
     type: time
     timeframes: [raw,time,date,week,month]
     sql: ${TABLE}.event ;;
@@ -77,7 +84,7 @@ view: events {
   }
 
   dimension: mins_since_last_event {
-    hidden: yes
+    #hidden: yes
     type: number
     sql: ${TABLE}.mins_since_last_event ;;
   }

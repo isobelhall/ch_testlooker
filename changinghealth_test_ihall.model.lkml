@@ -146,6 +146,11 @@ explore: users {
     sql_on: ${users.id} = ${events.user_id} ;;
     relationship: one_to_many
   }
+
+  join: sessions {
+    sql_on: ${events.session_id} = ${sessions.session_id} ;;
+    relationship: many_to_one
+  }
 #########
 }
 explore:  user_data {
