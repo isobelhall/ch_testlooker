@@ -1,4 +1,4 @@
-view: derived_activity_next_time {
+view: derived_activity_difference {
 
   view_label: "7. Activity Data"
   derived_table: {
@@ -12,7 +12,7 @@ view: derived_activity_next_time {
     }
 
 
-    dimension: weight_tracks_id {
+    dimension: object_id {
       hidden: yes
       primary_key: yes
       type: number

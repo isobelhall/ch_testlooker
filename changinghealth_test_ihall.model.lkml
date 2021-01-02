@@ -141,6 +141,13 @@ explore: users {
     relationship: many_to_one
     view_label: "7. Activity Data"
   }
+
+
+  join: derived_activity_difference {
+    sql_on: ${derived_activity_difference.object_id} = ${derived_activity_tables.object_id};;
+    relationship: one_to_one
+    view_label: "7. Activity Data"
+  }
 #########
 }
 explore:  user_data {
