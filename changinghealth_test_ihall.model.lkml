@@ -142,10 +142,9 @@ explore: users {
     view_label: "7. Activity Data"
   }
 
-  join: derived_activity_difference {
-    sql_on: ${derived_activity_difference.object_id} = ${derived_activity_tables.uid};;
-    relationship: one_to_one
-    view_label: "7. Activity Data"
+  join: events {
+    sql_on: ${users.id} = ${events.user_id} ;;
+    relationship: one_to_many
   }
 #########
 }
