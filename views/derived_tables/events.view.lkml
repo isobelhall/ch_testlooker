@@ -46,8 +46,8 @@ view: events {
   }
 
   dimension: pk {
-    hidden: yes
-    #primary_key: yes
+    #hidden: yes
+    primary_key: yes
     type: string
     sql: ${TABLE}.pk ;;
   }
