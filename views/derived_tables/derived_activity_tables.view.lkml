@@ -83,7 +83,7 @@ view: derived_activity_tables {
 
   dimension: object_id {
     primary_key: yes
-    hidden: yes
+#    hidden: yes
     type: number
     sql: ${TABLE}.ObjectID ;;
   }

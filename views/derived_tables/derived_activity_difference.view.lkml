@@ -19,9 +19,19 @@ view: derived_activity_difference {
       sql: ${TABLE}.`id` ;;
     }
 
-    dimension: previous_activity {
-      type: date
-      sql: ${TABLE}.previous_activity ;;
-    }
 
+  dimension_group: previous_activity {
+    label: "All Activities - Previous Acivity Completed"
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.ObjectAccessedDate ;;
+  }
 }
