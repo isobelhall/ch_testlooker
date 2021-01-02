@@ -41,7 +41,8 @@ view: derived_activity_tables {
            coaching.appointments.result "ObjectValue",
            'appointment' as "ObjectType",
            coaching.appointments.since "ObjectAccessedDate"
-      FROM  coaching.appointments;;
+      FROM  coaching.appointments
+      ORDER BY UID, ObjectAccessedDate;;
   }
 
 ##DIMENSION GROUP - difference between activity and one before it
