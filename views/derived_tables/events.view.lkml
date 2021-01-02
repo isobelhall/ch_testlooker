@@ -34,6 +34,7 @@ view: events {
                 created_at  AS `event`,
                 "food_tracks" as `type`
               FROM plugin_food.food_tracks
+              UNION ALL
               SELECT
                 concat(id, "-", "fit_tracks") as `pk`,
                 user_id,
