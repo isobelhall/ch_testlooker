@@ -8,6 +8,7 @@ label: "Test CH Master Model"
 explore: users {
   persist_for: "24 hours"
   group_label: "Master Build Test IH"
+  label: "Healthy Living"
 
   always_filter: {
     filters: [units.display_name: "NHSE"]
