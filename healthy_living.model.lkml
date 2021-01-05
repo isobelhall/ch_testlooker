@@ -9,6 +9,10 @@ explore: users {
   persist_for: "24 hours"
   group_label: "Master Build Test IH"
 
+  always_filter: {
+    filters: [units.display_name: "NHSE"]
+  }
+
   join: logins {
     view_label: "Participant Accounts"
     sql_on: ${users.id} = ${logins.user_id} ;;
