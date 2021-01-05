@@ -108,6 +108,7 @@ view: profiles {
   }
 
   dimension: type {
+    hidden: yes
     label: "Goal Type"
     type: yesno
     sql: ${TABLE}.type ;;

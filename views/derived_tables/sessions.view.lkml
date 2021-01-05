@@ -31,7 +31,20 @@ view: sessions {
     sql: ${session_duration} ;;
   }
   measure: count {
+    label: "Count - Engagements per session"
     type: count
-    description: "Number of sessions"
+    description: "Number of times a participant engaged in each session"
+  }
+
+  measure: count_distinct {
+    label: "Count - Distinct sessions in timeframe"
+    type: count_distinct
+    description: "Number of sessions a participant has completed"
+  }
+
+  measure: max {
+    label: "Count - Maximum session count"
+    type: max
+    description: "Highest session count by this participant"
   }
 }

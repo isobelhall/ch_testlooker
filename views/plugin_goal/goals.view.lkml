@@ -10,7 +10,7 @@ view: goals {
   }
 
   dimension_group: completed {
-    label: "Goals Completed"
+    label: "Goal Completed"
     type: time
     timeframes: [
       raw,

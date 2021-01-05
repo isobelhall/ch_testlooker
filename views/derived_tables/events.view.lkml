@@ -3,6 +3,7 @@
 view: events {
   view_label: "8. Platform Events"
   derived_table: {
+    #ISOBEL: ADD IN ALL PLATFORM USAGE (EG, PLUGINS, GOALS) BUT NOT APPOINTMENTS OR TELEPHONE CALLS
     sql: SELECT
       *,
       SUM(is_new_session) over (order by user_id,event) as `session_id`,
