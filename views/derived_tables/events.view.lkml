@@ -49,6 +49,13 @@ view: events {
                 created_at  AS `event`,
                 "fit_tracks" as `type`
               FROM step.fit_tracks
+              UNION ALL
+              SELECT
+                concat(id, "-", "goals") as `pk`,
+                user_id,
+                created_at  AS `event`,
+                "goals" as `type`
+              FROM plugin_goal.goals
             ) as events ) as events_lag
             ) events_session_flag
        ;;
