@@ -51,6 +51,15 @@ view: derived_activity_tables {
            'appointment' as "ObjectType",
            coaching.appointments.since "ObjectAccessedDate"
       FROM  coaching.appointments
+      UNION
+      SELECT
+           plugin_goal.goals.user_id "UID",
+           plugin_goal.goals.id "ObjectID",
+           plugin_goal.profiles.name "ObjectValue",
+           'goals' as "ObjectType",
+           plugin_goal.goals.created_at "ObjectAccessedDate"
+      FROM plugin_goal.goals
+      JOIN plugin_goal.profiles.id = plugin_goal.goals.profile_id
 
       ORDER BY UID, ObjectAccessedDate;;
   }
