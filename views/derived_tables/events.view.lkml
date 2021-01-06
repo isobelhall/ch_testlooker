@@ -20,7 +20,7 @@ view: events {
                 user_id,
                 created_at  AS `event`,
                 "article_access" as `type`
-              FROM article.articles_accessed WHERE
+              FROM article.articles_accessed
               UNION ALL
               SELECT
                 concat(id, "-", "weight_track") as `pk`,
