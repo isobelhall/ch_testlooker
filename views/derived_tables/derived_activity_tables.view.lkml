@@ -1,7 +1,6 @@
 view: derived_activity_tables {
 
   derived_table: {
-    #PROBLEM: must be ordered by date, and by ppt ID
   #ISOBEL: ADD IN ALL PLATFORM USAGE (EG, PLUGINS, GOALS)
     sql: SELECT
            article.articles_accessed.user_id "UID",
