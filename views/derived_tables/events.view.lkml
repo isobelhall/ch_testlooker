@@ -23,6 +23,13 @@ view: events {
               FROM article.articles_accessed
               UNION ALL
               SELECT
+                concat(id, "-", "plugins") as `pk`,
+                user_id,
+                created_at  AS `event`,
+                "plugins" as `type`
+              FROM program.plugins_accessed
+              UNION ALL
+              SELECT
                 concat(id, "-", "weight_track") as `pk`,
                 user_id,
                 created_at  AS `event`,
