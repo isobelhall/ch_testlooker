@@ -16,28 +16,28 @@ view: events {
         TIMESTAMPDIFF(MINUTE,lag(event) over (partition by user_id order by event), event) as `mins_since_last_event`
         FROM (
           SELECT
-                concat(id) as `pk`,
+                concat(id, "-", "article_access") as `pk`,
                 user_id,
                 created_at  AS `event`,
                 "article_access" as `type`
               FROM article.articles_accessed WHERE
               UNION ALL
               SELECT
-                concat(id) as `pk`,
+                concat(id, "-", "weight_track") as `pk`,
                 user_id,
                 created_at  AS `event`,
                 "weight_track" as `type`
               FROM plugin_weight.weight_tracks
               UNION ALL
               SELECT
-                concat(id) as `pk`,
+                concat(id, "-", "food_tracks") as `pk`,
                 user_id,
                 created_at  AS `event`,
                 "food_tracks" as `type`
               FROM plugin_food.food_tracks
               UNION ALL
               SELECT
-                concat(id) as `pk`,
+                concat(id, "-", "fit_tracks") as `pk`,
                 user_id,
                 created_at  AS `event`,
                 "fit_tracks" as `type`
