@@ -178,8 +178,8 @@ explore: pops_data_replica {
   label: "2. Demographics"
 }
 
-#explore: derived_activity_tables {
-#  persist_for: "24 hours"
-#  group_label: "Master Build Test IH"
-#  view_label: "7. Activity Data"
-#}
+explore: derived_activity_tables {
+  persist_for: "24 hours"
+  group_label: "Master Build Test IH"
+  view_label: "7. Activity Data (Derived)"
+}
