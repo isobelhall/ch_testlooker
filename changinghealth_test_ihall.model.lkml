@@ -155,11 +155,13 @@ explore: users {
   join: plugins_accessed {
     sql_on: ${plugins_accessed.user_id} = ${users.id};;
     relationship: many_to_one
+    view_label: "7. Activity Data"
   }
   #added on 06.01.2021 - had to unhide ID in plugins_accessed view to get to work
   join: program_plugins {
     sql_on: ${program_plugins.id} = ${plugins_accessed.plugin_id} ;;
     relationship: many_to_one
+    view_label: "7. Activity Data"
   }
 
 #########
