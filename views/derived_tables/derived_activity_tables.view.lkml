@@ -59,7 +59,7 @@ view: derived_activity_tables {
            'goals' as "ObjectType",
            plugin_goal.goals.created_at "ObjectAccessedDate"
       FROM plugin_goal.goals
-      JOIN plugin_goal.profiles.id = plugin_goal.goals.profile_id
+      JOIN plugin_goal.profiles ON plugin_goal.goals.profile_id = plugin_goal.profiles.id
 
       ORDER BY UID, ObjectAccessedDate;;
   }
