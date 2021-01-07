@@ -41,7 +41,6 @@ view: goals {
 
   dimension: profile_id {
     type: number
-    hidden: no
     sql: ${TABLE}.profile_id ;;
   }
 
