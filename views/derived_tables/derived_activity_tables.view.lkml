@@ -13,12 +13,12 @@ view: derived_activity_tables {
       UNION
       SELECT
            program.plugins_accessed.user_id "UID",
-           program.program_plugins.id "ObjectID",
-           program.program_plugins.system_name "ObjectName",
-           'plugins' as "ObjectType"
+           program.plugins.id "ObjectID",
+           program.plugins.system_name "ObjectName",
+           'plugins' as "ObjectType",
            program.plugins_accessed.created_at "ObjectAccessedDate"
       FROM program.plugins_accessed
-      JOIN program.program_plugins ON program.plugins_accessed.plugin_id = program.program_plugins.id
+      JOIN program.plugins ON program.plugins_accessed.plugin_id = program.plugins.id
       UNION
       SELECT
            plugin_weight.weight_tracks.user_id "UID",
