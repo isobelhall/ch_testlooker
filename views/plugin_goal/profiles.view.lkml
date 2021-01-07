@@ -3,7 +3,6 @@ view: profiles {
   drill_fields: [id]
 
   dimension: id {
-    hidden: no
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;

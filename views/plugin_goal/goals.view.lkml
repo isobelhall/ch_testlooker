@@ -3,7 +3,7 @@ view: goals {
   drill_fields: [id]
 
   dimension: id {
-    hidden: yes
+    hidden: no
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
@@ -41,7 +41,7 @@ view: goals {
 
   dimension: profile_id {
     type: number
-    hidden: yes
+    hidden: no
     sql: ${TABLE}.profile_id ;;
   }
 
