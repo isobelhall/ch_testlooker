@@ -102,6 +102,7 @@ view: users {
   }
 
   dimension: global_role {
+    label: "Global Role"
     hidden: yes
     type: string
     sql: ${TABLE}.global_role ;;
