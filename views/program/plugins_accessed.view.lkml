@@ -25,7 +25,7 @@ view: plugins_accessed {
 
   dimension: plugin_id {
     type: number
-    hidden: no
+    hidden: yes
     sql: ${TABLE}.plugin_id ;;
   }
 

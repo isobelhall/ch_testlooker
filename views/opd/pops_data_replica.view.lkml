@@ -9,6 +9,7 @@ view: pops_data_replica {
   }
 
   dimension_group: created {
+    label: "User Characteristic Entered On"
     type: time
     timeframes: [
       raw,
@@ -33,6 +34,7 @@ view: pops_data_replica {
   }
 
   dimension: scope {
+    label: "User Characteristics Type"
     type: string
     sql: ${TABLE}.scope ;;
   }
@@ -58,6 +60,7 @@ view: pops_data_replica {
   }
 
   dimension: value {
+    label: "User Characteristic Value"
     type: string
     sql: ${TABLE}.value ;;
   }

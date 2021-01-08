@@ -37,6 +37,7 @@ view: user_items {
   }
 
   dimension: item_id {
+    label: "Item shared with User"
     hidden: yes
     type: number
     # hidden: yes
