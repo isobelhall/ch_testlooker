@@ -53,6 +53,7 @@ view: program_plugins {
   }
 
   dimension: system_name {
+    label: "Plugin Name"
     type: string
     sql: ${TABLE}.system_name ;;
   }
