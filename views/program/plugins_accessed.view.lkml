@@ -9,6 +9,7 @@ view: plugins_accessed {
   }
 
   dimension_group: created {
+    label: "Plugin Accessed Date"
     type: time
     timeframes: [
       raw,
