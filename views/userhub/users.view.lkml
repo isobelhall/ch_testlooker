@@ -192,7 +192,8 @@ view: users {
 
 # What is this?
   dimension: suid {
-    hidden: yes
+    view_label: "0. General"
+    label: "Partner UID"
     type: string
     sql: ${TABLE}.suid ;;
   }
