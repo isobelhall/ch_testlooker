@@ -10,7 +10,8 @@ view: logins {
   }
 
   dimension_group: created {
-    label: "Account Created"
+    view_label: "1. User Account"
+    label: "Login Date"
     type: time
     timeframes: [
       raw,
