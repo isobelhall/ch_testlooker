@@ -26,6 +26,7 @@ view: user_data {
   }
 
   dimension_group: created {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -40,6 +41,7 @@ view: user_data {
   }
 
   dimension_group: deleted {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -54,6 +56,7 @@ view: user_data {
   }
 
   dimension: distance_unit {
+    hidden: yes
     type: number
     sql: ${TABLE}.distance_unit ;;
   }
@@ -87,11 +90,13 @@ view: user_data {
   }
 
   dimension: meta {
+    hidden: yes
     type: string
     sql: ${TABLE}.meta ;;
   }
 
   dimension: new_email {
+    hidden: yes
     type: string
     sql: ${TABLE}.new_email ;;
   }
@@ -118,6 +123,7 @@ view: user_data {
   }
 
   dimension_group: updated {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -133,7 +139,7 @@ view: user_data {
 
   dimension: user_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.user_id ;;
   }
 
