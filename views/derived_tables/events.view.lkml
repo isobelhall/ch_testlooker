@@ -160,7 +160,7 @@ view: events {
   }
 
   dimension: user_session_sequence {
-    view_label: "Sessions"
+    label: "Sessions"
     description: "Is this the user's 1st session, or their 3rd, etc."
     type: number
     sql: ${TABLE}.user_session_sequence ;;
