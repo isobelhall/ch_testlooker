@@ -13,7 +13,11 @@ view: events {
         mins_since_last_event > 10 or mins_since_last_event is null as `is_new_session`
         FROM (SELECT
         *,
+        TIMESTAMPDIFF(MONTH,lag(event) over (partition by user_id order by event), event) as `mnth_since_last_event`
+        TIMESTAMPDIFF(WEEK,lag(event) over (partition by user_id order by event), event) as `week_since_last_event`
+        TIMESTAMPDIFF(DAY,lag(event) over (partition by user_id order by event), event) as `days_since_last_event`
         TIMESTAMPDIFF(MINUTE,lag(event) over (partition by user_id order by event), event) as `mins_since_last_event`
+        TIMESTAMPDIFF(SECOND,lag(event) over (partition by user_id order by event), event) as `secs_since_last_event`
         FROM (
           SELECT
                 concat(id, "-", "article_access") as `pk`,
@@ -67,6 +71,12 @@ view: events {
     drill_fields: [detail*]
   }
 
+  measure: average {
+    label: "Average - Platform Use"
+    type: average
+    drill_fields: [detail*]
+  }
+
   dimension: pk {
     #hidden: yes
     primary_key: yes
@@ -88,6 +98,7 @@ view: events {
   }
 
   dimension_group: since_account_creation {
+    label: "Since Account Creation"
     type: duration
     intervals: [day, week, month]
     sql_start: ${users.created_raw} ;;
@@ -98,11 +109,41 @@ view: events {
     type: string
     sql: ${TABLE}.type ;;
   }
+#added 12/01 SL
+  dimension: mnth_since_last_event {
+    label: "Months Since Last Event"
+    #hidden: yes
+    type: number
+    sql: ${TABLE}.mnth_since_last_event ;;
+  }
+#added 12/01 SL
+  dimension: week_since_last_event {
+    label: "Weeks Since Last Event"
+    #hidden: yes
+    type: number
+    sql: ${TABLE}.week_since_last_event ;;
+  }
+#added 12/01 SL
+  dimension: days_since_last_event {
+    label: "Days Since Last Event"
+    #hidden: yes
+    type: number
+    sql: ${TABLE}.days_since_last_event ;;
+  }
 
   dimension: mins_since_last_event {
+    label: "Mins Since Last Event"
     #hidden: yes
     type: number
     sql: ${TABLE}.mins_since_last_event ;;
+  }
+
+#added 12/01 SL
+  dimension: secs_since_last_event {
+    label: "Seconds Since Last Event"
+    #hidden: yes
+    type: number
+    sql: ${TABLE}.secs_since_last_event ;;
   }
 
   dimension: is_new_session {
@@ -123,6 +164,7 @@ view: events {
     type: number
     sql: ${TABLE}.user_session_sequence ;;
   }
+
 
   set: detail {
     fields: [

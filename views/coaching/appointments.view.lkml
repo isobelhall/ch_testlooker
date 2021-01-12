@@ -199,6 +199,12 @@ view: appointments {
     filters: [result: "3", cancelled: "No"]
   }
 
+  measure: average_attended {
+    type: average
+    label: "Average - Appointments Attended"
+    filters: [result: "3", cancelled: "No"]
+  }
+
   measure: count_cancelled {
     label: "Count - Appointments Cancelled"
     type: count
