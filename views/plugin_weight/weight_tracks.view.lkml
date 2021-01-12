@@ -10,6 +10,7 @@ view: weight_tracks {
   }
 
   dimension_group: created {
+    view_label: "7. Activity Data"
     label: "Weight Recorded"
     hidden: yes
     type: time
@@ -58,6 +59,7 @@ view: weight_tracks {
   }
 
   dimension: weight_goal {
+    view_label: "7. Activity Data"
     label: "Weight Recorded Value"
     type: number
     sql: ${TABLE}.weight_goal ;;

@@ -10,6 +10,7 @@ view: food_tracks {
   }
 
   dimension_group: created {
+    view_label: "7. Activity Data"
     label: "Food Track Recorded"
     type: time
     timeframes: [
@@ -37,6 +38,7 @@ view: food_tracks {
   }
 
   dimension: label_foods {
+    view_label: "7. Activity Data"
     label: "Food Track Type"
     type: string
     sql: ${TABLE}.label_foods ;;
