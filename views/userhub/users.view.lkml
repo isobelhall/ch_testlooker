@@ -105,6 +105,7 @@ view: users {
   }
 
   dimension: global_role {
+    view_label: "1. User Account"
     label: "Global Role"
     hidden: yes
     type: string
@@ -112,6 +113,7 @@ view: users {
   }
 
   dimension: has_completed_profile {
+    hidden: yes
     label: "Profile Completed"
     type: yesno
     sql: ${TABLE}.has_completed_profile ;;
