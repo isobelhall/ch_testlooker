@@ -9,6 +9,8 @@ view: user_data {
   }
 
   dimension_group: birthdate {
+    view_label: "3. Identifiables"
+    label: "Birthdate"
     type: time
     timeframes: [
       raw,
@@ -57,21 +59,29 @@ view: user_data {
   }
 
   dimension: email {
+    view_label: "3. Identifiables"
+    label: "Email"
     type: string
     sql: ${TABLE}.email ;;
   }
 
   dimension: first_name {
+    view_label: "3. Identifiables"
+    label: "First Name"
     type: string
     sql: ${TABLE}.first_name ;;
   }
 
   dimension: landline_phone {
+    view_label: "3. Identifiables"
+    label: "Landline Number"
     type: string
     sql: ${TABLE}.landline_phone ;;
   }
 
   dimension: last_name {
+    view_label: "3. Identifiables"
+    label: "Last Name"
     type: string
     sql: ${TABLE}.last_name ;;
   }
@@ -87,16 +97,22 @@ view: user_data {
   }
 
   dimension: phone {
+    view_label: "3. Identifiables"
+    label: "Mobile Phone"
     type: string
     sql: ${TABLE}.phone ;;
   }
 
   dimension: sys_first_name {
+    view_label: "3. Identifiables"
+    label: "System First Name"
     type: string
     sql: ${TABLE}.sys_first_name ;;
   }
 
   dimension: sys_last_name {
+    view_label: "3. Identifiables"
+    label: "System Last Name"
     type: string
     sql: ${TABLE}.sys_last_name ;;
   }
