@@ -10,7 +10,8 @@ view: goals {
   }
 
   dimension_group: completed {
-    label: "Goal Completed"
+    view_label: "7. Activity Data"
+    label: "Goal Completion Date"
     type: time
     timeframes: [
       raw,
@@ -25,7 +26,8 @@ view: goals {
   }
 
   dimension_group: created {
-    label: "Goal Set"
+    view_label: "7. Activity Data"
+    label: "Goal Creation Date"
     type: time
     timeframes: [
       raw,

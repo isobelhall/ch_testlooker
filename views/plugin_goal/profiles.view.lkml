@@ -27,7 +27,7 @@ view: profiles {
   }
 
   dimension_group: completed {
-    hidden: yes
+    view_label: "7. Activity Data"
     type: time
     timeframes: [
       raw,
@@ -84,7 +84,8 @@ view: profiles {
   }
 
   dimension: name {
-    hidden: yes
+    view_label: "7. Activity Data"
+    label: "Goal Name"
     type: string
     sql: ${TABLE}.name ;;
   }
