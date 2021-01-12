@@ -166,17 +166,6 @@ explore: users {
 
 #########
 }
-explore:  user_data {
-  persist_for: "24 hours"
-  group_label: "Master Build Test IH"
-  #label: "3. Identifiables / Contact"
-}
-
-explore: pops_data_replica {
-  persist_for: "24 hours"
-  group_label: "Master Build Test IH"
-  label: "2. Demographics"
-}
 
 explore: derived_activity_tables {
   persist_for: "24 hours"
