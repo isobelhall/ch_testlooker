@@ -17,7 +17,7 @@ view: articles_accessed {
   }
 
   dimension_group: created {
-    view_label: "7. Activity"
+    view_label: "7. Activity Data"
     label: "Article Accessed"
     type: time
     timeframes: [
