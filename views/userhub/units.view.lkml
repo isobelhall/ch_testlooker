@@ -52,6 +52,7 @@ view: units {
   }
 
   dimension: display_name {
+    hidden: yes
     view_label: "1. User Account"
     label: "Unit/Programme Name"
     type: string
@@ -77,7 +78,8 @@ view: units {
   }
 
   dimension: name {
-    hidden: yes
+    view_label: "1. User Account"
+    label: "Unit/Programme Name"
     type: string
     sql: ${TABLE}.name ;;
   }

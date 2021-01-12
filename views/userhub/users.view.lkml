@@ -11,6 +11,7 @@ view: users {
   }
 
   dimension: account_enabled {
+    hidden: yes
     label: "Account Enabled"
     type: yesno
     sql: ${TABLE}.account_enabled ;;
@@ -35,7 +36,8 @@ view: users {
   }
 
   dimension_group: created {
-    label: "User Created"
+    view_label: "1. User Account"
+    label: "Account Created"
     type: time
     timeframes: [
       raw,
@@ -62,6 +64,7 @@ view: users {
   }
 
   dimension_group: deleted {
+    view_label: "1. User Account"
     label: "Account Deleted"
     type: time
     timeframes: [
@@ -195,6 +198,7 @@ view: users {
   dimension: suid {
     view_label: "0. General"
     label: "Partner UID"
+    hidden: yes
     type: string
     sql: ${TABLE}.suid ;;
   }

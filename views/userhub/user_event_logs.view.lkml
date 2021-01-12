@@ -26,6 +26,7 @@ view: user_event_logs {
   }
 
   dimension: event_type {
+    view_label: "1. User Account"
     label: "System Status"
     type: string
     sql: ${TABLE}.event_type ;;

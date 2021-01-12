@@ -26,6 +26,7 @@ view: units_users {
 
   dimension_group: created {
     label: "Status Created"
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -61,6 +62,7 @@ view: units_users {
   }
 
   dimension: status {
+    hidden:yes
     label: "Account Programme Status"
     type: string
     sql: ${TABLE}.status ;;
