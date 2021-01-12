@@ -4,11 +4,13 @@ view: plugins_accessed {
 
   dimension: id {
     primary_key: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.id ;;
   }
 
   dimension_group: created {
+    view_label: "7. Activity Data"
     label: "Plugin Accessed Date"
     type: time
     timeframes: [
@@ -30,11 +32,13 @@ view: plugins_accessed {
   }
 
   dimension: program_id {
+    hidden: yes
     type: number
     sql: ${TABLE}.program_id ;;
   }
 
   dimension_group: updated {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -50,7 +54,7 @@ view: plugins_accessed {
 
   dimension: user_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.user_id ;;
   }
 

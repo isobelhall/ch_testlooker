@@ -3,7 +3,7 @@ view: goals {
   drill_fields: [id]
 
   dimension: id {
-    hidden: no
+    hidden: yes
     primary_key: yes
     type: number
     sql: ${TABLE}.id ;;
