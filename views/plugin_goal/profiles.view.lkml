@@ -28,6 +28,7 @@ view: profiles {
   }
 
   dimension_group: completed {
+    hidden: yes
     view_label: "7. Activity Data"
     type: time
     timeframes: [
@@ -105,6 +106,7 @@ view: profiles {
 
   dimension: title {
     type: string
+    hidden: yes
     sql: ${TABLE}.title ;;
   }
 

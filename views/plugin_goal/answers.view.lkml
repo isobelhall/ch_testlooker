@@ -4,6 +4,7 @@ view: answers {
 
   dimension: id {
     primary_key: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.id ;;
   }
@@ -14,6 +15,7 @@ view: answers {
   }
 
   dimension_group: created {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -28,22 +30,26 @@ view: answers {
   }
 
   dimension: goal_id {
+    hidden: yes
     type: number
     # hidden: yes
     sql: ${TABLE}.goal_id ;;
   }
 
   dimension: multiple {
+    hidden: yes
     type: yesno
     sql: ${TABLE}.multiple ;;
   }
 
   dimension: token {
+    hidden: yes
     type: string
     sql: ${TABLE}.token ;;
   }
 
   dimension_group: updated {
+    hidden: yes
     type: time
     timeframes: [
       raw,
