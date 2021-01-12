@@ -163,6 +163,12 @@ explore: users {
     relationship: many_to_one
     view_label: "7. Activity Data"
   }
+  #added on 12.01.2021 - removed explore for user data so adding join to this explore
+  join: user_data {
+    sql_on: ${users.id} = ${user_data.user_id} ;;
+    relationship: one_to_one
+    view_label: "3. Identifiables"
+  }
 
 #########
 }
