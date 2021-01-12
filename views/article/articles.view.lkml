@@ -64,6 +64,7 @@ view: articles {
   }
 
   dimension: name {
+    view_label: "7. Activity"
     label: "Article Name"
     type: string
     sql: ${TABLE}.name ;;
@@ -84,6 +85,7 @@ view: articles {
   dimension: type {
     hidden: yes
     #split into article and video.
+    view_label: "7. Activity"
     label: "Article Type (article/video)"
     type: string
     sql: ${TABLE}.type ;;
