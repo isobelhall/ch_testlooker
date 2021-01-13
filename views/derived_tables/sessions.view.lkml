@@ -36,5 +36,18 @@ view: sessions {
     description: "Number of times a participant engaged in each session"
   }
 
+  measure: max {
+    label: "Maximum session count"
+    type: max
+    sql: ${TABLE}.user_session_sequence ;;
+    description: "Highest session count by this participant"
+  }
+
+  measure: average_session {
+    label: "Average session count"
+    type: average
+    sql: ${TABLE}.user_session_sequence ;;
+    description: "Highest session count by this participant"
+  }
 
 }
