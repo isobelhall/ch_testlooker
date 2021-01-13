@@ -2,7 +2,7 @@
 
 # include: "changinghealth_test_ihall.model.lkml"
 
-view: add_a_unique_name_1610570564 {
+view: user_event_count {
   derived_table: {
     explore_source: users {
       column: ppuid {}

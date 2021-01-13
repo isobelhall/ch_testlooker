@@ -176,6 +176,12 @@ explore: users {
     view_label: "2. Demographics"
   }
 
+  join: user_event_count {
+    sql_on: ${user_event_count.ppuid} = ${events.user_id} ;;
+    relationship: many_to_one
+    view_label: "7. Activity Data"
+  }
+
 #########
 }
 
