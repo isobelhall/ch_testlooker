@@ -96,6 +96,15 @@ view: events {
     value_format: "0.##"
   }
 
+#  measure: average {
+#   label: "Average - Platform Use Per Day"
+#    type: average
+#    sql: ${session_id} ;;
+#    sql_distinct_key: ${days_since_account_creation} ;;
+#    #drill_fields: [detail*]
+#    value_format: "0.##"
+#  }
+
   dimension: pk {
     #hidden: yes
     primary_key: yes
