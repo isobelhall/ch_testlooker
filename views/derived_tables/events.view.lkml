@@ -75,6 +75,7 @@ view: events {
     label: "Average - Platform Use"
     type: average
     sql: ${TABLE}.count
+    sql_distinct_key: ${TABLE}.user_id ;;
     drill_fields: [detail*]
   }
 
