@@ -71,6 +71,19 @@ view: events {
     drill_fields: [detail*]
   }
 
+  measure: count_users {
+    label: "Count - Users with tracked events"
+    type: count_distinct
+    sql: ${user_id} ;;
+    drill_fields: [detail*]
+  }
+
+  measure: count_events {
+    label: "Count - Events"
+    type: count_distinct
+    sql: ${pk} ;;
+  }
+
 #  measure: average {
 #    label: "Average - Platform Use"
 #    type: average
@@ -95,6 +108,13 @@ view: events {
     #drill_fields: [detail*]
     value_format: "0.##"
   }
+
+  measure: activities_per_user {
+    type:  number
+    value_format: "0.##"
+    sql: ${count_events} / ${count_users} ;;
+  }
+
 
 #  measure: average {
 #   label: "Average - Platform Use Per Day"
