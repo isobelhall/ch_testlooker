@@ -71,11 +71,18 @@ view: events {
     drill_fields: [detail*]
   }
 
+#  measure: average {
+#    label: "Average - Platform Use"
+#    type: average
+#    sql: ${TABLE}.count
+#    sql_distinct_key: ${TABLE}.since_account_creation ;;
+#    drill_fields: [detail*]
+#  }
+
   measure: average {
     label: "Average - Platform Use"
     type: average
-    sql: ${TABLE}.count
-    sql_distinct_key: ${TABLE}.since_account_creation ;;
+    sql: ${event_raw}
     drill_fields: [detail*]
   }
 
