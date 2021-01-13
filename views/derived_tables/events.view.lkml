@@ -79,13 +79,21 @@ view: events {
 #    drill_fields: [detail*]
 #  }
 
+#  measure: average {
+#    label: "Average - Platform Use"
+#    type: average
+#    sql: ${pk} ;;
+#    sql_distinct_key: ${user_id} ;;
+#    value_format: "0.##"
+#    drill_fields: [detail*]
+#  }
+
   measure: average {
     label: "Average - Platform Use"
     type: average
-    sql: ${pk} ;;
-    sql_distinct_key: ${user_id} ;;
+    sql: ${session_id} ;;
+    #drill_fields: [detail*]
     value_format: "0.##"
-    drill_fields: [detail*]
   }
 
   dimension: pk {
