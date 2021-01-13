@@ -82,7 +82,7 @@ view: events {
   measure: average {
     label: "Average - Platform Use"
     type: average
-    sql: ${event_raw} ;;
+    sql: ${pk} ;;
     drill_fields: [detail*]
   }
 
