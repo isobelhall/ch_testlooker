@@ -170,9 +170,8 @@ explore: users {
     view_label: "3. Identifiables"
   }
 
-  #added on 12.01.2021 - removed explore for pops data so adding join to this explore
-  join: pops_data_replica {
-    sql_on: ${users.id} = ${pops_data_replica.user_id} ;;
+  join: pops_data_replica_flattened  {
+    sql_on: ${users.id} = ${pops_data_replica_flattened.user_id} ;;
     relationship: many_to_one
     view_label: "2. Demographics"
   }
