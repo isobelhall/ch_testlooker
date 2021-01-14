@@ -24,7 +24,7 @@ FROM opd.pops_data_replica as pops_data_replica
 
   dimension: activity_plan {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties},"$.activity-plan"));;}
   dimension: bmi {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties},"$.bmi"));;}
-  dimension: bmi_1 {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties},"$.bmi-1"));;}
+  dimension: bmi_1 {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties},"$.bmi_1"));;}
   dimension: choose_your_eating_plan_female {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties},"$.choose-your-eating-plan-female"));;}
   dimension: choose_your_eating_plan_french {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties},"$.choose-your-eating-plan-french"));;}
   #dimension: choose-your-eating-plan-german-version {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties},"$.choose-your-eating-plan-german-version"));;}
