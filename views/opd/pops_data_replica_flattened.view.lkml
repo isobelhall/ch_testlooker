@@ -41,7 +41,7 @@ GROUP BY 1
     label: "ethnicity_english"
     case: {
       when: {
-        sql: ${ethnicity} = 1 ;;
+        sql: ${TABLE} = 1
         label: "White - British"
       }
     }
