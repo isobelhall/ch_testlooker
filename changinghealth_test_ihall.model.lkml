@@ -176,13 +176,6 @@ explore: users {
     view_label: "7. Activity Data"
   }
 
-  #added on 14.01.2021 as initial flattened file / view was incorrect
-  join: pops_data_replica_flattened_v1 {
-    sql_on: ${users.id} = ${pops_data_replica_flattened_v1.user_id} ;;
-    relationship: one_to_many
-    view_label: "2. Demographics"
-  }
-
 #########
 }
 
