@@ -28,6 +28,7 @@ GROUP BY 1
 
   dimension: activity_plan {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.activity_plan"));;}
   dimension: bmi {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.bmi"));;}
+  dimension: choose_your_eating_plan_female {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.choose_your_eating_plan_female"));;}
 
   set: detail {
     fields: [user_id, properties]
