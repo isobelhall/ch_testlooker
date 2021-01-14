@@ -1,5 +1,7 @@
 view: pops_data_replica_flattened {
-  #This view flattens the pops data table so we are able to see line by line the different user characteristics
+  #This view flattens the pops data table so we are able to see line by line the different
+  #user characteristics
+
   derived_table: {
     sql: SELECT  pops_data_replica.user_id,
         JSON_OBJECTAGG(pops_data_replica.value, pops_data_replica.`key`) as properties
@@ -24,7 +26,7 @@ GROUP BY 1
     sql: ${TABLE}.properties ;;
   }
 
-  dimension: activity_plan {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.activity_plan"));;}
+  dimension: activity_plan {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.activity-plan"));;}
 
   set: detail {
     fields: [user_id, properties]
