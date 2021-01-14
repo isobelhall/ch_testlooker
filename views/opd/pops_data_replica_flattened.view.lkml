@@ -7,8 +7,9 @@ view: pops_data_replica_flattened {
         users.ppuid "CHUID",
         JSON_OBJECTAGG(pops_data_replica.`key`, pops_data_replica.value) as properties
 FROM opd.pops_data_replica as pops_data_replica
-JOIN userhub.users on opd.pops_data_replica.user_id = userhub.users.id
+LEFT JOIN userhub.users on opd.pops_data_replica.user_id = userhub.users.id
 GROUP BY 1, 2
+
  ;;
   }
 
