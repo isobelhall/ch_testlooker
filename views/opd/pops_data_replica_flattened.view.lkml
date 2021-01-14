@@ -46,7 +46,7 @@ GROUP BY 1,2
   dimension: ethnic_background_duk {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.ethnic_background_duk"));;}
   dimension: ethnicity {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.ethnicity"));;}
   dimension: ethnicity_english {
-    label: "Ethnicity"
+    label: "ethnicity_english"
     case: {
       when: {
         sql: ${ethnicity} = 1 ;;
