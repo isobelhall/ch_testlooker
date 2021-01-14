@@ -26,7 +26,7 @@ GROUP BY 1
     sql: ${TABLE}.properties ;;
   }
 
-  dimension: activity_plan {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.activity-plan"));;}
+  dimension: activity_plan {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.activity_plan"));;}
 
   set: detail {
     fields: [user_id, properties]
