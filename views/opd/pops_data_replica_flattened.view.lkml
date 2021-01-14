@@ -4,9 +4,11 @@ view: pops_data_replica_flattened {
 
   derived_table: {
     sql: SELECT  pops_data_replica.user_id,
+        users.ppuid "CHUID",
         JSON_OBJECTAGG(pops_data_replica.`key`, pops_data_replica.value) as properties
 FROM opd.pops_data_replica as pops_data_replica
-GROUP BY 1
+JOIN userhub.users on opd.pops_data_replica.user_id = userhub.users.id
+GROUP BY 1, 2
  ;;
   }
 
@@ -45,6 +47,12 @@ GROUP BY 1
       when: {
         sql: ${ethnicity} = 1 ;;
         label: "White - British"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 2 ;;
+        label: "White - Irish"
       }
     }
 
