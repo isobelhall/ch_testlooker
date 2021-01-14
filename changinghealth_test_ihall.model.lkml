@@ -170,12 +170,6 @@ explore: users {
     view_label: "3. Identifiables"
   }
 
-  join: pops_data_replica_flattened  {
-    sql_on: ${users.id} = ${pops_data_replica_flattened.user_id} ;;
-    relationship: many_to_one
-    view_label: "2. Demographics"
-  }
-
   join: user_event_count {
     sql_on: ${user_event_count.ppuid} = ${events.user_id} ;;
     relationship: many_to_one
