@@ -22,6 +22,11 @@ GROUP BY 1, 2
     sql: ${TABLE}.user_id ;;
   }
 
+  dimension: chuid {
+    type: string
+    sql: ${TABLE}.CHUID ;;
+  }
+
   dimension: properties {
     hidden: yes
     type: string
