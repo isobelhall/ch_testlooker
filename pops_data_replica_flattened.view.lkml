@@ -45,6 +45,105 @@ GROUP BY 1,2
   dimension: employed {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.employed"));;}
   dimension: ethnic_background_duk {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.ethnic_background_duk"));;}
   dimension: ethnicity {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.ethnicity"));;}
+  dimension: ethnicity_english {
+    label: "Ethnicity"
+    case: {
+      when: {
+        sql: ${ethnicity} = 1 ;;
+        label: "White - British"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 2 ;;
+        label: "White - Irish"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 3 ;;
+        label: "Any other white background"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 4 ;;
+        label: "Mixed - White and Black Caribbean"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 5 ;;
+        label: "Mixed - White and Black African"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 6 ;;
+        label: "Mixed - White and Asian"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 7 ;;
+        label: "Any other mixed background"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 8 ;;
+        label: "Asian - Indian"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 9 ;;
+        label: "Asian - Pakistani "
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 10 ;;
+        label: "Asian - Bangladeshi"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 11 ;;
+        label: "Any other Asian background"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 12 ;;
+        label: "Black or Black British - Caribbean"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 13 ;;
+        label: "Black or Black British - African"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 14 ;;
+        label: "Any other Black background"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 15 ;;
+        label: "Any other"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 16 ;;
+        label: "Prefer not to say"
+      }
+    }
+  }
   dimension: family_diabetes_duk {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.family_diabetes_duk"));;}
   dimension: gender {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.gender"));;}
   dimension: gender_duk {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.gender_duk"));;}
