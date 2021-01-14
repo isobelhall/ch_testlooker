@@ -43,7 +43,7 @@ GROUP BY 1
   dimension: ethnicity_english {sql:JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.ethnicity"));;
     case: {
       when: {
-        sql: ${TABLE}.ethnicity = 1;;
+        sql: ${ethnicity} = 1 ;;
         label: "White - British"
       }
     }
