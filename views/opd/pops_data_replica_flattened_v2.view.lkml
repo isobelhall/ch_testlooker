@@ -16,11 +16,13 @@ GROUP BY users.ppuid
   }
 
   dimension: chuid {
+    view_label: "2. Demographics"
     type: string
     sql: ${TABLE}.CHUID ;;
   }
 
   dimension: user_id {
+    view_label: "2. Demographics"
     type: number
     sql: ${TABLE}.user_id ;;
   }
