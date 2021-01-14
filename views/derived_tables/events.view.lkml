@@ -84,6 +84,11 @@ view: events {
     sql: ${pk} ;;
   }
 
+  measure: activities_per_user {
+    type:  number
+    value_format: "0.##"
+    sql: ${count_events} / ${count_users} ;;
+  }
 #  measure: average {
 #    label: "Average - Platform Use"
 #    type: average
@@ -109,11 +114,7 @@ view: events {
     value_format: "0.##"
   }
 
-  measure: activities_per_user {
-    type:  number
-    value_format: "0.##"
-    sql: ${count_events} / ${count_users} ;;
-  }
+
 
 
 #  measure: average {
