@@ -21,7 +21,7 @@ GROUP BY 1
   }
 
   dimension: properties {
-    hidden: yes
+    hidden: no
     type: string
     sql: ${TABLE}.properties ;;
   }
