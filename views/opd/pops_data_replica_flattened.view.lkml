@@ -37,6 +37,21 @@ GROUP BY 1
   dimension: employed {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.employed"));;}
   dimension: ethnic_background_duk {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.ethnic_background_duk"));;}
   dimension: ethnicity {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.ethnicity"));;}
+  dimension: ethnicity_english {
+    label: "ethnicity_english"
+    case: {
+      when: {
+        sql: ${ethnicity} = 1 ;;
+        label: "White - British"
+      }
+    }
+    case: {
+      when: {
+        sql: ${ethnicity} = 2 ;;
+        label: "White - Irish"
+      }
+    }
+  }
   dimension: family_diabetes_duk {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.family_diabetes_duk"));;}
   dimension: gender {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.gender"));;}
   dimension: gender_duk {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.gender_duk"));;}
