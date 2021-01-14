@@ -1,10 +1,8 @@
 view: pops_data_replica_flattened {
   derived_table: {
     sql: SELECT  pops_data_replica.user_id,
-        userhub.users.ppuid as "CHUID",
         JSON_OBJECTAGG(pops_data_replica.`key`, pops_data_replica.value) as "properties"
 FROM opd.pops_data_replica as pops_data_replica
-JOIN userhub.users ON pops_data_replica.user_id = userhub.users.id
 GROUP BY 1,2
  ;;
   }
@@ -19,10 +17,7 @@ GROUP BY 1,2
     sql: ${TABLE}.user_id ;;
   }
 
-  dimension: chuid {
-    type: string
-    sql: ${TABLE}.CHUID ;;
-  }
+
 
   dimension: properties {
     hidden: yes
@@ -164,6 +159,6 @@ GROUP BY 1,2
   dimension: weight_reminder {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.weight_reminder"));;}
 
   set: detail {
-    fields: [user_id, chuid, properties]
+    fields: [user_id, properties]
   }
 }
