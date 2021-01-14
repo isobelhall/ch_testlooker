@@ -1,6 +1,6 @@
 connection: "mysql_connection_events"
 
-#include: "/views/*.view.lkml"                # include all views in the views/ folder in this project
+include: "/views/*.view.lkml"                # include all views in the views/ folder in this project
 include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 label: "Test CH Master Model"
@@ -176,6 +176,11 @@ explore: users {
     view_label: "7. Activity Data"
   }
 
+  join: pops_data_replica_flattened {
+    sql_on: ${users.id} = ${pops_data_replica_flattened.user_id} ;;
+    relationship: one_to_many
+    view_label: "2. Demographics / User Attributes"
+  }
 
 #########
 }
