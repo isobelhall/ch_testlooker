@@ -1,4 +1,4 @@
-view: pops_data_replica_flatted_v2 {
+view: pops_data_replica_flattened_v2 {
   derived_table: {
     sql: SELECT  users.ppuid as "CHUID",
         opd.pops_data_replica.user_id,
