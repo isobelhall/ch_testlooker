@@ -30,7 +30,7 @@ explore: users {
     view_label: "1. User Account"
     sql_on: ${users.id} = ${logins.user_id} ;;
     #relationship changed from many_to_one, to one_to_many
-    relationship: one_to_many
+    relationship: many_to_one
   }
 
 # - Units_users, any unnecessary headers hidden
@@ -38,7 +38,7 @@ explore: users {
     view_label: "1. User Account"
     sql_on: ${users.id} = ${units_users.user_id} ;;
     #changed to "one to many"
-    relationship: one_to_many
+    relationship: many_to_one
   }
 
 #23/12/2020 - hidden many headers and labelled
@@ -59,7 +59,7 @@ explore: users {
   join: articles_accessed {
     sql_on: ${users.id} = ${articles_accessed.user_id} ;;
     #changed to "one to many"
-    relationship: one_to_many
+    relationship: many_to_one
     view_label: "7. Activity Data"
   }
       #23/12/2020 - hidden many headers and labelled
