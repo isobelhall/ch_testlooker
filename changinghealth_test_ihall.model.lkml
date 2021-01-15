@@ -178,7 +178,7 @@ explore: users {
 
   join: pops_data_replica_flattened {
     sql_on: ${users.id} = ${pops_data_replica_flattened.user_id} ;;
-    relationship: one_to_many
+    relationship: many_to_one
     view_label: "2. Demographics / User Attributes"
   }
 
