@@ -102,7 +102,7 @@ view: derived_activity_tables {
 
   dimension: object_id {
     primary_key: yes
-#    hidden: yes
+    label: "All Activities - Object ID"
     type: number
     sql: ${TABLE}.ObjectID ;;
   }
