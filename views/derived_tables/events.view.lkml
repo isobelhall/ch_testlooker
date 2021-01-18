@@ -90,6 +90,12 @@ view: events {
     sql: ${count_events} / ${count_users} ;;
   }
 
+  measure: last_events{
+    label: "Last Event"
+    type: date
+    sql: MAX(${event_date})  ;;
+  }
+
 
   dimension: pk {
     #hidden: yes
@@ -125,28 +131,28 @@ view: events {
   }
 #added 12/01 SL
   dimension: mnth_since_last_event {
-    label: "Months Since Last Event"
+    label: "Months Since Previous Event"
     #hidden: yes
     type: number
     sql: ${TABLE}.mnth_since_last_event ;;
   }
 #added 12/01 SL
   dimension: week_since_last_event {
-    label: "Weeks Since Last Event"
+    label: "Weeks Since Previous Event"
     #hidden: yes
     type: number
     sql: ${TABLE}.week_since_last_event ;;
   }
 #added 12/01 SL
   dimension: days_since_last_event {
-    label: "Days Since Last Event"
+    label: "Days Since Previous Event"
     #hidden: yes
     type: number
     sql: ${TABLE}.days_since_last_event ;;
   }
 
   dimension: mins_since_last_event {
-    label: "Mins Since Last Event"
+    label: "Mins Since Previous Event"
     #hidden: yes
     type: number
     sql: ${TABLE}.mins_since_last_event ;;
@@ -154,7 +160,7 @@ view: events {
 
 #added 12/01 SL
   dimension: secs_since_last_event {
-    label: "Seconds Since Last Event"
+    label: "Seconds Since Previous Event"
     #hidden: yes
     type: number
     sql: ${TABLE}.secs_since_last_event ;;
