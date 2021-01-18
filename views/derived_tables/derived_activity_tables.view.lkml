@@ -122,7 +122,7 @@ view: derived_activity_tables {
 
   #PROBLEM: need output with full date-time stamp, not just date as yyyy-mm-dd
   dimension_group: object_accessed_date {
-    label: "All Activities - Acivity Completed"
+    label: "All Activities - Activity Completed"
     type: time
     timeframes: [
       raw,
