@@ -89,42 +89,7 @@ view: events {
     value_format: "0.##"
     sql: ${count_events} / ${count_users} ;;
   }
-#  measure: average {
-#    label: "Average - Platform Use"
-#    type: average
-#    sql: ${TABLE}.count ;;
-#    sql_distinct_key: ${TABLE}.since_account_creation ;;
-#    drill_fields: [detail*]
-#  }
 
-#  measure: average {
-#    label: "Average - Platform Use"
-#    type: average
-#    sql: ${pk} ;;
-#    sql_distinct_key: ${user_id} ;;
-#    value_format: "0.##"
-#    drill_fields: [detail*]
-#  }
-
-  measure: average {
-    label: "Average - Platform Use"
-    type: average
-    sql: ${session_id} ;;
-    #drill_fields: [detail*]
-    value_format: "0.##"
-  }
-
-
-
-
-#  measure: average {
-#   label: "Average - Platform Use Per Day"
-#    type: average
-#    sql: ${session_id} ;;
-#    sql_distinct_key: ${days_since_account_creation} ;;
-#    #drill_fields: [detail*]
-#    value_format: "0.##"
-#  }
 
   dimension: pk {
     #hidden: yes
@@ -142,14 +107,14 @@ view: events {
   dimension_group: event {
     #label: ""
     type: time
-    timeframes: [raw,time,date,week,month]
+    timeframes: [raw,time,date,week,month, hour_of_day]
     sql: ${TABLE}.event ;;
   }
 
   dimension_group: since_account_creation {
     label: "Since Account Creation"
     type: duration
-    intervals: [day, week, month]
+    intervals: [day, week, month, hour]
     sql_start: ${users.created_raw} ;;
     sql_end: ${event_raw} ;;
   }
