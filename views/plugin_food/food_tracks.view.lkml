@@ -41,6 +41,21 @@ view: food_tracks {
     view_label: "7. Activity Data"
     label: "Food Track Type"
     type: string
+    case: {
+      when: {
+        sql:  ${TABLE}.label_foods = "red";;
+        label: "1. Red"
+      }
+      when: {
+        sql: ${TABLE}.label_foods = "amber" ;;
+        label: "2. Amber"
+      }
+      when: {
+        sql: ${TABLE}.label_foods = "green" ;;
+        label: "3. Green"
+      }
+      else: "Not Recorded"
+    }
     sql: ${TABLE}.label_foods ;;
   }
 
