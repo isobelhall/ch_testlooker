@@ -183,7 +183,7 @@ view: users {
   }
 # What is this?
   dimension: ppuid {
-    view_label: "0. General"
+    view_label: "1. User Account"
     label: "CHUID"
     description: "Platform identifier for each participant"
     type: string
@@ -192,6 +192,7 @@ view: users {
 
   dimension: status {
     label: "Account Status"
+    hidden: yes
     type: string
     sql: ${TABLE}.status ;;
   }
