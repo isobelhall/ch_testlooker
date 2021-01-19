@@ -14,18 +14,22 @@ view: user_event_count {
     }
   }
   dimension: ppuid {
+    #this does not provide the expected outcome
     hidden: yes
     primary_key: yes
     label: "0. General CHUID"
     description: "Platform identifier for each participant"
   }
   dimension: count {
+    #this does not provide the expected outcome
     hidden: yes
     label: "8. Platform Events Count - Platform Use"
     type: number
   }
 
   measure: average {
+    #this does not provide the expected outcome
+    hidden: yes
     type:  average
     label: "Average Events Per Day Per User ID"
     sql:  ${count} ;;

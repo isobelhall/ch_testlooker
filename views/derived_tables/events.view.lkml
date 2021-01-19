@@ -113,7 +113,7 @@ view: events {
   dimension_group: event {
     #label: ""
     type: time
-    timeframes: [raw,time,date,week,month, hour_of_day]
+    timeframes: [raw,time,date,week,month, hour_of_day, day_of_week,day_of_month]
     sql: ${TABLE}.event ;;
   }
 
