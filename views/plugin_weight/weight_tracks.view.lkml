@@ -12,7 +12,7 @@ view: weight_tracks {
   dimension_group: created {
     view_label: "7. Activity Data"
     label: "Weight Recorded"
-    hidden: yes
+    #hidden: yes
     type: time
     timeframes: [
       raw,

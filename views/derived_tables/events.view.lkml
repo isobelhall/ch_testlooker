@@ -174,7 +174,7 @@ view: events {
   }
 
   measure: sum_derived_mins_since_last_event {
-    label: "Count - Seconds Since Previous Event"
+    label: "Count - Minutes Since Previous Event"
     #hidden: yes
     type: sum
     sql: ROUND(${TABLE}.secs_since_last_event / 60, 1) ;;
