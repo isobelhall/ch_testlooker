@@ -166,6 +166,13 @@ view: events {
     sql: ${TABLE}.secs_since_last_event ;;
   }
 
+  measure: sum_secs_since_last_event {
+    label: "Count - Seconds Since Previous Event"
+    #hidden: yes
+    type: sum
+    sql: ${TABLE}.secs_since_last_event ;;
+  }
+
   dimension: is_new_session {
     hidden: yes
     type: number
