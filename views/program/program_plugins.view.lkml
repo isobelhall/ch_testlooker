@@ -95,6 +95,8 @@ view: program_plugins {
   }
 
   measure: count {
+    hidden: yes
+    label: "Count - Plugins In Platform"
     type: count
     drill_fields: [id, system_name, display_name, users.id]
   }

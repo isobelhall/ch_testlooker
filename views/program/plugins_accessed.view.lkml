@@ -59,6 +59,7 @@ view: plugins_accessed {
   }
 
   measure: count {
+    label: "Count - Plugins Accessed"
     type: count
     drill_fields: [id, users.id, coaching_plugins.id]
   }

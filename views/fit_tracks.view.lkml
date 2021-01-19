@@ -41,6 +41,12 @@ view: fit_tracks {
     sql: ${TABLE}.logging_steps ;;
   }
 
+  measure: sum_logging_steps {
+    label: "Count - Steps Recorded"
+    type: sum
+    sql: ${TABLE}.logging_steps ;;
+  }
+
   dimension_group: updated {
     hidden: yes
     type: time

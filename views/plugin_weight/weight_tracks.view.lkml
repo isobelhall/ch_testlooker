@@ -65,6 +65,12 @@ view: weight_tracks {
     sql: ${TABLE}.weight_goal ;;
   }
 
+  measure: average {
+    label: "Average - Recorded Weight"
+    type: average_distinct
+    drill_fields: [id, users.id]
+  }
+
   measure: count {
     label: "Count - Weights Tracked"
     type: count
