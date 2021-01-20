@@ -23,7 +23,7 @@ view: events {
                 concat(id, "-", "article_access") as `pk`,
                 user_id,
                 created_at  AS `event`,
-                "article_access" as `type`
+                articles.type as `type`
               FROM article.articles_accessed
               UNION ALL
               SELECT
@@ -64,6 +64,8 @@ view: events {
             ) events_session_flag
        ;;
   }
+
+#  LINE 26              "article_access" as `type`
 
   measure: count {
     label: "Count - Platform Use"
