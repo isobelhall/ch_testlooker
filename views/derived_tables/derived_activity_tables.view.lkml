@@ -6,7 +6,7 @@ view: derived_activity_tables {
            article.articles_accessed.user_id "UID",
            article.articles.id "ObjectID",
            articles.name "ObjectValue",
-           articles.type "ObjectType",
+           articles.type as "ObjectType",
            article.articles_accessed.created_at "ObjectAccessedDate"
       FROM  article.articles_accessed
       JOIN article.articles ON article.articles_accessed.article_id  = article.articles.id
