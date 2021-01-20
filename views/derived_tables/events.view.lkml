@@ -20,7 +20,7 @@ view: events {
         TIMESTAMPDIFF(SECOND,lag(event) over (partition by user_id order by event), event) as `secs_since_last_event`
         FROM (
           SELECT
-                concat(id, "-", "article_access") as `pk`,
+                id as `pk`,
                 user_id,
                 created_at  AS `event`,
                 "article" as `type`
