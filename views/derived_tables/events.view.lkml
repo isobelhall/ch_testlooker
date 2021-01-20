@@ -23,7 +23,7 @@ view: events {
                 concat(id, "-", "article_access") as `pk`,
                 user_id,
                 created_at  AS `event`,
-                articles.type as `type`
+                type as `type`
               FROM article.articles_accessed
               UNION ALL
               SELECT
