@@ -110,12 +110,13 @@ view: derived_activity_2 {
 #v2
   measure:  has_done_activity{
     label: "User Has Done Activity"
+    type: yesno
     case: {
       when: {
         sql: ${count_users} > 0 ;;
-        label: "1"
+        label: "Yes"
       }
-      else: "0"
+      else: "No"
     }
   }
 
