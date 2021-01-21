@@ -185,9 +185,9 @@ view: events {
   measure: sum_derived_mins_since_last_event_per_user{
     label: "Average - Minutes Since Previous Event, Per User"
     #hidden: yes
-    type: count_distinct
+    type: number
     value_format: "0.##"
-    sql: ${TABLE}.secs_since_last_event / ${pk} / 60 ;;
+    sql: ${sum_derived_mins_since_last_event} / ${count_users} / 60 ;;
   }
 
 
