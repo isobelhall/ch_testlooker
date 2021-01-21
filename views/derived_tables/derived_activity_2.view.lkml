@@ -144,6 +144,112 @@ view: derived_activity_2 {
     sql: ${TABLE}.ObjectType ;;
   }
 
+  dimension_group: object_accessed_date {
+    label: "All Activities - Activity Completed"
+    type: time
+    timeframes: [
+      raw,
+      time,
+      hour_of_day,
+      minute15,
+      day_of_week,
+      day_of_month,
+      day_of_year,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.event ;;
+  }
+
+#TIME DIFFERENCE MEASURES/DIMENSIONS
+  dimension_group: event {
+    hidden: yes
+    #label: ""
+    type: time
+    timeframes: [raw,time,date,week,month, hour_of_day, day_of_week,day_of_month]
+    sql: ${TABLE}.event ;;
+  }
+
+  dimension_group: since_account_creation {
+    label: "Since Account Creation"
+    type: duration
+    intervals: [day, week, month, hour]
+    sql_start: ${users.created_raw} ;;
+    sql_end: ${event_raw} ;;
+  }
+
+#added 12/01 SL
+  dimension: mnth_since_last_event {
+    label: "Months Since Previous Event"
+    #hidden: yes
+    type: number
+    drill_fields: [detail*]
+    sql: ${TABLE}.mnth_since_last_event ;;
+  }
+#added 12/01 SL
+  dimension: week_since_last_event {
+    label: "Weeks Since Previous Event"
+    #hidden: yes
+    type: number
+    drill_fields: [detail*]
+    sql: ${TABLE}.week_since_last_event ;;
+  }
+#added 12/01 SL
+  dimension: days_since_last_event {
+    label: "Days Since Previous Event"
+    #hidden: yes
+    type: number
+    drill_fields: [detail*]
+    sql: ${TABLE}.days_since_last_event ;;
+  }
+
+  dimension: mins_since_last_event {
+    label: "Mins Since Previous Event"
+    #hidden: yes
+    type: number
+    drill_fields: [detail*]
+    sql: ${TABLE}.mins_since_last_event ;;
+  }
+
+#added 12/01 SL
+  dimension: secs_since_last_event {
+    label: "Seconds Since Previous Event"
+    #hidden: yes
+    type: number
+    drill_fields: [detail*]
+    sql: ${TABLE}.secs_since_last_event ;;
+  }
+
+  measure: sum_secs_since_last_event {
+    label: "Count - Seconds Since Previous Event"
+    #hidden: yes
+    type: sum
+    drill_fields: [detail*]
+    sql: ${TABLE}.secs_since_last_event ;;
+  }
+
+  measure: sum_derived_mins_since_last_event {
+    label: "Count - Minutes Since Previous Event"
+    #hidden: yes
+    type: sum
+    drill_fields: [detail*]
+    sql: ROUND(${TABLE}.secs_since_last_event / 60, 1) ;;
+  }
+
+  measure: sum_derived_mins_since_last_event_per_user{
+    label: "Average - Minutes Since Previous Event, Per User"
+    #hidden: yes
+    type: number
+    value_format: "0.##"
+    drill_fields: [detail*]
+    sql: ${sum_derived_mins_since_last_event} / ${count_users} ;;
+  }
+
+
+#SESSION DIMENSIONS
   dimension: is_new_session {
     hidden: yes
     type: number
@@ -172,26 +278,6 @@ view: derived_activity_2 {
       session_id,
       user_session_sequence
     ]
-  }
-
-  dimension_group: object_accessed_date {
-    label: "All Activities - Activity Completed"
-    type: time
-    timeframes: [
-      raw,
-      time,
-      hour_of_day,
-      minute15,
-      day_of_week,
-      day_of_month,
-      day_of_year,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.event ;;
   }
 
 
