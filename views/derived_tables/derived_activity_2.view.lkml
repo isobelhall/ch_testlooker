@@ -173,7 +173,7 @@ view: derived_activity_2 {
       quarter,
       year
     ]
-    sql: ${TABLE}.ObjectAccessedDate ;;
+    sql: ${TABLE}.event ;;
   }
 
 
