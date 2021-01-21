@@ -136,6 +136,7 @@ view: events {
     label: "Months Since Previous Event"
     #hidden: yes
     type: number
+    drill_fields: [detail*]
     sql: ${TABLE}.mnth_since_last_event ;;
   }
 #added 12/01 SL
@@ -143,6 +144,7 @@ view: events {
     label: "Weeks Since Previous Event"
     #hidden: yes
     type: number
+    drill_fields: [detail*]
     sql: ${TABLE}.week_since_last_event ;;
   }
 #added 12/01 SL
@@ -150,6 +152,7 @@ view: events {
     label: "Days Since Previous Event"
     #hidden: yes
     type: number
+    drill_fields: [detail*]
     sql: ${TABLE}.days_since_last_event ;;
   }
 
@@ -157,6 +160,7 @@ view: events {
     label: "Mins Since Previous Event"
     #hidden: yes
     type: number
+    drill_fields: [detail*]
     sql: ${TABLE}.mins_since_last_event ;;
   }
 
@@ -165,6 +169,7 @@ view: events {
     label: "Seconds Since Previous Event"
     #hidden: yes
     type: number
+    drill_fields: [detail*]
     sql: ${TABLE}.secs_since_last_event ;;
   }
 
@@ -172,6 +177,7 @@ view: events {
     label: "Count - Seconds Since Previous Event"
     #hidden: yes
     type: sum
+    drill_fields: [detail*]
     sql: ${TABLE}.secs_since_last_event ;;
   }
 
@@ -179,6 +185,7 @@ view: events {
     label: "Count - Minutes Since Previous Event"
     #hidden: yes
     type: sum
+    drill_fields: [detail*]
     sql: ROUND(${TABLE}.secs_since_last_event / 60, 1) ;;
   }
 
@@ -187,6 +194,7 @@ view: events {
     #hidden: yes
     type: number
     value_format: "0.##"
+    drill_fields: [detail*]
     sql: ${sum_derived_mins_since_last_event} / ${count_users} ;;
   }
 
