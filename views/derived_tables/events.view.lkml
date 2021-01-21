@@ -22,38 +22,38 @@ view: events {
           SELECT
                 id as `pk`,
                 user_id,
-                created_at  AS `event`,
+                created_at  AS `event`
                 "article" as `type`
               FROM article.articles_accessed
               UNION ALL
               SELECT
                 id as `pk`,
                 user_id,
-                created_at  AS `event`,
+                created_at  AS `event`
               FROM program.plugins_accessed
               UNION ALL
               SELECT
                 id as `pk`,
                 user_id,
-                created_at  AS `event`,
+                created_at  AS `event`
               FROM plugin_weight.weight_tracks
               UNION ALL
               SELECT
                 id as `pk`,
                 user_id,
-                created_at  AS `event`,
+                created_at  AS `event`
               FROM plugin_food.food_tracks
               UNION ALL
               SELECT
                 id as `pk`,
                 user_id,
-                created_at  AS `event`,
+                created_at  AS `event`
               FROM step.fit_tracks
               UNION ALL
               SELECT
                 id as `pk`,
                 user_id,
-                created_at  AS `event`,
+                created_at  AS `event`
               FROM plugin_goal.goals
             ) as events ) as events_lag
             ) events_session_flag
