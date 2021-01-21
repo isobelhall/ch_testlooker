@@ -23,7 +23,6 @@ view: events {
                 id as `pk`,
                 user_id,
                 created_at  AS `event`
-                "article" as `type`
               FROM article.articles_accessed
               UNION ALL
               SELECT
