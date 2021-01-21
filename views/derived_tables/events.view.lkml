@@ -124,9 +124,11 @@ view: events {
   }
 
   dimension: type {
+    hidden: yes
     type: string
     sql: ${TABLE}.type ;;
   }
+
 #added 12/01 SL
   dimension: mnth_since_last_event {
     label: "Months Since Previous Event"
