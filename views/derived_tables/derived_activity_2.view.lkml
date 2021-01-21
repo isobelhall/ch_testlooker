@@ -212,7 +212,8 @@ view: derived_activity_2 {
     #hidden: yes
     type: number
     drill_fields: [detail*]
-    sql: ${TABLE}.mins_since_last_event < 10 ;;
+    sql: CASE
+      WHEN ${TABLE}.mins_since_last_event < 10 THEN ${TABLE}.secs_since_last_event;;
   }
 
   dimension: secs_since_last_event {
@@ -220,7 +221,8 @@ view: derived_activity_2 {
     #hidden: yes
     type: number
     drill_fields: [detail*]
-    sql: ${TABLE}.secs_since_last_event < 600 ;;
+    sql: CASE
+          WHEN ${TABLE}.secs_since_last_event < 600 THEN ${TABLE}.secs_since_last_event;;
   }
 
   measure: sum_secs_since_last_event {
