@@ -27,38 +27,33 @@ view: events {
               FROM article.articles_accessed
               UNION ALL
               SELECT
-                concat(id, "-", "plugins") as `pk`,
+                id as `pk`,
                 user_id,
                 created_at  AS `event`,
-                "plugins" as `type`
               FROM program.plugins_accessed
               UNION ALL
               SELECT
-                concat(id, "-", "weight_track") as `pk`,
+                id as `pk`,
                 user_id,
                 created_at  AS `event`,
-                "weight_track" as `type`
               FROM plugin_weight.weight_tracks
               UNION ALL
               SELECT
-                concat(id, "-", "food_tracks") as `pk`,
+                id as `pk`,
                 user_id,
                 created_at  AS `event`,
-                "food_tracks" as `type`
               FROM plugin_food.food_tracks
               UNION ALL
               SELECT
-                concat(id, "-", "fit_tracks") as `pk`,
+                id as `pk`,
                 user_id,
                 created_at  AS `event`,
-                "fit_tracks" as `type`
               FROM step.fit_tracks
               UNION ALL
               SELECT
-                concat(id, "-", "goals") as `pk`,
+                id as `pk`,
                 user_id,
                 created_at  AS `event`,
-                "goals" as `type`
               FROM plugin_goal.goals
             ) as events ) as events_lag
             ) events_session_flag
@@ -66,6 +61,7 @@ view: events {
   }
 
 #  LINE 26              "article_access" as `type`
+# TYPE removed from above script, eg,                 "goals" as `type`, under 'created_at...'
 
   measure: count {
     label: "Count - Platform Use"

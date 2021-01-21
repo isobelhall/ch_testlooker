@@ -176,6 +176,13 @@ explore: users {
     view_label: "7. Activity Data"
   }
 
+  join: events_activity_join {
+    from: derived_activity_tables
+    sql_on: ${events.pk} = ${derived_activity_tables.object_id} ;;
+    relationship: many_to_one
+    view_label: "7. Activity Data"
+  }
+
   join: pops_data_replica_flattened {
     sql_on: ${users.id} = ${pops_data_replica_flattened.user_id} ;;
     relationship: many_to_one
