@@ -101,11 +101,11 @@ view: derived_activity_2 {
     drill_fields: [detail*]
   }
 
-#  measure:  has_done_activity{
-#    label: "User Has Done Activity"
-#    type: yesno
-#    sql: ${count_users} > 0 ;;
-#  }
+  measure:  has_done_activity_truefalse{
+    label: "User Has Done Activity - YesNo"
+    type: yesno
+    sql: ${count_users} > 0 ;;
+  }
 
 #v2
   measure:  has_done_activity{
@@ -118,6 +118,12 @@ view: derived_activity_2 {
       else: "0"
     }
   }
+
+#  measure: count_user_done_activity {
+#    label: "Count - Users completed activity"
+#    type: count
+#    sql: ${has_done_activity} ;;
+#  }
 
   dimension: object_id {
     primary_key: yes
