@@ -136,14 +136,20 @@ explore: users {
     view_label: "7. Activity Data"
   }
 
-  join: derived_activity_tables {
-    sql_on: ${derived_activity_tables.uid} = ${users.id} ;;
-    relationship: many_to_one
-    view_label: "7. Activity Data"
-  }
+#replaced with line 151
+#  join: derived_activity_tables {
+#    sql_on: ${derived_activity_tables.uid} = ${users.id} ;;
+#    relationship: many_to_one
+#    view_label: "7. Activity Data"
+#  }
 
   join: events {
     sql_on: ${users.id} = ${events.user_id} ;;
+    relationship: one_to_many
+  }
+
+  join: derived_activity_tables {
+    sql_on: ${events.pk} = ${derived_activity_tables.object_id} ;;
     relationship: one_to_many
   }
 
@@ -176,12 +182,12 @@ explore: users {
     view_label: "7. Activity Data"
   }
 
-  join: events_activity_join {
-    from: derived_activity_tables
-    sql_on: ${events.pk} = ${derived_activity_tables.object_id} ;;
-    relationship: many_to_one
-    view_label: "7. Activity Data"
-  }
+#  join: events_activity_join {
+#    from: derived_activity_tables
+#    sql_on: ${events.pk} = ${derived_activity_tables.object_id} ;;
+#    relationship: many_to_one
+#    view_label: "7. Activity Data"
+#  }
 
   join: pops_data_replica_flattened {
     sql_on: ${users.id} = ${pops_data_replica_flattened.user_id} ;;
