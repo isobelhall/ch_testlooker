@@ -88,6 +88,7 @@ view: derived_activity_tables {
 #      ORDER BY UID, ObjectAccessedDate;;
 ##
 
+
   measure: count {
     label: "Count - All Activities"
     type: count
@@ -98,6 +99,19 @@ view: derived_activity_tables {
     hidden: yes
     type: number
     sql: ${TABLE}.UID ;;
+  }
+
+  measure: count_users {
+    label: "Count - Users with Activity"
+    type: count_distinct
+    sql: ${TABLE}.UID ;;
+    drill_fields: [detail*]
+  }
+
+  measure:  has_done_activity{
+    label: "User Has Done Activity"
+    type: yesno
+    sql: ${count_users} > 0 ;;
   }
 
   dimension: object_id {

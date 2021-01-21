@@ -187,7 +187,7 @@ view: events {
     #hidden: yes
     type: number
     value_format: "0.##"
-    sql: ${sum_derived_mins_since_last_event} / ${count_users} / 60 ;;
+    sql: ${sum_derived_mins_since_last_event} / ${count_users} ;;
   }
 
 
