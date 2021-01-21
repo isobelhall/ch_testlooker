@@ -108,6 +108,7 @@ view: events {
   }
 
   dimension_group: event {
+    hidden: yes
     #label: ""
     type: time
     timeframes: [raw,time,date,week,month, hour_of_day, day_of_week,day_of_month]
@@ -120,12 +121,6 @@ view: events {
     intervals: [day, week, month, hour]
     sql_start: ${users.created_raw} ;;
     sql_end: ${event_raw} ;;
-  }
-
-  dimension: type {
-    hidden: yes
-    type: string
-    sql: ${TABLE}.type ;;
   }
 
 #added 12/01 SL
@@ -221,7 +216,6 @@ view: events {
     fields: [
       user_id,
       event_time,
-      type,
       mins_since_last_event,
       is_new_session,
       session_id,
