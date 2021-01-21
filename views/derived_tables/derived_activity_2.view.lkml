@@ -211,16 +211,15 @@ view: derived_activity_2 {
     #hidden: yes
     type: number
     drill_fields: [detail*]
-    sql: ${TABLE}.mins_since_last_event ;;
+    sql: ${TABLE}.mins_since_last_event < 10 ;;
   }
 
-#added 12/01 SL
   dimension: secs_since_last_event {
     label: "Seconds Since Previous Event"
     #hidden: yes
     type: number
     drill_fields: [detail*]
-    sql: ${TABLE}.secs_since_last_event ;;
+    sql: ${TABLE}.secs_since_last_event < 600 ;;
   }
 
   measure: sum_secs_since_last_event {
@@ -236,7 +235,7 @@ view: derived_activity_2 {
     #hidden: yes
     type: sum
     drill_fields: [detail*]
-    sql: ROUND(${TABLE}.secs_since_last_event / 60, 1) ;;
+    sql: ROUND(${TABLE}.secs_since_last_event / 60, 1) < 10 ;;
   }
 
   measure: sum_derived_mins_since_last_event_per_user{
