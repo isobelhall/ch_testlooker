@@ -77,11 +77,11 @@ view: users {
     ELSE false END ;;
   }
 
-  dimension: has_done_activity {
-    type: number
-    sql: COUNT(${id}) FROM ${} WHERE condition;
- ;;
-}
+#  dimension: has_done_activity {
+#    type: number
+#    sql: COUNT(${id}) FROM ${} WHERE condition;
+# ;;
+#}
 
 #  dimension: is_engaged {
 #    label: "Status 3. Is Engaged"
