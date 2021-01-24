@@ -166,18 +166,19 @@ view: derived_activity_2 {
   }
 
 #TIME DIFFERENCE MEASURES/DIMENSIONS
+  #MIN and MAX measures must be type: date, then use SQL in order to calculate
   measure: min_event {
     #hidden: yes
     #label: ""
-    type: min
-    sql: ${event_raw} ;;
+    type: date
+    sql: MIN(${event_raw}) ;;
   }
 
   measure: max_event {
     #hidden: yes
     #label: ""
-    type: max
-    sql: ${event_raw} ;;
+    type: date
+    sql: MAX(${event_raw}) ;;
   }
 
   dimension_group: since_account_creation {
