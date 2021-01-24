@@ -14,7 +14,7 @@ view: derived_characteristics {
 
     dimension: has_done_activity {
       label: "User Has Done Activity (Yes / No)"
-      type: number
+      type: yesno
     }
 
     dimension: ppuid {

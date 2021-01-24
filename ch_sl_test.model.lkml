@@ -162,7 +162,7 @@ explore: users {
   }
 
   join: derived_characteristics {
-    sql_on: ${derived_characteristics.ppuid} = ${users.id} ;;
+    sql_on: ${derived_characteristics.ppuid} = ${users.ppuid} ;;
     relationship: one_to_one
     view_label: "7. Activity Data"
     }
