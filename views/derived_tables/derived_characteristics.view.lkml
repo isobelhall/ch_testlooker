@@ -7,18 +7,23 @@ view: derived_characteristics {
 
 
   #DAYS SINCE ACCOUNT CREATED
+    #users.days_since_account_created
+
 
   #DAYS SINCE FIRST ACTIVITY
+
 
   #DAYS SINCE LAST ACTIVITY
 
   #SESSION COUNT
+    #found in derived_activity_2.max_sessions
 
   #IS REFERRED
 
   #IS ACTIVATED
 
   #IS DELETED
+
 
   #WAS ACTIVE IN LAST 90 DAYS (DAYS SINCE LAST ACTIVITY IS LESS THAN 90)
 
