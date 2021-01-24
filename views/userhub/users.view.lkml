@@ -64,11 +64,17 @@ view: users {
 
   dimension: is_referred {
     label: "Status 1. Is referred"
-    type: yesno
-    sql: CASE WHEN ${created_raw} IS NOT NULL THEN true
-    ELSE false END ;;
-
+    type: number
+    sql: CASE WHEN ${created_raw} IS NOT NULL THEN 1
+    ELSE 0 END ;;
   }
+
+  measure: count_referred {
+    label: "Count - Referred"
+    type: sum
+    sql: ${is_referred} ;;
+  }
+
 
     dimension: is_activated {
     label: "Status 2. Is Activated"
@@ -76,6 +82,13 @@ view: users {
     sql: CASE WHEN ${is_referred} IS NOT NULL AND ${account_enabled} = TRUE THEN true
     ELSE false END ;;
   }
+
+  measure: count_activated {
+    label: "Count - Activated"
+    type: sum
+    sql: ${is_activated} ;;
+  }
+
 
 #  dimension: has_done_activity {
 #    type: number
@@ -96,6 +109,12 @@ view: users {
     type: yesno
     sql: CASE WHEN ${deleted_raw} IS NOT NULL THEN true
       ELSE false END ;;
+  }
+
+  measure: count_deleted {
+    label: "Count - Deleted"
+    type: sum
+    sql: ${is_deleted} ;;
   }
 
 

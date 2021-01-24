@@ -81,6 +81,13 @@ view: derived_activity_2 {
        ;;
   }
 
+  #PRIMARY KEY
+  dimension: object_id {
+    primary_key: yes
+    label: "All Activities - Object ID"
+    type: number
+    sql: ${TABLE}.ObjectID ;;
+  }
 
   measure: count {
     label: "Count - All Activities"
@@ -102,11 +109,6 @@ view: derived_activity_2 {
     drill_fields: [detail*]
   }
 
-#  measure:  has_done_activity_truefalse{
-#    label: "User Has Done Activity - YesNo"
-#    type: yesno
-#    sql: ${count_users} > 0 ;;
-#  }
 
 #v2 - replaced with has done activity in derived_characteristics
   measure:  has_done_activity{
@@ -114,25 +116,13 @@ view: derived_activity_2 {
     type: yesno
     case: {
       when: {
-        sql: ${count_users} > 0 ;;
+        sql: ${count} > 0 ;;
         label: "Yes"
       }
       else: "No"
     }
   }
 
-#  measure: count_user_done_activity {
-#    label: "Count - Users completed activity"
-#    type: count
-#    sql: ${has_done_activity} ;;
-#  }
-
-  dimension: object_id {
-    primary_key: yes
-    label: "All Activities - Object ID"
-    type: number
-    sql: ${TABLE}.ObjectID ;;
-  }
 
   dimension: object_value {
     label: "All Activities - Value"
