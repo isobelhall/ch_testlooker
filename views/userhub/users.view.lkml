@@ -54,7 +54,7 @@ view: users {
   dimension: days_since_account_created {
     type: number
     label: "Days since creation"
-    sql: DATEDIFF(day, ${created_raw}, now()) ;;
+    sql: DATEDIFF(now(), ${created_raw}) ;;
   }
 
   dimension: created_by {
