@@ -7,20 +7,34 @@ view: derived_characteristics {
   #ACTIVITIES DONE
     derived_table: {
       explore_source: users {
-        column: has_done_activity { field: derived_activity_2.has_done_activity }
         column: ppuid {}
+        column: count { field: derived_activity_2.count }
       }
     }
 
-    dimension: has_done_activity {
-      label: "User Has Done Activity (Yes / No)"
-      type: yesno
-    }
+#REMOVED FROM DERIVED TABLE ABOVE
+#  column: has_done_activity { field: derived_activity_2.has_done_activity }
 
+#DIMENSIONS
     dimension: ppuid {
       hidden: yes
       label: "1. User Account CHUID"
       description: "Platform identifier for each participant"
+    }
+
+#    dimension: has_done_activity {
+#      label: "User Has Done Activity (Yes / No)"
+#      type: yesno
+#    }
+
+    dimension: count {
+      label: "7. Activity Data Count - All Activities"
+      type: number
+    }
+
+    dimension: has_done_activity {
+      type: number
+      sql: CASE WHEN ${count} > 0 then 1 else 0 ;;
     }
   }
 
