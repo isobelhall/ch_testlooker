@@ -34,7 +34,7 @@ view: derived_characteristics {
 
     dimension: has_done_activity {
       type: number
-      sql: CASE WHEN ${count} > 0 then 1 else 0 ;;
+      sql: CASE WHEN ${count} > 0 then '1' else '0' ;;
     }
   }
 
@@ -46,9 +46,12 @@ view: derived_characteristics {
 
 
   #DAYS SINCE FIRST ACTIVITY
-
+  #  derived_activity_2.min_event
+  #needs days
 
   #DAYS SINCE LAST ACTIVITY
+  #  derived_activity_2.max_event
+  #need days
 
   #SESSION COUNT
     #found in derived_activity_2.max_sessions <-tested, complete
