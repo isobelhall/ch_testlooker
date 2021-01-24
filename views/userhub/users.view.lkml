@@ -70,15 +70,17 @@ view: users {
 
   dimension: is_referred {
     type: yesno
-    sql: CASE WHEN ${created_raw} IS NOT NULL THEN true ELSE false END ;;
+    sql: CASE WHEN ${created_raw} IS NOT NULL THEN true
+    ELSE false END ;;
 
   }
 
-#    dimension: is_activated {
-#    type: yesno
-#    sql: CASE WHEN ${created_raw} IS NOT NULL THEN true ELSE false END
-#
-#  }
+    dimension: is_activated {
+    type: yesno
+    sql: CASE WHEN ${is_referred} IS NOT NULL AND ${account_enabled} = TRUE THEN true
+    ELSE false END
+
+  }
 
   dimension: created_by {
     hidden: yes
