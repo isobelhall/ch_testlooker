@@ -7,7 +7,10 @@ view: derived_characteristics {
 
 
   #DAYS SINCE ACCOUNT CREATED
-    #users.days_since_account_created
+    #users.days_since_account_created <-tested, complete
+
+  #ACCOUNT OLDER THAN 90 DAYS
+    #users.account_older_than_90_days <-tested, complete
 
 
   #DAYS SINCE FIRST ACTIVITY
@@ -16,9 +19,11 @@ view: derived_characteristics {
   #DAYS SINCE LAST ACTIVITY
 
   #SESSION COUNT
-    #found in derived_activity_2.max_sessions
+    #found in derived_activity_2.max_sessions <-tested, complete
+
 
   #IS REFERRED
+    #users.is_referred
 
   #IS ACTIVATED
 
@@ -29,7 +34,6 @@ view: derived_characteristics {
 
 
   #IS ENGAGED (IS ACTIVATED AND ACTIVITIES DONE IS GREATER THAN ONE AND LAST ACTIVITY WAS LESS THAN 90 DAYS AGO
-
 
 
   #IS DISENGAGED AFTER ONE SESSION
