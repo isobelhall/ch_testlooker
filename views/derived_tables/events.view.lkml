@@ -217,6 +217,13 @@ view: events {
     description: "Highest session count by this participant"
   }
 
+  measure: max2 {
+    label: "Maximum2 session count"
+    type: max
+    sql: ${TABLE}.sessions ;;
+    description: "Highest session count by this participant"
+  }
+
   measure: average_session {
     label: "Average session count"
     type: average
