@@ -66,8 +66,15 @@ view: users {
   dimension: account_older_than_90_days {
     type: yesno
     sql: CASE WHEN ${days_since_account_created} > 90 THEN true ELSE false END ;;
+  }
+
+  dimension: is_referred {
+    type: yesno
+    sql: CASE WHEN ${created_raw} IS NOT NULL THEN true ELSE false END
 
   }
+
+
 
   dimension: created_by {
     hidden: yes
