@@ -14,8 +14,8 @@ view: derived_activity_2 {
         TIMESTAMPDIFF(MONTH,lag(event) over (partition by user_id order by event), event) as `mnth_since_last_event`,
         TIMESTAMPDIFF(WEEK,lag(event) over (partition by user_id order by event), event) as `week_since_last_event`,
         TIMESTAMPDIFF(DAY,lag(event) over (partition by user_id order by event), event) as `days_since_last_event`,
-        TIMESTAMPDIFF(MINUTE,lag(event) over (partition by user_id order by event), event) > 10 as `mins_since_last_event`,
-        TIMESTAMPDIFF(SECOND,lag(event) over (partition by user_id order by event), event) > 600 as `secs_since_last_event`
+        TIMESTAMPDIFF(MINUTE,lag(event) over (partition by user_id order by event), event) as `mins_since_last_event`,
+        TIMESTAMPDIFF(SECOND,lag(event) over (partition by user_id order by event), event) as `secs_since_last_event`
           FROM (
             SELECT
                  article.articles_accessed.user_id,

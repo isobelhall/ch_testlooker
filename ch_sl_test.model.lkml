@@ -131,12 +131,14 @@ explore: users {
 #  }
 
   join: derived_activity_2 {
+    view_label: "7. Activity Data"
     sql_on: ${users.id} = ${derived_activity_2.uid} ;;
     relationship: one_to_many
   }
 
 
   join: sessions {
+    view_label: "7. Activity Data"
     sql_on: ${derived_activity_2.uid} = ${sessions.session_id} ;;
     relationship: many_to_one
   }
