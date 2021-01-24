@@ -69,6 +69,7 @@ view: users {
   }
 
   dimension: is_referred {
+    label: "Status 1. Is referred"
     type: yesno
     sql: CASE WHEN ${created_raw} IS NOT NULL THEN true
     ELSE false END ;;
@@ -76,10 +77,10 @@ view: users {
   }
 
     dimension: is_activated {
+    label: "Status 2. Is Activated"
     type: yesno
     sql: CASE WHEN ${is_referred} IS NOT NULL AND ${account_enabled} = TRUE THEN true
-    ELSE false END
-
+    ELSE false END ;;
   }
 
   dimension: created_by {
