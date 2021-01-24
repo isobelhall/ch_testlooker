@@ -175,6 +175,21 @@ view: derived_activity_2 {
     sql: ${TABLE}.event ;;
   }
 
+#TIME DIFFERENCE MEASURES/DIMENSIONS
+  measure: min_event {
+    #hidden: yes
+    #label: ""
+    type: min
+    sql: ${event_raw} ;;
+  }
+
+  measure: max_event {
+    #hidden: yes
+    #label: ""
+    type: max
+    sql: ${event_raw} ;;
+  }
+
   dimension_group: since_account_creation {
     label: "Since Account Creation"
     type: duration
