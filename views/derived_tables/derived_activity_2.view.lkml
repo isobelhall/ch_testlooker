@@ -276,12 +276,6 @@ view: derived_activity_2 {
     description: "Highest session count by this participant"
   }
 
-  measure: max2 {
-    label: "Maximum2 session count"
-    type: max
-    sql: ${TABLE}.sessions ;;
-    description: "Highest session count by this participant"
-  }
 
   set: detail {
     fields: [
