@@ -26,9 +26,10 @@ view: derived_characteristics {
     #users.is_referred
 
   #IS ACTIVATED
+    #users.is_activated
 
   #IS DELETED
-
+    #users.is_deleted
 
   #WAS ACTIVE IN LAST 90 DAYS (DAYS SINCE LAST ACTIVITY IS LESS THAN 90)
 

@@ -83,6 +83,22 @@ view: users {
     ELSE false END ;;
   }
 
+#  dimension: is_engaged {
+#    label: "Status 3. Is Engaged"
+#    type: yesno
+#    sql: CASE WHEN ${is_referred} IS NOT NULL AND ${account_enabled} = TRUE THEN true
+#      ELSE false END ;;
+#  }
+
+
+  dimension: is_deleted {
+    label: "Status 4. Is Deleted"
+    type: yesno
+    sql: CASE WHEN ${deleted_raw} IS NOT NULL THEN true
+      ELSE false END ;;
+  }
+
+
   dimension: created_by {
     hidden: yes
     type: number
