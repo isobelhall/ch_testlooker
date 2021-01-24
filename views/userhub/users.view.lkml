@@ -57,12 +57,6 @@ view: users {
     sql: DATEDIFF(now(), ${created_raw}) ;;
   }
 
-#  measure: account_older_than_90_days {
-#    type: yesno
-#    label: "Created over 90 days ago?"
-#    sql: DATEDIFF(now(), ${created_raw}) ;;
-#  }
-
   dimension: account_older_than_90_days {
     type: yesno
     sql: CASE WHEN ${days_since_account_created} > 90 THEN true ELSE false END ;;
@@ -83,10 +77,16 @@ view: users {
     ELSE false END ;;
   }
 
+  dimension: has_done_activity {
+    type: number
+    sql: COUNT(${id}) FROM ${} WHERE condition;
+ ;;
+}
+
 #  dimension: is_engaged {
 #    label: "Status 3. Is Engaged"
 #    type: yesno
-#    sql: CASE WHEN ${is_referred} IS NOT NULL AND ${account_enabled} = TRUE THEN true
+#    sql: CASE WHEN ${is_referred} IS NOT NULL AND ${account_enabled} = TRUE AND 'count of activitys' THEN true
 #      ELSE false END ;;
 #  }
 

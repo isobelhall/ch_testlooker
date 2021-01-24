@@ -94,8 +94,9 @@ view: derived_activity_2 {
     sql: ${TABLE}.user_id ;;
   }
 
+
   measure: count_users {
-    label: "Count - Users with Activity"
+    label: "Count - Unique Users with Activity"
     type: count_distinct
     sql: ${TABLE}.user_id ;;
     drill_fields: [detail*]
