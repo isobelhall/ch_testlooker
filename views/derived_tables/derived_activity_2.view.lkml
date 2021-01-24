@@ -269,7 +269,7 @@ view: derived_activity_2 {
     sql: ${TABLE}.user_session_sequence ;;
   }
 
-  measure: max {
+  measure: max_sessions {
     label: "Maximum session count"
     type: max
     sql: ${TABLE}.user_session_sequence ;;

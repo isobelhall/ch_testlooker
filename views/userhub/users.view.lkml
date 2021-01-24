@@ -51,6 +51,13 @@ view: users {
     sql: ${TABLE}.created_at ;;
   }
 
+  dimension: days_since_account_created {
+    type: number
+    label: "Days since creation"
+    group_label: "Difference"
+    sql: DATEDIFF( day, ${created_raw}, now()) ;;
+  }
+
   dimension: created_by {
     hidden: yes
     type: number
