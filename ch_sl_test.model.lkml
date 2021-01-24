@@ -161,6 +161,12 @@ explore: users {
     view_label: "3. Identifiables"
   }
 
+  join: derived_characteristics {
+    sql_on: ${derived_characteristics.ppuid} = ${users.id} ;;
+    relationship: one_to_one
+    view_label: "7. Activity Data"
+    }
+
  # join: user_event_count {
 #    sql_on: ${user_event_count.ppuid} = ${events.user_id} ;;
  #   relationship: many_to_one

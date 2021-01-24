@@ -3,8 +3,26 @@ view: derived_characteristics {
 
   view_label: "2. Demographics / User Attributes"
 
-  #ACTIVITIES DONE
 
+  #ACTIVITIES DONE
+    derived_table: {
+      explore_source: users {
+        column: has_done_activity { field: derived_activity_2.has_done_activity }
+        column: ppuid {}
+      }
+    }
+
+    dimension: has_done_activity {
+      label: "User Has Done Activity (Yes / No)"
+      type: number
+    }
+
+    dimension: ppuid {
+      hidden: yes
+      label: "1. User Account CHUID"
+      description: "Platform identifier for each participant"
+    }
+  }
 
   #DAYS SINCE ACCOUNT CREATED
     #users.days_since_account_created <-tested, complete
@@ -28,13 +46,13 @@ view: derived_characteristics {
   #IS ACTIVATED
     #users.is_activated
 
+  #IS ENGAGED (IS ACTIVATED AND ACTIVITIES DONE IS GREATER THAN ONE AND LAST ACTIVITY WAS LESS THAN 90 DAYS AGO
+    #is referred, is activated, has done an activity
+
   #IS DELETED
     #users.is_deleted
 
   #WAS ACTIVE IN LAST 90 DAYS (DAYS SINCE LAST ACTIVITY IS LESS THAN 90)
-
-
-  #IS ENGAGED (IS ACTIVATED AND ACTIVITIES DONE IS GREATER THAN ONE AND LAST ACTIVITY WAS LESS THAN 90 DAYS AGO
 
 
   #IS DISENGAGED AFTER ONE SESSION
@@ -112,7 +130,7 @@ view: derived_characteristics {
   #   type: sum
   #   sql: ${lifetime_orders} ;;
   # }
-}
+#}
 
 # view: derived_characteristics {
 #   # Or, you could make this view a derived table, like this:

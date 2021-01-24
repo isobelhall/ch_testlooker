@@ -108,9 +108,9 @@ view: derived_activity_2 {
 #    sql: ${count_users} > 0 ;;
 #  }
 
-#v2
+#v2 - replaced with has done activity in derived_characteristics
   measure:  has_done_activity{
-    label: "User Has Done Activity"
+    label: "User Has Done Activity - Yes/No"
     type: yesno
     case: {
       when: {
