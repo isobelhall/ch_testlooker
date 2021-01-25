@@ -69,35 +69,35 @@ view: derived_characteristics {
   dimension: disengaged_after_one_session{
     label: "3b. Disengaged after one session"
     type: number
-    sql: CASE WHEN (${TABLE}.is_engaged = 1 AND ${TABLE}.max_sessions = 1) THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (${is_engaged} = 1 AND ${TABLE}.max_sessions = 1) THEN 1 ELSE 0 END ;;
   }
 
   #IS DISENGAGED (no activity in 90 days) WITH ONE OR MORE SESSIONS, AND PROGRESS LESS THAN 25%
   dimension: disengaged_after_25pct{
     label: "3c. Disengaged after 25%"
     type: number
-    sql: CASE WHEN (${TABLE}.is_engaged = 1 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress < 0.25) THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (${is_engaged} = 1 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress < 0.25) THEN 1 ELSE 0 END ;;
   }
 
   #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 25%, LESS THAN 50%
   dimension: disengaged_after_50pct{
     label: "3c. Disengaged between 25% and 50%"
     type: number
-    sql: CASE WHEN (${TABLE}.is_engaged = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.25 and ${TABLE}.progress < 0.50) THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.25 and ${TABLE}.progress < 0.50) THEN 1 ELSE 0 END ;;
   }
 
   #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 50%, LESS THAN 60%
   dimension: disengaged_after_60pct{
     label: "3d. Disengaged between 50% and 60%"
     type: number
-    sql: CASE WHEN (${TABLE}.is_engaged = 1 and ${TABLE}.days_since_max_event > 90  AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.50 and ${TABLE}.progress < 0.60) THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90  AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.50 and ${TABLE}.progress < 0.60) THEN 1 ELSE 0 END ;;
   }
 
   #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 75%, LESS THAN 100%
   dimension: disengaged_after_100pct{
     label: "3f. Disengaged between 60% and 75%"
     type: number
-    sql: CASE WHEN (${TABLE}.is_engaged = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.60 and ${TABLE}.progress < 0.75) THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.60 and ${TABLE}.progress < 0.75) THEN 1 ELSE 0 END ;;
   }
 
 
@@ -105,7 +105,7 @@ view: derived_characteristics {
   dimension: disengaged_after_76pct{
     label: "3g. Disengaged between 75% and 100%"
     type: number
-    sql: CASE WHEN (${TABLE}.is_engaged = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.75 and ${TABLE}.progress < 1) THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.75 and ${TABLE}.progress < 1) THEN 1 ELSE 0 END ;;
   }
 
 
@@ -113,13 +113,13 @@ view: derived_characteristics {
 dimension: disengaged_after_completion100{
   label: "5. Disengaged after completion (100%)"
   type: number
-  sql: CASE WHEN (${TABLE}.is_engaged = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 1) THEN 1 ELSE 0 END ;;
+  sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 1) THEN 1 ELSE 0 END ;;
 }
 
   dimension: disengaged_after_completion60{
     label: "5. Disengaged after completion (60% - HL)"
     type: number
-    sql: CASE WHEN (${TABLE}.is_engaged = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.60) THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.60) THEN 1 ELSE 0 END ;;
   }
 }
 
