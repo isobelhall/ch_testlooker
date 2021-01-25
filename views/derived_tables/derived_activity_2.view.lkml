@@ -179,7 +179,7 @@ view: derived_activity_2 {
   measure: days_since_min_event {
     label: "Days since first activity"
     type: number
-    sql:DATEDIFF(now(), MIN(${event_raw}}) ;;
+    sql:DATEDIFF(now(), MIN(${event_raw})) ;;
   }
 
 #LATEST ACTIVITY
@@ -192,7 +192,7 @@ view: derived_activity_2 {
   measure: days_since_max_event {
     label: "Days since latest activity"
     type: number
-    sql:DATEDIFF(now(), MAX(${event_raw}}) ;;
+    sql:DATEDIFF(now(), MAX(${event_raw})) ;;
   }
 
   dimension_group: since_account_creation {
