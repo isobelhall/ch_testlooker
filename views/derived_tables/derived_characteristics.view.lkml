@@ -32,10 +32,21 @@ view: derived_characteristics {
       type: number
     }
 
+#    dimension: has_done_activity {
+#      type: number
+#      sql: CASE WHEN ${TABLE}.count > 0 THEN 1
+#      ELSE 0 ;;
+#    }
+
     dimension: has_done_activity {
-      type: number
-      sql: CASE WHEN ${TABLE}.count > 0 THEN 1
-      ELSE 0 ;;
+      type: yesno
+      case: {
+        when: {
+          sql: ${TABLE}.count > 0 ;;
+          label: "yes"
+        }
+        else: "no"
+      }
     }
   }
 
