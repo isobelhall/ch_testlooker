@@ -61,7 +61,6 @@ view: derived_characteristics {
 
   #iS ENGAGED
   dimension: is_engaged{
-    group_item_label: "Status"
     label: "3a. Has Engaged"
     type: number
     sql: CASE WHEN (${TABLE}.is_referred = 1 AND ${TABLE}.is_activated = 1 AND ${has_done_activity} = 1) THEN 1 ELSE 0 END ;;
@@ -75,7 +74,6 @@ view: derived_characteristics {
 
   #IS DISENGAGED AFTER ONE SESSION
   dimension: disengaged_after_one_session{
-    group_item_label: "Status"
     label: "3b. Disengaged after one session"
     type: number
     sql: CASE WHEN (${is_engaged} = 1 AND ${TABLE}.max_sessions = 1) THEN 1 ELSE 0 END ;;
@@ -90,7 +88,6 @@ view: derived_characteristics {
 
   #IS DISENGAGED (no activity in 90 days) WITH ONE OR MORE SESSIONS, AND PROGRESS LESS THAN 25%
   dimension: disengaged_under_25pct{
-    group_item_label: "Status"
     label: "3c. Disengaged under 25%"
     type: number
     sql: CASE WHEN (${is_engaged} = 1 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress < 0.25) THEN 1 ELSE 0 END ;;
@@ -105,7 +102,6 @@ view: derived_characteristics {
 
   #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 25%, LESS THAN 50%
   dimension: disengaged_up_to_50pct{
-    group_item_label: "Status"
     label: "3c. Disengaged between 25% and 50%"
     type: number
     sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.25 and ${TABLE}.progress < 0.50) THEN 1 ELSE 0 END ;;
@@ -120,7 +116,6 @@ view: derived_characteristics {
 
   #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 50%, LESS THAN 60%
   dimension: disengaged_up_to_60pct{
-    group_item_label: "Status"
     label: "3d. Disengaged between 50% and 60%"
     type: number
     sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90  AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.50 and ${TABLE}.progress < 0.60) THEN 1 ELSE 0 END ;;
@@ -135,7 +130,6 @@ view: derived_characteristics {
 
   #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 75%, LESS THAN 100%
   dimension: disengaged_up_to_75pct{
-    group_item_label: "Status"
     label: "3f. Disengaged between 60% and 75%"
     type: number
     sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.60 and ${TABLE}.progress < 0.75) THEN 1 ELSE 0 END ;;
@@ -150,7 +144,6 @@ view: derived_characteristics {
 
   #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 100%
   dimension: disengaged_up_to_100pct{
-    group_item_label: "Status"
     label: "3g. Disengaged between 75% and 100%"
     type: number
     sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.75 and ${TABLE}.progress < 1) THEN 1 ELSE 0 END ;;
@@ -165,7 +158,6 @@ view: derived_characteristics {
 
 #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 100%
 dimension: disengaged_after_completion100{
-  group_item_label: "Status"
   label: "5. Disengaged after completion (100%)"
   type: number
   sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 1) THEN 1 ELSE 0 END ;;
@@ -178,7 +170,6 @@ dimension: disengaged_after_completion100{
   }
 
   dimension: disengaged_after_completion60{
-    group_item_label: "Status"
     label: "5. Disengaged after completion (60% - HL)"
     type: number
     sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.60) THEN 1 ELSE 0 END ;;

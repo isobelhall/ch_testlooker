@@ -63,7 +63,6 @@ view: users {
   }
 
   dimension: is_referred {
-    group_item_label: "Status"
     label: "Status 1. Is referred"
     type: number
     sql: CASE WHEN ${created_raw} IS NOT NULL THEN 1
@@ -78,7 +77,6 @@ view: users {
 
 
     dimension: is_activated {
-      group_item_label: "Status"
     label: "Status 2. Is Activated"
     type: number
     sql: CASE WHEN ${is_referred} IS NOT NULL AND ${account_enabled} = TRUE THEN 1
