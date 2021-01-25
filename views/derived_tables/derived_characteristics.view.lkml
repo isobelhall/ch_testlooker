@@ -1,7 +1,7 @@
 view: derived_characteristics {
 
 
-  view_label: "2. Demographics / User Attributes"
+  view_label: "8. Temporary Derived Characteristics"
 
 
   #ACTIVITIES DONE
@@ -37,30 +37,87 @@ view: derived_characteristics {
 
     dimension: has_done_activity {
       type: number
-      sql: CASE WHEN (${TABLE}.count >0) THEN 1 ELSE 0 END ;;
+      sql: CASE WHEN (${TABLE}.count > 0) THEN 1 ELSE 0 END ;;
     }
 
   #dimension: engaged
   #WAS ACTIVE IN LAST 90 DAYS (DAYS SINCE LAST ACTIVITY IS LESS THAN 90)
+  dimension: account_older_than_90_days {
+    hidden: yes
+    label: "Activities Completed Per User"
+    type: number
+  }
 
+  dimension: is_account_older_than_90_days {
+    hidden: yes
+    label: "Activities Completed Per User"
+    type: number
+    sql: CASE WHEN (${TABLE}.account_older_than_90_days >0 ) THEN 1 ELSE 0 END ;;
+  }
+
+  #iS ENGAGED
+  dimension: is_engaged{
+    label: "3a. Is Engaged"
+    type: number
+    sql: CASE WHEN (${TABLE}.is_referred = 1 AND ${TABLE}.is_activated = 1) THEN 1 ELSE 0 END ;;
+  }
 
   #IS DISENGAGED AFTER ONE SESSION
-
+  dimension: disengaged_after_one_session{
+    label: "3b. Disengaged after one session"
+    type: number
+    sql: CASE WHEN (${TABLE}.is_engaged = 1 AND ${TABLE}.max_sessions = 1) THEN 1 ELSE 0 END ;;
+  }
 
   #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS LESS THAN 25%
-
+  dimension: disengaged_after_25pct{
+    label: "3c. Disengaged after 25%"
+    type: number
+    sql: CASE WHEN (${TABLE}.is_engaged = 1 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress < 0.25) THEN 1 ELSE 0 END ;;
+  }
 
   #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 25%, LESS THAN 50%
-
-
-  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 25%, LESS THAN 50%
-
+  dimension: disengaged_after_50pct{
+    label: "3c. Disengaged between 25% and 50%"
+    type: number
+    sql: CASE WHEN (${TABLE}.is_engaged = 1 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.25 and ${TABLE}.progress < 0.50) THEN 1 ELSE 0 END ;;
+  }
 
   #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 50%, LESS THAN 60%
+  dimension: disengaged_after_60pct{
+    label: "3d. Disengaged between 50% and 60%"
+    type: number
+    sql: CASE WHEN (${TABLE}.is_engaged = 1 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.50 and ${TABLE}.progress < 0.60) THEN 1 ELSE 0 END ;;
+  }
+
+  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 75%, LESS THAN 100%
+  dimension: disengaged_after_100pct{
+    label: "3f. Disengaged between 60% and 75%"
+    type: number
+    sql: CASE WHEN (${TABLE}.is_engaged = 1 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.60 and ${TABLE}.progress < 0.75) THEN 1 ELSE 0 END ;;
+  }
 
 
-  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 60%
+  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 100%
+  dimension: disengaged_after_76pct{
+    label: "3g. Disengaged between 75% and 100%"
+    type: number
+    sql: CASE WHEN (${TABLE}.is_engaged = 1 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.75 and ${TABLE}.progress < 1) THEN 1 ELSE 0 END ;;
+  }
 
+
+#IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 100%
+dimension: disengaged_after_completion100{
+  label: "5. Disengaged after completion (100%)"
+  type: number
+  sql: CASE WHEN (${TABLE}.is_engaged = 1 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 1) THEN 1 ELSE 0 END ;;
+}
+
+  dimension: disengaged_after_completion60{
+    label: "5. Disengaged after completion (60% - HL)"
+    type: number
+    sql: CASE WHEN (${TABLE}.is_engaged = 1 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.60) THEN 1 ELSE 0 END ;;
+  }
 }
 
   #DAYS SINCE ACCOUNT CREATED
@@ -95,25 +152,6 @@ view: derived_characteristics {
     #users.is_deleted
 
   #WAS ACTIVE IN LAST 90 DAYS (DAYS SINCE LAST ACTIVITY IS LESS THAN 90)
-
-
-  #IS DISENGAGED AFTER ONE SESSION
-
-
-  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS LESS THAN 25%
-
-
-  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 25%, LESS THAN 50%
-
-
-  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 25%, LESS THAN 50%
-
-
-  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 50%, LESS THAN 60%
-
-
-  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 60%
-
 
 
 
