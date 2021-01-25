@@ -34,7 +34,8 @@ view: derived_characteristics {
 
     dimension: has_done_activity {
       type: number
-      sql: CASE WHEN ${count} > 0 then '1' else '0' ;;
+      sql: CASE WHEN ${TABLE}.count > 0 THEN 1
+      ELSE 0 ;;
     }
   }
 
