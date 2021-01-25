@@ -67,7 +67,7 @@ view: derived_characteristics {
   }
 
   measure: count_engaged {
-    label: "Count - Activated"
+    label: "Count - Engaged"
     type: sum
     sql: ${is_engaged} ;;
   }
