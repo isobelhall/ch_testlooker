@@ -62,7 +62,7 @@ view: derived_characteristics {
   dimension: is_engaged{
     label: "3a. Is Engaged"
     type: number
-    sql: CASE WHEN (${TABLE}.is_referred = 1 AND ${TABLE}.is_activated = 1 AND ${TABLE}.has_done_activity = 1) THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (${TABLE}.is_referred = 1 AND ${TABLE}.is_activated = 1 AND ${has_done_activity} = 1) THEN 1 ELSE 0 END ;;
   }
 
   #IS DISENGAGED AFTER ONE SESSION
