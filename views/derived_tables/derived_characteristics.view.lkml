@@ -5,12 +5,20 @@ view: derived_characteristics {
 
 
   #ACTIVITIES DONE
-    derived_table: {
-      explore_source: users {
-        column: ppuid {}
-        column: count { field: derived_activity_2.count }
-      }
+  derived_table: {
+    explore_source: users {
+      column: ppuid {}
+      column: is_referred {}
+      column: is_activated {}
+      column: is_deleted {}
+      column: days_since_account_created {}
+      column: count { field: derived_activity_2.count }
+      column: progress { field: progress_statistics.progress }
+      column: account_older_than_90_days {}
+      column: max_sessions { field: derived_activity_2.max_sessions }
+      column: days_since_max_event {field: derived_activity_2.days_since_max_event}
     }
+  }
 
 #REMOVED FROM DERIVED TABLE ABOVE
 #  column: has_done_activity { field: derived_activity_2.has_done_activity }
@@ -18,17 +26,12 @@ view: derived_characteristics {
 #DIMENSIONS
     dimension: ppuid {
       hidden: yes
-      label: "1. User Account CHUID"
+      label: "CHUID"
       description: "Platform identifier for each participant"
     }
 
-#    dimension: has_done_activity {
-#      label: "User Has Done Activity (Yes / No)"
-#      type: yesno
-#    }
-
     dimension: count {
-      label: "7. Activity Data Count - All Activities"
+      label: "Activities Completed Per User"
       type: number
     }
 
@@ -37,17 +40,28 @@ view: derived_characteristics {
       sql: CASE WHEN (${TABLE}.count >0) THEN 1 ELSE 0 END ;;
     }
 
-#    dimension: has_done_activity {
-#      type: yesno
-#      case: {
-#        when: {
-#          sql: ${TABLE}.count > 0 ;;
-#          label: "yes"
-#        }
-#        else: "no"
-#      }
-#    }
-  }
+  #dimension: engaged
+  #WAS ACTIVE IN LAST 90 DAYS (DAYS SINCE LAST ACTIVITY IS LESS THAN 90)
+
+
+  #IS DISENGAGED AFTER ONE SESSION
+
+
+  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS LESS THAN 25%
+
+
+  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 25%, LESS THAN 50%
+
+
+  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 25%, LESS THAN 50%
+
+
+  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 50%, LESS THAN 60%
+
+
+  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 60%
+
+}
 
   #DAYS SINCE ACCOUNT CREATED
     #users.days_since_account_created <-tested, complete
