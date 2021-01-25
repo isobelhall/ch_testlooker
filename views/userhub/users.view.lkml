@@ -58,8 +58,8 @@ view: users {
   }
 
   dimension: account_older_than_90_days {
-    type: yesno
-    sql: CASE WHEN ${days_since_account_created} > 90 THEN true ELSE false END ;;
+    type: number
+    sql: CASE WHEN ${days_since_account_created} > 90 THEN 1 ELSE 0 END ;;
   }
 
   dimension: is_referred {
@@ -78,9 +78,9 @@ view: users {
 
     dimension: is_activated {
     label: "Status 2. Is Activated"
-    type: yesno
-    sql: CASE WHEN ${is_referred} IS NOT NULL AND ${account_enabled} = TRUE THEN true
-    ELSE false END ;;
+    type: number
+    sql: CASE WHEN ${is_referred} IS NOT NULL AND ${account_enabled} = TRUE THEN 1
+    ELSE 0 END ;;
   }
 
   measure: count_activated {
@@ -99,16 +99,16 @@ view: users {
 #  dimension: is_engaged {
 #    label: "Status 3. Is Engaged"
 #    type: yesno
-#    sql: CASE WHEN ${is_referred} IS NOT NULL AND ${account_enabled} = TRUE AND 'count of activitys' THEN true
+#    sql: CASE WHEN ${is_referred} IS NOT NULL AND ${account_enabled} = TRUE AND ${derived_characteristics}.has_done_activity THEN true
 #      ELSE false END ;;
 #  }
 
 
   dimension: is_deleted {
     label: "Status 4. Is Deleted"
-    type: yesno
-    sql: CASE WHEN ${deleted_raw} IS NOT NULL THEN true
-      ELSE false END ;;
+    type: number
+    sql: CASE WHEN ${deleted_raw} IS NOT NULL THEN 1
+      ELSE 0 END ;;
   }
 
   measure: count_deleted {

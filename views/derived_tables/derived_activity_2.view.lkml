@@ -167,18 +167,37 @@ view: derived_activity_2 {
 
 #TIME DIFFERENCE MEASURES/DIMENSIONS
   #MIN and MAX measures must be type: date, then use SQL in order to calculate
+  #EARLIEST ACTIVITY
   measure: min_event {
+    label: "First activity"
     #hidden: yes
     #label: ""
     type: date
     sql: MIN(${event_raw}) ;;
   }
 
+  measure: days_since_min_event {
+    #hidden: yes
+    label: "Days since first activity"
+    type: date
+    sql:DATEDIFF(now(), MIN(${event_raw}}) ;;
+  }
+
+#LATEST ACTIVITY
   measure: max_event {
     #hidden: yes
     #label: ""
+    label: "Latest activity"
     type: date
     sql: MAX(${event_raw}) ;;
+  }
+
+  measure: days_since_max_event {
+    #hidden: yes
+    #label: ""
+    label: "Days since latest activity"
+    type: date
+    sql:DATEDIFF(now(), MIN(${event_raw}}) ;;
   }
 
   dimension_group: since_account_creation {
