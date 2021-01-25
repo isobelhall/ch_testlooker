@@ -89,9 +89,22 @@ view: derived_characteristics {
     label: "Count - Disengaged after one session"
     type: sum
     drill_fields: [detail*]
-    sql: ${is_engaged} ;;
+    sql: ${disengaged_after_one_session} ;;
   }
 
+  dimension: disengaged_no_activity{
+    label: "3b. Disengaged after one session"
+    type: number
+    drill_fields: [detail*]
+    sql: CASE WHEN (${is_engaged} = 1 AND ${TABLE}.max_sessions = 0) THEN 1 ELSE 0 END ;;
+  }
+
+  measure: count_disengaged_no_activity {
+    label: "Count - Disengaged after one session"
+    type: sum
+    drill_fields: [detail*]
+    sql: ${disengaged_no_activity} ;;
+  }
 
   #IS DISENGAGED (no activity in 90 days) WITH ONE OR MORE SESSIONS, AND PROGRESS LESS THAN 25%
   dimension: disengaged_under_25pct{
@@ -105,7 +118,7 @@ view: derived_characteristics {
     label: "Count - disengaged_under_25pct"
     type: sum
     drill_fields: [detail*]
-    sql: ${is_engaged} ;;
+    sql: ${disengaged_under_25pct} ;;
   }
 
 
@@ -121,7 +134,7 @@ view: derived_characteristics {
     label: "Count - Disengaged between 25% and 50%"
     type: sum
     drill_fields: [detail*]
-    sql: ${is_engaged} ;;
+    sql: ${disengaged_up_to_50pct} ;;
   }
 
 
@@ -137,7 +150,7 @@ view: derived_characteristics {
     label: "Count - Disengaged between 50% and 60%"
     type: sum
     drill_fields: [detail*]
-    sql: ${is_engaged} ;;
+    sql: ${disengaged_up_to_60pct} ;;
   }
 
 
@@ -153,7 +166,7 @@ view: derived_characteristics {
     label: "Count - Disengaged between 60% and 75%"
     type: sum
     drill_fields: [detail*]
-    sql: ${is_engaged} ;;
+    sql: ${disengaged_up_to_75pct} ;;
   }
 
 
@@ -169,7 +182,7 @@ view: derived_characteristics {
     label: "Count - Disengaged between 75% and 100%"
     type: sum
     drill_fields: [detail*]
-    sql: ${is_engaged} ;;
+    sql: ${disengaged_up_to_100pct} ;;
   }
 
 
@@ -185,7 +198,7 @@ dimension: disengaged_after_completion100{
     label: "Count - Disengaged after completion (100%)"
     type: sum
     drill_fields: [detail*]
-    sql: ${is_engaged} ;;
+    sql: ${disengaged_after_completion100} ;;
   }
 
   dimension: disengaged_after_completion60{
@@ -197,7 +210,7 @@ dimension: disengaged_after_completion100{
 
 
 measure: count_disengaged_after_completion60 {
-  label: "Count - Disengaged after completion (100% HL)"
+  label: "Count - Disengaged after completion (60% - HL)"
   type: sum
   drill_fields: [detail*]
   sql: ${disengaged_after_completion60} ;;
