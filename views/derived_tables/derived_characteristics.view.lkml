@@ -30,6 +30,11 @@ view: derived_characteristics {
       description: "Platform identifier for each participant"
     }
 
+  dimension: days_since_max_event {
+    label: "Days since latest Activity"
+    description: "Number of days since participant last did something in activity table"
+  }
+
     dimension: count {
       label: "Activities Completed Per User"
       type: number
