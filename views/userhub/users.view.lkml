@@ -37,7 +37,6 @@ view: users {
 
   dimension_group: created {
     view_label: "1. User Account"
-    group_label: "Programme Progress"
     label: "Account Created"
     type: time
     timeframes: [
