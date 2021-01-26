@@ -56,7 +56,7 @@ view: derived_characteristics {
   }
 
   measure: count_referred {
-    group_label: "Programme Progress"
+    group_label: "Programme Progress - Counts"
     label: "Count - Referred"
     type: sum
     drill_fields: [detail*]
@@ -72,7 +72,7 @@ view: derived_characteristics {
   }
 
   measure: count_activated {
-    group_label: "Programme Progress"
+    group_label: "Programme Progress - Counts"
     label: "Count - Has Activated"
     type: sum
     drill_fields: [detail*]
@@ -80,7 +80,7 @@ view: derived_characteristics {
   }
 
   measure: percent_activated {
-    group_label: "Programme Progress"
+    group_label: "Programme Progress  - Percent"
     label: "Percent - Has Activated"
     description: "Percent of accounts that have been activated, out of all referrals"
     type: number
@@ -99,14 +99,14 @@ view: derived_characteristics {
 
   measure: count_engaged {
     label: "Count - Engaged"
-    group_label: "Programme Progress"
+    group_label: "Programme Progress - Counts"
     type: sum
     drill_fields: [detail*]
     sql: ${has_engaged} ;;
   }
 
   measure: percent_engaged {
-    group_label: "Programme Progress"
+    group_label: "Programme Progress  - Percent"
     label: "Percent - Engaged"
     description: "Percent of accounts that have engaged (completed an activity), out of all activated accounts"
     type: number
@@ -126,14 +126,14 @@ view: derived_characteristics {
 
   measure: count_completed_100 {
     label: "Count - Completed (100%)"
-    group_label: "Programme Progress"
+    group_label: "Programme Progress - Counts"
     type: sum
     drill_fields: [detail*]
     sql: ${percent_completed_100} ;;
   }
 
   measure: percent_completed_100 {
-    group_label: "Programme Progress"
+    group_label: "Programme Progress - Percent"
     label: "Percent - Completed (100%)"
     description: "Percent of accounts that have engaged (completed an activity), out of all activated accounts"
     type: number
@@ -152,14 +152,14 @@ view: derived_characteristics {
 
   measure: count_completed_60 {
     label: "Count - Completed (60% - HL)"
-    group_label: "Programme Progress"
+    group_label: "Programme Progress - Counts"
     type: sum
     drill_fields: [detail*]
     sql: ${count_completed_60} ;;
   }
 
   measure: percent_completed_60 {
-    group_label: "Programme Progress"
+    group_label: "Programme Progress - Percent"
     label: "Percent - Completed (60% - HL)"
     description: "Percent of accounts that have engaged (completed an activity), out of all activated accounts"
     type: number
@@ -197,7 +197,7 @@ view: derived_characteristics {
   }
 
   measure: count_inactive {
-    group_label: "Current Status"
+    group_label: "Current Status - Counts"
     label: "0. Count - Activated, not yet engaged"
     type: sum
     drill_fields: [detail*]
@@ -205,7 +205,7 @@ view: derived_characteristics {
   }
 
   measure: percent_inactive {
-    group_label: "Current Status"
+    group_label: "Current Status - Percent"
     label: "0. Percent - Activated, not yet engaged"
     description: "Percent of people who have not done any activity and become 'engaged', but created their account within the last 90 days. "
     type: number
@@ -224,7 +224,7 @@ view: derived_characteristics {
   }
 
   measure: count_inactive_disengaged {
-    group_label: "Current Status"
+    group_label: "Current Status - Counts"
     label: "3a. Count - Activated, disengaged"
     type: sum
     drill_fields: [detail*]
@@ -232,7 +232,7 @@ view: derived_characteristics {
   }
 
   measure: percent_inactive_disengaged {
-    group_label: "Current Status"
+    group_label: "Current Status - Percent"
     label: "3a. Percent - Activated, disengaged"
     description: "Percent of people who have not done any activity to 'engaged' in 90 days since creating an account."
     type: number
@@ -261,7 +261,7 @@ view: derived_characteristics {
 
   #IS DISENGAGED AFTER ONE SESSION
   dimension: disengaged_after_one_session{
-    group_label: "Current Status"
+    group_label: "Current Status - Percent"
     label: "3b. Disengaged after one session"
     type: number
     drill_fields: [detail*]
@@ -269,7 +269,7 @@ view: derived_characteristics {
   }
 
   measure: count_disengaged_after_one_session {
-    group_label: "Current Status"
+    group_label: "Current Status - Counts"
     label: "3b. Count - Disengaged after one session"
     type: sum
     drill_fields: [detail*]
@@ -277,7 +277,7 @@ view: derived_characteristics {
   }
 
   measure: percent_disengaged_after_one_session {
-    group_label: "Current Status"
+    group_label: "Current Status - Percent"
     label: "3b. Percent - Disengaged after one session"
     type: number
     drill_fields: [detail*]
@@ -295,7 +295,7 @@ view: derived_characteristics {
   }
 
   measure: count_disengaged_no_activity {
-    group_label: "Current Status"
+    group_label: "Current Status - Counts"
     label: "3c. Count - Disengaged, no activity"
     type: sum
     drill_fields: [detail*]
@@ -304,7 +304,7 @@ view: derived_characteristics {
 
   measure: percent_disengaged_no_activity {
     label: "3c. Percent - Disengaged, no activity"
-    group_label: "Current Status"
+    group_label: "Current Status - Percent"
     type: number
     drill_fields: [detail*]
     sql: ${count_disengaged_no_activity} / ${count_activated} * 100 ;;
@@ -321,7 +321,7 @@ view: derived_characteristics {
   }
 
   measure: count_disengaged_under_25pct {
-    group_label: "Current Status"
+    group_label: "Current Status - Counts"
     label: "3d. Count - Disengaged under 25%"
     type: sum
     drill_fields: [detail*]
@@ -330,7 +330,7 @@ view: derived_characteristics {
 
   measure: percent_disengaged_up_to_25pct {
     label: "3d. Percent - Disengaged under 25%"
-    group_label: "Current Status"
+    group_label: "Current Status - Percent"
     type: number
     drill_fields: [detail*]
     sql: ${count_disengaged_under_25pct} / ${count_activated} * 100 ;;
@@ -347,7 +347,7 @@ view: derived_characteristics {
   }
 
   measure: count_disengaged_up_to_50pct {
-    group_label: "Current Status"
+    group_label: "Current Status - Counts"
     label: "3e. Count - Disengaged between 25% and 50%"
     type: sum
     drill_fields: [detail*]
@@ -356,7 +356,7 @@ view: derived_characteristics {
 
   measure: percent_disengaged_up_to_50pct {
     label: "3e. Percent - Disengaged between 25% and 50%"
-    group_label: "Current Status"
+    group_label: "Current Status - Percent"
     type: number
     drill_fields: [detail*]
     sql: ${count_disengaged_up_to_50pct} / ${count_activated} * 100 ;;
@@ -373,7 +373,7 @@ view: derived_characteristics {
   }
 
   measure: count_disengaged_up_to_60pct {
-    group_label: "Current Status"
+    group_label: "Current Status - Counts"
     label: "3f. Count - Disengaged between 50% and 60%"
     type: sum
     drill_fields: [detail*]
@@ -382,7 +382,7 @@ view: derived_characteristics {
 
   measure: percent_disengaged_up_to_60pct {
     label: "3f. Percent - Disengaged between 50% and 60%"
-    group_label: "Current Status"
+    group_label: "Current Status - Percent"
     type: number
     drill_fields: [detail*]
     sql: ${count_disengaged_up_to_60pct} / ${count_activated} * 100 ;;
@@ -399,7 +399,7 @@ view: derived_characteristics {
   }
 
   measure: count_disengaged_up_to_75pct {
-    group_label: "Current Status"
+    group_label: "Current Status - Counts"
     label: "3g. Count - Disengaged between 60% and 75%"
     type: sum
     drill_fields: [detail*]
@@ -408,7 +408,7 @@ view: derived_characteristics {
 
   measure: percent_disengaged_up_to_75pct {
     label: "3g. Percent - Disengaged between 60% and 75%"
-    group_label: "Current Status"
+    group_label: "Current Status - Percent"
     type: number
     drill_fields: [detail*]
     sql: ${count_disengaged_up_to_75pct} / ${count_activated} * 100 ;;
@@ -425,7 +425,7 @@ view: derived_characteristics {
   }
 
   measure: count_disengaged_up_to_100pct {
-    group_label: "Current Status"
+    group_label: "Current Status - Counts"
     label: "3h. Count - Disengaged between 75% and 100%"
     type: sum
     drill_fields: [detail*]
@@ -434,7 +434,7 @@ view: derived_characteristics {
 
   measure: percent_disengaged_up_to_100pct {
     label: "3h. percent - Disengaged between 75% and 100%"
-    group_label: "Current Status"
+    group_label: "Current Status - Percent"
     type: number
     drill_fields: [detail*]
     sql: ${count_disengaged_up_to_100pct} / ${count_activated} * 100 ;;
@@ -453,7 +453,7 @@ view: derived_characteristics {
 
   measure: count_disengaged_after_completion100 {
     label: "4a. Count - Disengaged, 100% Completion"
-    group_label: "Current Status"
+    group_label: "Current Status - Counts"
     type: sum
     drill_fields: [detail*]
     sql: ${disengaged_after_completion100} ;;
@@ -461,7 +461,7 @@ view: derived_characteristics {
 
   measure: percent_disengaged_after_completion100 {
     label: "4a. Percent - Disengaged, 100% Completion"
-    group_label: "Current Status"
+    group_label: "Current Status - Percent"
     description: "Percent of accounts that have reached 100% completion, out of all referrals"
     type: number
     drill_fields: [detail*]
@@ -471,7 +471,7 @@ view: derived_characteristics {
 
   dimension: disengaged_after_completion60{
     label: "4b. Disengaged, 60% Completion"
-    group_label: "Current Status"
+    group_label: "Current Status - Percent"
     type: number
     drill_fields: [detail*]
     sql: CASE WHEN (${has_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.60) THEN 1 ELSE 0 END ;;
@@ -480,7 +480,7 @@ view: derived_characteristics {
 
   measure: count_disengaged_after_completion60 {
     label: "4b. Count - Disengaged, 60% Completion"
-    group_label: "Current Status"
+    group_label: "Current Status - Counts"
     type: sum
     drill_fields: [detail*]
     sql: ${disengaged_after_completion60} ;;
