@@ -288,7 +288,7 @@ view: derived_characteristics {
   #DISENGAGED NO ACTIVITY
   dimension: disengaged_no_activity{
     group_label: "Current Status"
-    label: "3c. Disengaged after one session"
+    label: "3c. Disengaged, no activity"
     type: number
     drill_fields: [detail*]
     sql: CASE WHEN (${is_disengaged} = 1 AND ${TABLE}.max_sessions = 0) THEN 1 ELSE 0 END ;;
