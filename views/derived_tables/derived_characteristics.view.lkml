@@ -47,6 +47,43 @@ view: derived_characteristics {
       sql: CASE WHEN (${TABLE}.count > 0) THEN 1 ELSE 0 END ;;
     }
 
+  #iS ENGAGED
+  dimension: is_referred{
+    label: "1. Is Referred"
+    type: number
+    drill_fields: [detail*]
+  }
+
+  measure: count_referred {
+    label: "Count - Referred"
+    type: sum
+    drill_fields: [detail*]
+    sql: ${is_referred} ;;
+  }
+
+  #iS ENGAGED
+  dimension: is_activated{
+    label: "2. Has Activated"
+    type: number
+    drill_fields: [detail*]
+  }
+
+  measure: count_activated {
+    label: "Count - Has Activated"
+    type: sum
+    drill_fields: [detail*]
+    sql: ${is_activated} ;;
+  }
+
+  measure: percent_activated {
+    label: "Percent - Has Activated"
+    description: "Percent of accounts that have been activated, out of all referrals"
+    type: number
+    drill_fields: [detail*]
+    sql: ${count_activated} / ${is_referred} ;;
+  }
+
+
   #dimension: engaged
   #WAS ACTIVE IN LAST 90 DAYS (DAYS SINCE LAST ACTIVITY IS LESS THAN 90)
   dimension: account_older_than_90_days {
@@ -76,6 +113,15 @@ view: derived_characteristics {
     drill_fields: [detail*]
     sql: ${is_engaged} ;;
   }
+
+  measure: percent_engaged {
+    label: "Percent - Engaged"
+    description: "Percent of accounts that have engaged (completed an activity), out of all activated accounts"
+    type: number
+    drill_fields: [detail*]
+    sql: ${is_engaged} / ${count_activated} ;;
+  }
+
 
   #IS DISENGAGED AFTER ONE SESSION
   dimension: disengaged_after_one_session{
