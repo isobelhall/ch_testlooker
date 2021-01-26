@@ -37,6 +37,12 @@ explore: users {
     relationship: many_to_one
   }
 
+  join: derived_characteristics {
+    sql_on: ${derived_characteristics.ppuid} = ${users.ppuid} ;;
+    relationship: one_to_one
+    view_label: "1. User Account"
+  }
+
   join: units {
     sql_on: ${units_users.unit_id} = ${units.id} ;;
     relationship: many_to_one
@@ -161,11 +167,6 @@ explore: users {
     view_label: "3. Identifiables"
   }
 
-  join: derived_characteristics {
-    sql_on: ${derived_characteristics.ppuid} = ${users.ppuid} ;;
-    relationship: one_to_one
-    view_label: "7. Activity Data"
-    }
 
  # join: user_event_count {
 #    sql_on: ${user_event_count.ppuid} = ${events.user_id} ;;
