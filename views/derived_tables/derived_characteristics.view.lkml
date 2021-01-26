@@ -47,28 +47,32 @@ view: derived_characteristics {
       sql: CASE WHEN (${TABLE}.count > 0) THEN 1 ELSE 0 END ;;
     }
 
-  #iS ENGAGED
+  #HAS OPENED ACCOUNT/BEEN REFERRED
   dimension: is_referred{
+    group_item_label: "Programme Progress"
     label: "1. Is Referred"
     type: number
     drill_fields: [detail*]
   }
 
   measure: count_referred {
+    group_item_label: "Programme Progress"
     label: "Count - Referred"
     type: sum
     drill_fields: [detail*]
     sql: ${is_referred} ;;
   }
 
-  #iS ENGAGED
+  #HAS ACTIVATED
   dimension: is_activated{
+    group_item_label: "Programme Progress"
     label: "2. Has Activated"
     type: number
     drill_fields: [detail*]
   }
 
   measure: count_activated {
+    group_item_label: "Programme Progress"
     label: "Count - Has Activated"
     type: sum
     drill_fields: [detail*]
@@ -76,13 +80,114 @@ view: derived_characteristics {
   }
 
   measure: percent_activated {
+    group_item_label: "Programme Progress"
     label: "Percent - Has Activated"
     description: "Percent of accounts that have been activated, out of all referrals"
     type: number
     drill_fields: [detail*]
-    sql: ${count_activated} / ${is_referred} ;;
+    sql: ${count_activated} / ${is_referred} * 100 ;;
   }
 
+  #HAS ENGAGED
+  dimension: has_engaged{
+    group_item_label: "Programme Progress"
+    label: "3a. Has Engaged"
+    type: number
+    drill_fields: [detail*]
+    sql: CASE WHEN (${TABLE}.is_referred = 1 AND ${TABLE}.is_activated = 1 AND ${has_done_activity} = 1) THEN 1 ELSE 0 END ;;
+  }
+
+  measure: count_engaged {
+    label: "Count - Engaged"
+    group_item_label: "Programme Progress"
+    type: sum
+    drill_fields: [detail*]
+    sql: ${has_engaged} ;;
+  }
+
+  measure: percent_engaged {
+    group_item_label: "Programme Progress"
+    label: "Percent - Engaged"
+    description: "Percent of accounts that have engaged (completed an activity), out of all activated accounts"
+    type: number
+    drill_fields: [detail*]
+    sql: ${has_engaged} / ${count_activated} * 100 ;;
+  }
+
+  #HAS COMPLETED (100%)
+  dimension: has_completed_100 {
+  group_item_label: "Programme Progress"
+  label: "4a. Completed (100%)"
+  type: number
+  drill_fields: [detail*]
+  sql: CASE WHEN (${TABLE}.is_referred = 1 AND ${TABLE}.is_activated = 1 AND ${has_done_activity} = 1 and ${TABLE}.progress >= 1) THEN 1 ELSE 0 END ;;
+}
+
+  measure: count_completed_100 {
+    label: "Count - Engaged"
+    group_item_label: "Programme Progress"
+    type: sum
+    drill_fields: [detail*]
+    sql: ${percent_completed_100} ;;
+  }
+
+  measure: percent_completed_100 {
+    group_item_label: "Programme Progress"
+    label: "Percent - Engaged"
+    description: "Percent of accounts that have engaged (completed an activity), out of all activated accounts"
+    type: number
+    drill_fields: [detail*]
+    sql: ${percent_completed_100} / ${count_activated} * 100 ;;
+  }
+
+  #HAS COMPLETED (60% - HL standard)
+  dimension: has_completed_60 {
+    group_item_label: "Programme Progress"
+    label: "4b. Completed (60% - HL)"
+    type: number
+    drill_fields: [detail*]
+    sql: CASE WHEN (${TABLE}.is_referred = 1 AND ${TABLE}.is_activated = 1 AND ${has_done_activity} = 1 and ${TABLE}.progress >= 0.6) THEN 1 ELSE 0 END ;;
+  }
+
+  measure: count_completed_60 {
+    label: "Count - Engaged"
+    group_item_label: "Programme Progress"
+    type: sum
+    drill_fields: [detail*]
+    sql: ${count_completed_60} ;;
+  }
+
+  measure: percent_completed_60 {
+    group_item_label: "Programme Progress"
+    label: "Percent - Engaged"
+    description: "Percent of accounts that have engaged (completed an activity), out of all activated accounts"
+    type: number
+    drill_fields: [detail*]
+    sql: ${count_completed_60} / ${count_activated} * 100 ;;
+  }
+
+###
+# CURRENT STATUS
+###
+
+#IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 100%
+
+#IS CURRENTLY ENGAGED
+  dimension: is_engaged{
+    group_item_label: "Current Status"
+    label: "3a. Has Engaged"
+    type: number
+    drill_fields: [detail*]
+    sql: CASE WHEN (${TABLE}.is_referred = 1 AND ${TABLE}.is_activated = 1 AND ${has_done_activity} = 1 and ${TABLE}.days_since_max_event < 90) THEN 1 ELSE 0 END ;;
+  }
+
+  dimension: is_disengaged{
+    group_item_label: "Current Status"
+    label: "3a. Has Disengaged"
+    type: number
+    drill_fields: [detail*]
+    sql: CASE WHEN (${TABLE}.is_referred = 1 AND ${TABLE}.is_activated = 1 AND ${has_done_activity} = 1 and ${TABLE}.days_since_max_event > 90) THEN 1 ELSE 0 END ;;
+  }
 
   #dimension: engaged
   #WAS ACTIVE IN LAST 90 DAYS (DAYS SINCE LAST ACTIVITY IS LESS THAN 90)
@@ -99,39 +204,17 @@ view: derived_characteristics {
     sql: CASE WHEN (${TABLE}.account_older_than_90_days >0 ) THEN 1 ELSE 0 END ;;
   }
 
-  #iS ENGAGED
-  dimension: is_engaged{
-    label: "3a. Has Engaged"
-    type: number
-    drill_fields: [detail*]
-    sql: CASE WHEN (${TABLE}.is_referred = 1 AND ${TABLE}.is_activated = 1 AND ${has_done_activity} = 1) THEN 1 ELSE 0 END ;;
-  }
-
-  measure: count_engaged {
-    label: "Count - Engaged"
-    type: sum
-    drill_fields: [detail*]
-    sql: ${is_engaged} ;;
-  }
-
-  measure: percent_engaged {
-    label: "Percent - Engaged"
-    description: "Percent of accounts that have engaged (completed an activity), out of all activated accounts"
-    type: number
-    drill_fields: [detail*]
-    sql: ${is_engaged} / ${count_activated} ;;
-  }
-
-
   #IS DISENGAGED AFTER ONE SESSION
   dimension: disengaged_after_one_session{
+    group_item_label: "Current Status"
     label: "3b. Disengaged after one session"
     type: number
     drill_fields: [detail*]
-    sql: CASE WHEN (${is_engaged} = 1 AND ${TABLE}.max_sessions = 1) THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (${is_disengaged} = 1 AND ${TABLE}.max_sessions = 1 ) THEN 1 ELSE 0 END ;;
   }
 
   measure: count_disengaged_after_one_session {
+    group_item_label: "Current Status"
     label: "Count - Disengaged after one session"
     type: sum
     drill_fields: [detail*]
@@ -139,13 +222,15 @@ view: derived_characteristics {
   }
 
   dimension: disengaged_no_activity{
+    group_item_label: "Current Status"
     label: "3b. Disengaged after one session"
     type: number
     drill_fields: [detail*]
-    sql: CASE WHEN (${is_engaged} = 1 AND ${TABLE}.max_sessions = 0) THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (${is_disengaged} = 1 AND ${TABLE}.max_sessions = 0) THEN 1 ELSE 0 END ;;
   }
 
   measure: count_disengaged_no_activity {
+    group_item_label: "Current Status"
     label: "Count - Disengaged after one session"
     type: sum
     drill_fields: [detail*]
@@ -154,13 +239,15 @@ view: derived_characteristics {
 
   #IS DISENGAGED (no activity in 90 days) WITH ONE OR MORE SESSIONS, AND PROGRESS LESS THAN 25%
   dimension: disengaged_under_25pct{
+    group_item_label: "Current Status"
     label: "3c. Disengaged under 25%"
     type: number
     drill_fields: [detail*]
-    sql: CASE WHEN (${is_engaged} = 1 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress < 0.25) THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (${is_disengaged} = 1 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress < 0.25) THEN 1 ELSE 0 END ;;
   }
 
   measure: count_disengaged_under_25pct {
+    group_item_label: "Current Status"
     label: "Count - disengaged_under_25pct"
     type: sum
     drill_fields: [detail*]
@@ -170,13 +257,15 @@ view: derived_characteristics {
 
   #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 25%, LESS THAN 50%
   dimension: disengaged_up_to_50pct{
+    group_item_label: "Current Status"
     label: "3c. Disengaged between 25% and 50%"
     type: number
     drill_fields: [detail*]
-    sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.25 and ${TABLE}.progress < 0.50) THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (${is_disengaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.25 and ${TABLE}.progress < 0.50) THEN 1 ELSE 0 END ;;
   }
 
   measure: count_disengaged_up_to_50pct {
+    group_item_label: "Current Status"
     label: "Count - Disengaged between 25% and 50%"
     type: sum
     drill_fields: [detail*]
@@ -186,13 +275,15 @@ view: derived_characteristics {
 
   #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 50%, LESS THAN 60%
   dimension: disengaged_up_to_60pct{
+    group_item_label: "Current Status"
     label: "3d. Disengaged between 50% and 60%"
     type: number
     drill_fields: [detail*]
-    sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90  AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.50 and ${TABLE}.progress < 0.60) THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (${is_disengaged} = 1 and ${TABLE}.days_since_max_event > 90  AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.50 and ${TABLE}.progress < 0.60) THEN 1 ELSE 0 END ;;
   }
 
   measure: count_disengaged_up_to_60pct {
+    group_item_label: "Current Status"
     label: "Count - Disengaged between 50% and 60%"
     type: sum
     drill_fields: [detail*]
@@ -200,15 +291,17 @@ view: derived_characteristics {
   }
 
 
-  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 75%, LESS THAN 100%
+  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 60%, LESS THAN 75%
   dimension: disengaged_up_to_75pct{
+    group_item_label: "Current Status"
     label: "3f. Disengaged between 60% and 75%"
     type: number
     drill_fields: [detail*]
-    sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.60 and ${TABLE}.progress < 0.75) THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (${is_disengaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.60 and ${TABLE}.progress < 0.75) THEN 1 ELSE 0 END ;;
   }
 
   measure: count_disengaged_up_to_75pct {
+    group_item_label: "Current Status"
     label: "Count - Disengaged between 60% and 75%"
     type: sum
     drill_fields: [detail*]
@@ -216,15 +309,17 @@ view: derived_characteristics {
   }
 
 
-  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 100%
+  #IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 75%, LESS THAN 100%
   dimension: disengaged_up_to_100pct{
+    group_item_label: "Current Status"
     label: "3g. Disengaged between 75% and 100%"
     type: number
     drill_fields: [detail*]
-    sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.75 and ${TABLE}.progress < 1) THEN 1 ELSE 0 END ;;
+    sql: CASE WHEN (${is_disengaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.75 and ${TABLE}.progress < 1) THEN 1 ELSE 0 END ;;
   }
 
   measure: count_disengaged_up_to_100pct {
+    group_item_label: "Current Status"
     label: "Count - Disengaged between 75% and 100%"
     type: sum
     drill_fields: [detail*]
@@ -232,13 +327,13 @@ view: derived_characteristics {
   }
 
 
-#IS DISENGAGED WITH ONE OR MORE SESSIONS, AND PROGRESS GREATER THAN 100%
-dimension: disengaged_after_completion100{
-  label: "5. Disengaged after completion (100%)"
-  type: number
-  drill_fields: [detail*]
-  sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 1) THEN 1 ELSE 0 END ;;
-}
+####### DISENGAGED AFTER COMPLETING
+  dimension: disengaged_after_completion100{
+    label: "5. Disengaged after completion (100%)"
+    type: number
+    drill_fields: [detail*]
+    sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 1) THEN 1 ELSE 0 END ;;
+  }
 
   measure: count_disengaged_after_completion100 {
     label: "Count - Disengaged after completion (100%)"
@@ -247,21 +342,37 @@ dimension: disengaged_after_completion100{
     sql: ${disengaged_after_completion100} ;;
   }
 
-  dimension: disengaged_after_completion60{
-    label: "5. Disengaged after completion (60% - HL)"
+  measure: percent_disengaged_after_completion100 {
+    label: "Percent - Has Disengaged After Completion (100%)"
+    description: "Percent of accounts that have been activated, out of all referrals"
     type: number
     drill_fields: [detail*]
-    sql: CASE WHEN (${is_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.60) THEN 1 ELSE 0 END ;;
+    sql: ${disengaged_after_completion100} / ${has_engaged} * 100 ;;
   }
 
 
-measure: count_disengaged_after_completion60 {
-  label: "Count - Disengaged after completion (60% - HL)"
-  type: sum
-  drill_fields: [detail*]
-  sql: ${disengaged_after_completion60} ;;
-}
+  dimension: disengaged_after_completion60{
+    label: "Count - Has Disengaged After Completion (60% HL)"
+    type: number
+    drill_fields: [detail*]
+    sql: CASE WHEN (${has_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.60) THEN 1 ELSE 0 END ;;
+  }
 
+
+  measure: count_disengaged_after_completion60 {
+    label: "Count - Disengaged after completion (60% - HL)"
+    type: sum
+    drill_fields: [detail*]
+    sql: ${disengaged_after_completion60} ;;
+  }
+
+  measure: percent_disengaged_after_completion60 {
+    label: "Percent - Has Disengaged After Completion (60%)"
+    description: "Percent of accounts that have been activated, out of all referrals"
+    type: number
+    drill_fields: [detail*]
+    sql: ${disengaged_after_completion60} / ${has_engaged} * 100;;
+  }
 
   #DAYS SINCE ACCOUNT CREATED
     #users.days_since_account_created <-tested, complete
