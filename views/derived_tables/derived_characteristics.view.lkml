@@ -155,7 +155,7 @@ view: derived_characteristics {
     group_label: "Programme Progress - Counts"
     type: sum
     drill_fields: [detail*]
-    sql: ${count_completed_60} ;;
+    sql: ${has_completed_60} ;;
   }
 
   measure: percent_completed_60 {
@@ -261,7 +261,7 @@ view: derived_characteristics {
 
   #IS DISENGAGED AFTER ONE SESSION
   dimension: disengaged_after_one_session{
-    group_label: "Current Status - Percent"
+    group_label: "Current Status"
     label: "3b. Disengaged after one session"
     type: number
     drill_fields: [detail*]
@@ -471,7 +471,7 @@ view: derived_characteristics {
 
   dimension: disengaged_after_completion60{
     label: "4b. Disengaged, 60% Completion"
-    group_label: "Current Status - Percent"
+    group_label: "Current Status"
     type: number
     drill_fields: [detail*]
     sql: CASE WHEN (${has_engaged} = 1 and ${TABLE}.days_since_max_event > 90 AND ${TABLE}.max_sessions >= 1 and ${TABLE}.progress >= 0.60) THEN 1 ELSE 0 END ;;
@@ -488,7 +488,7 @@ view: derived_characteristics {
 
   measure: percent_disengaged_after_completion60 {
     label: "4b. Percent - Disengaged, 60% Completion"
-    group_label: "Current Status"
+    group_label: "Current Status - Percent"
     description: "Percent of accounts that have reached 60% completion, out of all referrals"
     type: number
     drill_fields: [detail*]
