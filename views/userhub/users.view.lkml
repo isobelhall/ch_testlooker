@@ -37,6 +37,7 @@ view: users {
 
   dimension_group: created {
     view_label: "1. User Account"
+    group_label: "Programme Progress"
     label: "Account Created"
     type: time
     timeframes: [
@@ -52,17 +53,22 @@ view: users {
   }
 
   dimension: days_since_account_created {
+    hidden: yes
     type: number
     label: "Days since creation"
     sql: DATEDIFF(now(), ${created_raw}) ;;
   }
 
   dimension: account_older_than_90_days {
+    hidden: yes
     type: number
     sql: CASE WHEN ${days_since_account_created} > 90 THEN 1 ELSE 0 END ;;
   }
 
+
+#THESE DIMENSIONS ARE CREATED FOR USE IN DERIVED_CHARACTERISTICS, BUT HIDDEN TO KEEP EXPLORE TIDY
   dimension: is_referred {
+    hidden: yes
     label: "Status 1. Is referred"
     type: number
     sql: CASE WHEN ${created_raw} IS NOT NULL THEN 1
@@ -70,13 +76,14 @@ view: users {
   }
 
   measure: count_referred {
+    hidden: yes
     label: "Count - Referred"
     type: sum
     sql: ${is_referred} ;;
   }
 
-
     dimension: is_activated {
+    hidden: yes
     label: "Status 2. Is Activated"
     type: number
     sql: CASE WHEN ${is_referred} IS NOT NULL AND ${account_enabled} = TRUE THEN 1
@@ -84,34 +91,23 @@ view: users {
   }
 
   measure: count_activated {
+    hidden: yes
     label: "Count - Activated"
     type: sum
     sql: ${is_activated} ;;
   }
 
 
-#  dimension: has_done_activity {
-#    type: number
-#    sql: COUNT(${id}) FROM ${} WHERE condition;
-# ;;
-#}
-
-#  dimension: is_engaged {
-#    label: "Status 3. Is Engaged"
-#    type: yesno
-#    sql: CASE WHEN ${is_referred} IS NOT NULL AND ${account_enabled} = TRUE AND ${derived_characteristics}.has_done_activity THEN true
-#      ELSE false END ;;
-#  }
-
-
   dimension: is_deleted {
-    label: "Status 4. Is Deleted"
+    group_label: "Programme Progress"
+    label: "5. Is Deleted"
     type: number
     sql: CASE WHEN ${deleted_raw} IS NOT NULL THEN 1
       ELSE 0 END ;;
   }
 
   measure: count_deleted {
+    group_label: "Programme Progress"
     label: "Count - Deleted"
     type: sum
     sql: ${is_deleted} ;;
