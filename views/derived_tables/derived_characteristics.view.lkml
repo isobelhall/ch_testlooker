@@ -80,7 +80,7 @@ view: derived_characteristics {
   }
 
   measure: percent_activated {
-    group_label: "Programme Progress  - Percent"
+    group_label: "Programme Progress - Percent"
     label: "Percent - Has Activated"
     description: "Percent of accounts that have been activated, out of all referrals"
     type: number
@@ -106,7 +106,7 @@ view: derived_characteristics {
   }
 
   measure: percent_engaged {
-    group_label: "Programme Progress  - Percent"
+    group_label: "Programme Progress - Percent"
     label: "Percent - Engaged"
     description: "Percent of accounts that have engaged (completed an activity), out of all activated accounts"
     type: number
@@ -129,7 +129,7 @@ view: derived_characteristics {
     group_label: "Programme Progress - Counts"
     type: sum
     drill_fields: [detail*]
-    sql: ${percent_completed_100} ;;
+    sql: ${has_completed_100} ;;
   }
 
   measure: percent_completed_100 {
