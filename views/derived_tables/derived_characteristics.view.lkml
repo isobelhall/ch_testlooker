@@ -228,7 +228,7 @@ view: derived_characteristics {
     label: "3a. Count - Activated, disengaged"
     type: sum
     drill_fields: [detail*]
-    sql: ${is_inactive} ;;
+    sql: ${is_inactive_disengaged} ;;
   }
 
   measure: percent_inactive_disengaged {
