@@ -237,7 +237,7 @@ view: derived_characteristics {
     description: "Percent of people who have not done any activity to 'engaged' in 90 days since creating an account."
     type: number
     drill_fields: [detail*]
-    sql: ${count_disengaged_after_one_session} / ${count_activated} * 100 ;;
+    sql: ${count_inactive_disengaged} / ${count_activated} * 100 ;;
   }
 
 
