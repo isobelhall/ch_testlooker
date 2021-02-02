@@ -1,5 +1,10 @@
 connection: "mysql_connection_events"
 
+datagroup: daily_refresh {
+  sql_trigger: SELECT CURRENT_DATE();;
+  max_cache_age: "24 hours"
+}
+
 include: "/views/*.view.lkml"                # include all views in the views/ folder in this project
 include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard

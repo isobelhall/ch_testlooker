@@ -32,6 +32,8 @@ view: user_event_logs {
     sql: ${TABLE}.event_type ;;
   }
 
+  #to fix 'enabled' issue, filter bye event type representing activated.
+
   dimension: payload {
     hidden: yes
     type: string

@@ -106,7 +106,7 @@ view: users {
   }
 
   measure: count_deleted {
-    group_label: "Programme Progress - Count"
+    group_label: "Programme Progress - Counts"
     label: "Count - Deleted"
     type: sum
     sql: ${is_deleted} ;;
