@@ -47,6 +47,12 @@ view: derived_characteristics {
       sql: CASE WHEN (${TABLE}.count > 0) THEN 1 ELSE 0 END ;;
     }
 
+  dimension: has_done_activity_yesno {
+    type: yesno
+    drill_fields: [detail*]
+    sql: CASE WHEN (${TABLE}.count > 0) THEN TRUE ELSE FALSE END ;;
+  }
+
   #HAS OPENED ACCOUNT/BEEN REFERRED
   dimension: is_referred{
     group_label: "Programme Progress"
