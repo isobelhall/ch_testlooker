@@ -183,7 +183,7 @@ view: derived_activity_2 {
 
 #calculate average users with activity
   measure: activites_per_user {
-    label: "Count - Activities per user"
+    label: "Average - Activities per user"
     description: "Number activities (articles read, weights tracked) divided by number of unique users"
     type: number
     sql: ${count} / ${count_users} ;;
