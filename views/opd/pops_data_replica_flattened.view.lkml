@@ -32,6 +32,21 @@ GROUP BY 1
   dimension: choose_your_physical_activity_plan {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.choose_your_physical_activity_plan"));;}
   dimension: choosing_your_physical_activity_plan {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.choosing_your_physical_activity_plan"));;}
   dimension: consent_to_share_data_with_your_gp_practice {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.consent_to_share_data_with_your_gp_practice"));;}
+  dimension: consent_to_share_data_with_your_gp_practice_english {
+    type: string
+    label: "consent_gp_practice_english"
+    case: {
+      when: {
+        sql: ${consent_to_share_data_with_your_gp_practice} = 1 ;;
+        label: "Yes"
+      }
+      when: {
+        sql: ${consent_to_share_data_with_your_gp_practice} = 2 ;;
+        label: "No"
+      }
+      else: "None"
+    }
+  }
   dimension: driver {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.driver"));;}
   dimension: eating_plan {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.eating_plan"));;}
   dimension: employed {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.employed"));;}
