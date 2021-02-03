@@ -158,6 +158,14 @@ view: derived_activity_2 {
     filters: [object_type: "appointment"]
   }
 
+#count - has had coach appointment
+  measure: count_plugin {
+    group_label: "Test Activity Counts"
+    label: "Count - Accessed Plugins"
+    type: count
+    filters: [object_type: "plugins"]
+  }
+
 
 
   dimension: uid {

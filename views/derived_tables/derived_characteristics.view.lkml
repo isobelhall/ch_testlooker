@@ -17,6 +17,13 @@ view: derived_characteristics {
       column: account_older_than_90_days {}
       column: max_sessions { field: derived_activity_2.max_sessions }
       column: days_since_max_event {field: derived_activity_2.days_since_max_event}
+      column: count_weight { field: derived_activity_2.count_weight }
+      column: count_video { field: derived_activity_2.count_video }
+      column: count_steps { field: derived_activity_2.count_steps }
+      column: count_goal { field: derived_activity_2.count_goal }
+      column: count_food { field: derived_activity_2.count_food }
+      column: count_appt { field: derived_activity_2.count_appt }
+      column: count_articles { field: derived_activity_2.count_articles }
     }
   }
 
@@ -41,17 +48,49 @@ view: derived_characteristics {
       type: number
     }
 
+#ACTIVITY COUNTS, HAVE THEY DONE ACTIVITY? HOW MUCH?
     dimension: has_done_activity {
       type: number
       drill_fields: [detail*]
       sql: CASE WHEN (${TABLE}.count > 0) THEN 1 ELSE 0 END ;;
     }
 
-  dimension: has_done_activity_yesno {
+    dimension: has_done_activity_yesno {
+      type: yesno
+      drill_fields: [detail*]
+      sql: CASE WHEN (${TABLE}.count > 0) THEN TRUE ELSE FALSE END ;;
+    }
+
+  #activity types
+  dimension: has_done_articles {
     type: yesno
     drill_fields: [detail*]
-    sql: CASE WHEN (${TABLE}.count > 0) THEN TRUE ELSE FALSE END ;;
   }
+  dimension: has_done_video {
+    type: yesno
+    drill_fields: [detail*]
+  }
+  dimension: has_done_steps {
+    type: yesno
+    drill_fields: [detail*]
+  }
+  dimension: has_done_weight {
+    type: yesno
+    drill_fields: [detail*]
+  }
+  dimension: has_done_goal {
+    type: yesno
+    drill_fields: [detail*]
+  }
+  dimension: has_done_food {
+    type: yesno
+    drill_fields: [detail*]
+  }
+  dimension: has_done_appt {
+    type: yesno
+    drill_fields: [detail*]
+  }
+
 
   #HAS OPENED ACCOUNT/BEEN REFERRED
   dimension: is_referred{
