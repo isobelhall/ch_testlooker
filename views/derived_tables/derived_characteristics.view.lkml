@@ -25,8 +25,8 @@ view: derived_characteristics {
       column: count_appt { field: derived_activity_2.count_appt }
       column: count_articles { field: derived_activity_2.count_articles }
     }
-    datagroup_trigger:  daily_refresh
-    indexes: ["ppuid"]
+    #datagroup_trigger:  daily_refresh
+    #indexes: ["ppuid"]
   }
 
 #REMOVED FROM DERIVED TABLE ABOVE
