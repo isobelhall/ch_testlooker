@@ -78,6 +78,8 @@ view: derived_activity_2 {
             ) as events ) as events_lag
           ) events_session_flag
        ;;
+    datagroup_trigger:  daily_refresh
+    indexes: ["user_id"]
   }
 
   #PRIMARY KEY
