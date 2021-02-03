@@ -174,13 +174,22 @@ view: derived_activity_2 {
     sql: ${TABLE}.user_id ;;
   }
 
-
   measure: count_users {
     label: "Count - Unique Users with Activity"
     type: count_distinct
     sql: ${TABLE}.user_id ;;
     drill_fields: [detail*]
   }
+
+#calculate average users with activity
+  measure: activites_per_user {
+    label: "Count - Activities per user"
+    description: "Number activities (articles read, weights tracked) divided by number of unique users"
+    type: number
+    sql: ${count} / ${count_users} ;;
+    drill_fields: [detail*]
+  }
+
 
 
 #v2 - replaced with has done activity in derived_characteristics
@@ -271,7 +280,7 @@ view: derived_activity_2 {
   dimension_group: since_account_creation {
     label: "Since Account Creation"
     type: duration
-    intervals: [day, week, month, hour]
+    intervals: [day, week, month, hour,minute]
     sql_start: ${users.created_raw} ;;
     sql_end: ${event_raw} ;;
   }
