@@ -65,31 +65,45 @@ view: derived_characteristics {
 
   #activity types
   dimension: has_done_articles {
+    group_label: "Activity Breakdown"
     type: yesno
+    sql: CASE WHEN (${TABLE}.count_articles > 0 THEN TRUE ELSE FALSE END ;;
     drill_fields: [detail*]
   }
   dimension: has_done_video {
+    group_label: "Activity Breakdown"
     type: yesno
+    sql: CASE WHEN (${TABLE}.count_video > 0 THEN TRUE ELSE FALSE END ;;
     drill_fields: [detail*]
   }
   dimension: has_done_steps {
+    group_label: "Activity Breakdown"
     type: yesno
+    sql: CASE WHEN (${TABLE}.count_steps > 0 THEN TRUE ELSE FALSE END ;;
     drill_fields: [detail*]
   }
   dimension: has_done_weight {
+    group_label: "Activity Breakdown"
     type: yesno
+    sql: CASE WHEN (${TABLE}.count_weight > 0 THEN TRUE ELSE FALSE END ;;
     drill_fields: [detail*]
   }
   dimension: has_done_goal {
+    group_label: "Activity Breakdown"
     type: yesno
+    sql: CASE WHEN (${TABLE}.count_goal > 0 THEN TRUE ELSE FALSE END ;;
     drill_fields: [detail*]
   }
   dimension: has_done_food {
+    group_label: "Activity Breakdown"
     type: yesno
+    sql: CASE WHEN (${TABLE}.count_food > 0 THEN TRUE ELSE FALSE END ;;
     drill_fields: [detail*]
   }
   dimension: has_done_appt {
+    group_label: "Activity Breakdown"
     type: yesno
+    sql: CASE WHEN (${TABLE}.count_appt > 0 THEN TRUE ELSE FALSE END ;;
     drill_fields: [detail*]
   }
 
