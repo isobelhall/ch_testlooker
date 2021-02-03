@@ -1,7 +1,6 @@
 view: derived_activity_2 {
 
   derived_table: {
-    #ISOBEL: ADD IN ALL PLATFORM USAGE (EG, PLUGINS, GOALS)
     sql: SELECT
       *,
       SUM(is_new_session) over (order by user_id,event) as `session_id`,
@@ -29,7 +28,7 @@ view: derived_activity_2 {
             SELECT
                  program.plugins_accessed.user_id,
                  program.plugins.id "ObjectID",
-                 program.plugins.system_name "ObjectName",
+                 program.plugins.system_name "ObjectValue",
                  'plugins' as "ObjectType",
                  program.plugins_accessed.created_at "event"
             FROM program.plugins_accessed
@@ -94,6 +93,72 @@ view: derived_activity_2 {
     type: count
     drill_fields: [detail*]
   }
+
+#COUNT OF SPECIFIC ACTIVITY TYPES A USER HAS COMPLETED
+#count - has accessed article
+  measure: count_articles {
+    group_label: "Test Activity Counts"
+    label: "Count - Articles"
+    type: count
+    filters: [object_type: "article"]
+  }
+#count - has watched video
+  measure: count_video {
+    group_label: "Test Activity Counts"
+    label: "Count - Videos"
+    type: count
+    filters: [object_type: "video"]
+  }
+#count - has recorded a weight
+  measure: count_weight {
+    group_label: "Test Activity Counts"
+    label: "Count - Weights"
+    type: count
+    filters: [object_type: "weight tracker"]
+  }
+#count - has recorded steps
+  measure: count_steps {
+    group_label: "Test Activity Counts"
+    label: "Count - Steps"
+    type: count
+    filters: [object_type: "step tracker"]
+  }
+#count - has recorded steps
+  measure: count_food {
+    group_label: "Test Activity Counts"
+    label: "Count - Food Tracker"
+    type: count
+    filters: [object_type: "food tracker"]
+  }
+#count - has accessed reading room
+#  measure: count_reading_room {
+#    label: "Count - Reading Room"
+#    type: count
+#    filters: [object_type: "article"]
+#  }
+##count - has accessed blood tracker
+#  measure: count_blood_tracker {
+#    label: "Count - Blood Tracker"
+#    type: count
+#    filters: [object_type: "article"]
+#  }
+#count - has accessed goals
+  measure: count_goal {
+    group_label: "Test Activity Counts"
+    label: "Count - Goals"
+    type: count
+    filters: [object_type: "goals"]
+  }
+
+#count - has had coach appointment
+  measure: count_appt {
+    group_label: "Test Activity Counts"
+    label: "Count - Coach Appointment"
+    type: count
+    filters: [object_type: "appointment"]
+  }
+
+
 
   dimension: uid {
     hidden: yes
