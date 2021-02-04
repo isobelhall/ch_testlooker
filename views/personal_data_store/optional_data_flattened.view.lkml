@@ -23,9 +23,6 @@ group by 1
     sql: ${TABLE}.properties1 ;;
   }
 
-  dimension: diabetes_diagnosis_updated {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties1}, "$.diabetes_diagnosis_updated"));;}
-  dimension: diabetes_status_healthy_living_update {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties1}, "$.diabetes_diagnosis_updated"));;}
-
   set: detail {
     fields: [user_id, properties1]
   }
