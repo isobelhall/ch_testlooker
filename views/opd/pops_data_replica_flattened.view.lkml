@@ -238,19 +238,19 @@ GROUP BY 1
     case: {
       when: {
         sql: ${time_since_diagnosis} = 1 ;;
-        label: "In last 12 months"
+        label: "Less than 12 months"
       }
       when: {
         sql: ${time_since_diagnosis} = 2 ;;
-        label: "1-5 years ago"
+        label: "1-5 years"
       }
       when: {
         sql: ${time_since_diagnosis} = 3 ;;
-        label: "6-10 years ago"
+        label: "6-10 years"
       }
       when: {
         sql: ${time_since_diagnosis} = 4 ;;
-        label: "More than 10 years ago"
+        label: "10+ years"
       }
     }
   }
