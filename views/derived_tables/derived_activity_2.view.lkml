@@ -73,7 +73,7 @@ view: derived_activity_2 {
                  personal_data_store.optional_data.scope "ObjectValue",
                  "pops" as "ObjectType",
                  personal_data_store.optional_data.created_at "event"
-            FROM  coaching.appointments
+            FROM  personal_data_store.optional_data
             UNION
             SELECT
                  opd.pops_data_replica.user_id,
@@ -82,7 +82,7 @@ view: derived_activity_2 {
                  opd.pops_data_replica.scope "ObjectValue",
                  "pops" as "ObjectType",
                  opd.opd_optional_data_objects.created_at "event"
-            FROM  coaching.appointments
+            FROM  opd.pops_data_replica
             UNION
             SELECT
                  plugin_goal.goals.user_id,
