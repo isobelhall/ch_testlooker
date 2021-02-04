@@ -79,7 +79,7 @@ view: derived_activity_2 {
                  opd.pops_data_replica.id "ObjectID",
                  opd.pops_data_replica.scope "ObjectValue",
                  "pops" as "ObjectType",
-                 opd.opd_optional_data_objects.created_at "event"
+                 opd.pops_data_replica.created_at "event"
             FROM  opd.pops_data_replica
             UNION
             SELECT
