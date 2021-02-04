@@ -67,12 +67,12 @@ view: derived_activity_2 {
             FROM  coaching.appointments
             UNION
             SELECT
-                 opd.opd_optional_data_objects.user_id,
-                 opd.opd_optional_data_objects.id "ObjectID",
-                 opd.opd_optional_data_objects.value "PopsValue",
-                 opd.opd_optional_data_objects.scope "ObjectValue",
+                 personal_data_store.optional_data.user_id,
+                 personal_data_store.optional_data.id "ObjectID",
+                 personal_data_store.optional_data.value "PopsValue",
+                 personal_data_store.optional_data.scope "ObjectValue",
                  "pops" as "ObjectType",
-                 opd.opd_optional_data_objects.created_at "event"
+                 personal_data_store.optional_data.created_at "event"
             FROM  coaching.appointments
             UNION
             SELECT
