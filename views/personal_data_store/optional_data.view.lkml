@@ -69,6 +69,7 @@ view: optional_data {
   dimension: value {
     type: string
     sql: ${TABLE}.value ;;
+
   }
 
   dimension: visible {
