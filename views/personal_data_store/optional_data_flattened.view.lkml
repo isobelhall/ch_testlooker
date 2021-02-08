@@ -23,8 +23,8 @@ view: optional_data_flattened {
     sql: ${TABLE}.hl_properties ;;
   }
 
-  dimension: diabetes_diagnosis_time_healthy_living {sql:JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, $.diabetes_diagnosis_time_healthy_living));;}
-  dimension: diagnosis_time_healthy_living {
+  dimension: diabetes_diagnosis_time_healthy_living {sql:JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, $.diabetes_diagnosis_time_healthy_living));; hidden: yes}
+  dimension: diagnosis_time_healthy_living_english {
     type: string
     label: "Healthy Living Diagnosis Time"
     case: {
