@@ -197,11 +197,6 @@ explore: users {
     view_label: "2. Demographics / User Attributes"
   }
 
-  join: opt_data_flattened {
-    sql_on: ${users.id} = ${opt_data_flattened.user_id} ;;
-    relationship: many_to_one
-    view_label: "2. HL Demographics / User Attributes"
-  }
 #########
 }
 
