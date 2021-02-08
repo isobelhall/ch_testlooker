@@ -22,6 +22,15 @@ view: opt_data_flattened {
     sql: ${TABLE}.hl_properties ;;
   }
 
+  dimension: diabetes_diagnosis_time_healthy_living {sql:JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.diabetes_diagnosis_time_healthy_living"));;}
+  dimension: diabetes_status_healthy_living_update {sql:JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.diabetes_status_healthy_living_update"));;}
+  dimension: disability_status_healthy_living_update {sql:JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.disability_status_healthy_living_update"));;}
+  dimension: ethnicity_healthy_living {sql:JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.ethnicity_healthy_living"));;}
+  dimension: gender_m_f_i_p_healthy_living {sql:JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.gender_m_f_i_p_healthy_living"));;}
+  dimension: language_healthy_living_updated {sql:JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.language_healthy_living_updated"));;}
+  dimension: serious_mental_illness_status_healthy_living {sql:JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.serious_mental_illness_status_healthy_living"));;}
+  dimension: smoking_status_healthy_living_updated {sql:JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.smoking_status_healthy_living_updated"));;}
+
   set: detail {
     fields: [user_id, hl_properties]
   }
