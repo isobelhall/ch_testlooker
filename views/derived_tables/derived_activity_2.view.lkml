@@ -110,6 +110,13 @@ view: derived_activity_2 {
     drill_fields: [detail*]
   }
 
+  measure: percent_of_total {
+    label: "Percent of Total - All Activities"
+    type: percent_of_total
+    sql: ${count} ;;
+    drill_fields: [detail*]
+  }
+
 #COUNT OF SPECIFIC ACTIVITY TYPES A USER HAS COMPLETED
 #count - has accessed article
   measure: count_articles {
