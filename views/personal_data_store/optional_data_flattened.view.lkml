@@ -29,19 +29,19 @@ view: optional_data_flattened {
     label: "healthy_living_diagnosis_time_english"
     case: {
       when: {
-        sql: ${diabetes_diagnosis_updated} = 1 ;;
+        sql: ${diabetes_diagnosis_updated} = "1" ;;
         label: "In the last 12 months"
       }
       when: {
-        sql: ${diabetes_diagnosis_updated} = 2 ;;
+        sql: ${diabetes_diagnosis_updated} = "2" ;;
         label: "1-5 years"
       }
       when: {
-        sql: ${diabetes_diagnosis_updated} = 3 ;;
+        sql: ${diabetes_diagnosis_updated} = "3" ;;
         label: "6-10 years"
       }
       when: {
-        sql: ${diabetes_diagnosis_updated} = 4 ;;
+        sql: ${diabetes_diagnosis_updated} = "4" ;;
         label: "More than 10 years"
       }
     }
@@ -52,27 +52,27 @@ view: optional_data_flattened {
     label: "diabetes_status_healthy_living_english"
     case: {
       when: {
-        sql: ${diabetes_status_healthy_living_update} = 1 ;;
+        sql: ${diabetes_status_healthy_living_update} = "1" ;;
         label: "I have type 2 diabetes"
       }
       when: {
-        sql: ${diabetes_status_healthy_living_update} = 2 ;;
+        sql: ${diabetes_status_healthy_living_update} = "2" ;;
         label: "I'm at risk of type 2 diabetes"
       }
       when: {
-        sql: ${diabetes_status_healthy_living_update} = 3 ;;
+        sql: ${diabetes_status_healthy_living_update} = "3" ;;
         label: "I care for / support a person with type 2 diabetes"
       }
       when: {
-        sql: ${diabetes_status_healthy_living_update} = 4 ;;
+        sql: ${diabetes_status_healthy_living_update} = "4" ;;
         label: "I have type 1 diabetes"
       }
       when: {
-        sql: ${diabetes_status_healthy_living_update} = 5 ;;
+        sql: ${diabetes_status_healthy_living_update} = "5" ;;
         label: "None of the above"
       }
       when: {
-        sql: ${diabetes_status_healthy_living_update} = 6 ;;
+        sql: ${diabetes_status_healthy_living_update} = "6" ;;
         label: "I am a healthcare professional / I work in the diabetes field"
       }
     }
@@ -83,15 +83,15 @@ view: optional_data_flattened {
     label: "disability_status_healthy_living_english"
     case: {
       when: {
-        sql: ${disability_status_healthy_living_update} = 1 ;;
+        sql: ${disability_status_healthy_living_update} = "1" ;;
         label: "Yes"
       }
       when: {
-        sql: ${disability_status_healthy_living_update} = 2 ;;
+        sql: ${disability_status_healthy_living_update} = "2" ;;
         label: "No"
       }
       when: {
-        sql: ${disability_status_healthy_living_update} = 3 ;;
+        sql: ${disability_status_healthy_living_update} = "3" ;;
         label: "Prefer not to say"
       }
     }
@@ -102,67 +102,67 @@ view: optional_data_flattened {
     label: "ethnicity_healthy_living_english"
     case: {
       when: {
-        sql: ${ethnicity_healthy_living} = 1 ;;
+        sql: ${ethnicity_healthy_living} = "1" ;;
         label: "White - British"
       }
       when: {
-        sql: ${ethnicity_healthy_living} = 2 ;;
+        sql: ${ethnicity_healthy_living} = "2" ;;
         label: "White - Irish"
       }
       when: {
-        sql: ${ethnicity_healthy_living} = 3 ;;
+        sql: ${ethnicity_healthy_living} = "3" ;;
         label: "Any other white background"
       }
       when: {
-        sql: ${ethnicity_healthy_living} = 4 ;;
+        sql: ${ethnicity_healthy_living} = "4" ;;
         label: "Mixed - White and Black Caribbean"
       }
       when: {
-        sql: ${ethnicity_healthy_living} = 5 ;;
+        sql: ${ethnicity_healthy_living} = "5" ;;
         label: "Mixed - White and Black African"
       }
       when: {
-        sql: ${ethnicity_healthy_living} = 6 ;;
+        sql: ${ethnicity_healthy_living} = "6" ;;
         label: "Mixed - White and Asian"
       }
       when: {
-        sql: ${ethnicity_healthy_living} = 7 ;;
+        sql: ${ethnicity_healthy_living} = "7" ;;
         label: "Any other mixed background"
       }
       when: {
-        sql: ${ethnicity_healthy_living} = 8 ;;
+        sql: ${ethnicity_healthy_living} = "8" ;;
         label: "Asian - Indian"
       }
       when: {
-        sql: ${ethnicity_healthy_living} = 9 ;;
+        sql: ${ethnicity_healthy_living} = "9" ;;
         label: "Asian - Pakistani"
       }
       when: {
-        sql: ${ethnicity_healthy_living} = 10 ;;
+        sql: ${ethnicity_healthy_living} = "10" ;;
         label: "Asian - Bangladeshi"
       }
       when: {
-        sql: ${ethnicity_healthy_living} = 11 ;;
+        sql: ${ethnicity_healthy_living} = "11" ;;
         label: "Black or Black British - Caribbean"
       }
       when: {
-        sql: ${ethnicity_healthy_living} = 12 ;;
+        sql: ${ethnicity_healthy_living} = "12" ;;
         label: "Black or Black British - African"
       }
       when: {
-        sql: ${ethnicity_healthy_living} = 13 ;;
+        sql: ${ethnicity_healthy_living} = "13" ;;
         label: "Any other Black background"
       }
       when: {
-        sql: ${ethnicity_healthy_living} = 14 ;;
+        sql: ${ethnicity_healthy_living} = "14" ;;
         label: "Any other"
       }
       when: {
-        sql: ${ethnicity_healthy_living} = 15 ;;
+        sql: ${ethnicity_healthy_living} = "15" ;;
         label: "Prefer not to say"
       }
       when: {
-        sql: ${ethnicity_healthy_living} = 16 ;;
+        sql: ${ethnicity_healthy_living} = "16" ;;
         label: "Any other Asian background"
       }
     }
@@ -173,19 +173,19 @@ view: optional_data_flattened {
     label: "gender_healthy_living_english"
     case: {
       when: {
-        sql: ${gender_m_f_i_p} = 0 ;;
+        sql: ${gender_m_f_i_p} = "0" ;;
         label: "Male"
       }
       when: {
-        sql: ${gender_m_f_i_p} = 1 ;;
+        sql: ${gender_m_f_i_p} = "1" ;;
         label: "Female"
       }
       when: {
-        sql: ${gender_m_f_i_p} = 2 ;;
+        sql: ${gender_m_f_i_p} = "2" ;;
         label: "Intersex"
       }
       when: {
-        sql: ${gender_m_f_i_p} = 3 ;;
+        sql: ${gender_m_f_i_p} = "3" ;;
         label: "Prefer not to say"
       }
     }
@@ -196,92 +196,126 @@ view: optional_data_flattened {
     label: "language_healthy_living_english"
     case: {
       when: {
-        sql: ${language_healthy_living_updated} = 1 ;;
+        sql: ${language_healthy_living_updated} = "1" ;;
         label: "English"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 2 ;;
+        sql: ${language_healthy_living_updated} = "2" ;;
         label: "Arabic"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 3 ;;
+        sql: ${language_healthy_living_updated} = "3" ;;
         label: "Bengali (with Sylheti and Chatgaya)"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 4 ;;
+        sql: ${language_healthy_living_updated} = "4" ;;
         label: "Chinese (all Chinese)"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 5 ;;
+        sql: ${language_healthy_living_updated} = "5" ;;
         label: "French"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 6 ;;
+        sql: ${language_healthy_living_updated} = "6" ;;
         label: "German"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 7 ;;
+        sql: ${language_healthy_living_updated} = "7" ;;
         label: "Gujarati"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 8 ;;
+        sql: ${language_healthy_living_updated} = "8" ;;
         label: "Italian"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 9 ;;
+        sql: ${language_healthy_living_updated} = "9" ;;
         label: "Lithuanian"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 10 ;;
+        sql: ${language_healthy_living_updated} = "10" ;;
         label: "Panjabi"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 11 ;;
+        sql: ${language_healthy_living_updated} = "11" ;;
         label: "Persian / Farsi"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 12 ;;
+        sql: ${language_healthy_living_updated} = "12" ;;
         label: "Polish"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 13 ;;
+        sql: ${language_healthy_living_updated} = "13" ;;
         label: "Portuguese"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 14 ;;
+        sql: ${language_healthy_living_updated} = "14" ;;
         label: "Romanian"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 15 ;;
+        sql: ${language_healthy_living_updated} = "15" ;;
         label: "Somali"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 16 ;;
+        sql: ${language_healthy_living_updated} = "16" ;;
         label: "Spanish"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 17 ;;
+        sql: ${language_healthy_living_updated} = "17" ;;
         label: "Tagalog / Filipino"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 18 ;;
+        sql: ${language_healthy_living_updated} = "18" ;;
         label: "Tamil"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 19 ;;
+        sql: ${language_healthy_living_updated} = "19" ;;
         label: "Turkish"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 20 ;;
+        sql: ${language_healthy_living_updated} = "20" ;;
         label: "Urdu"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 21 ;;
+        sql: ${language_healthy_living_updated} = "21" ;;
         label: "Welsh"
       }
       when: {
-        sql: ${language_healthy_living_updated} = 22 ;;
+        sql: ${language_healthy_living_updated} = "22" ;;
         label: "Other"
+      }
+    }
+  }
+  dimension: serious_mental_illness_status {sql:JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.serious_mental_illness_status"));;}
+  dimension: serious_mental_illness_healthy_living {
+    type: string
+    label: "serious_mental_illness_healthy_living_english"
+    case: {
+      when: {
+        sql: ${serious_mental_illness_status} = "1" ;;
+        label: "Yes"
+      }
+      when: {
+        sql: ${serious_mental_illness_status} = "2" ;;
+        label: "No"
+      }
+      when: {
+        sql: ${serious_mental_illness_status} = "3" ;;
+        label: "Prefer not to say"
+      }
+    }
+  }
+  dimension: smoking_status_healthy_living_updated {sql:JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.smoking_status_healthy_living_updated"));;}
+  dimension: smokingstatus_healthy_living {
+    type: string
+    label: "smokingstatus_healthy_living_english"
+    case: {
+      when: {
+        sql: ${smoking_status_healthy_living_updated} = "1" ;;
+        label: "Yes"
+      }
+      when: {
+        sql: ${smoking_status_healthy_living_updated} = "2" ;;
+        label: "No"
       }
     }
   }
