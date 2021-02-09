@@ -322,6 +322,13 @@ view: users {
     drill_fields: [detail*]
   }
 
+  measure: percent {
+    label: "Percent of Total - Participants"
+    description: "Percent of all participant out of all those"
+    type:  percent_of_total
+    sql: ${count1} ;;
+    drill_fields: [detail*]
+  }
 
   # ----- Sets of fields for drilling ------
   set: detail {

@@ -256,7 +256,7 @@ GROUP BY 1
   }
   dimension: tricky_situations_plan {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.tricky_situations_plan"));;}
   dimension: tricky_situations_problem {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.tricky_situations_problem"));;}
-  dimension: weight {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.weight"));;}
+  dimension: pops_weight {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.weight"));;}
   dimension: weight_reminder {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.weight_reminder"));;}
 
   set: detail {
