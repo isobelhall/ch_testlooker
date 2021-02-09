@@ -19,6 +19,7 @@ view: optional_data_flattened {
 
   dimension: hl_properties {
     type: string
+    hidden: yes
     sql: ${TABLE}.hl_properties ;;
   }
 
