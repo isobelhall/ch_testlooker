@@ -190,6 +190,7 @@ explore: users {
 #    view_label: "7. Activity Data"
 #  }
 
+# flattened views for pops and optional data table
   join: pops_data_replica_flattened {
     sql_on: ${users.id} = ${pops_data_replica_flattened.user_id} ;;
     relationship: many_to_one
@@ -197,10 +198,12 @@ explore: users {
   }
 
   join: optional_data_flattened {
-    sql: ${users.id} = ${optional_data_flattened.user_id} ;;
+    sql_on: ${users.id} = ${optional_data_flattened.user_id} ;;
     relationship: many_to_one
     view_label: "2. HL Demographics / User Attributes"
   }
+
+
 
 #########
 }

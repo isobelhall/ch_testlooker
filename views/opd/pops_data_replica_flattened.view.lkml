@@ -37,11 +37,11 @@ GROUP BY 1
     label: "consent_gp_practice_english"
     case: {
       when: {
-        sql: ${consent_to_share_data_with_your_gp_practice} = 1 ;;
+        sql: ${consent_to_share_data_with_your_gp_practice} = "1" ;;
         label: "Yes"
       }
       when: {
-        sql: ${consent_to_share_data_with_your_gp_practice} = 2 ;;
+        sql: ${consent_to_share_data_with_your_gp_practice} = "2" ;;
         label: "No"
       }
       else: "None"
@@ -53,11 +53,11 @@ GROUP BY 1
     label: "driver_english"
     case: {
       when: {
-        sql: ${driver} = 1 ;;
+        sql: ${driver} = "1" ;;
         label: "No"
       }
       when: {
-        sql: ${driver} = 2 ;;
+        sql: ${driver} = "2" ;;
         label: "Yes"
       }
       else: "None"
@@ -70,11 +70,11 @@ GROUP BY 1
     label: "employed_english"
     case: {
       when: {
-        sql: ${employed} = 1  ;;
+        sql: ${employed} = "1"  ;;
         label: "No"
       }
       when: {
-        sql: ${employed} = 2 ;;
+        sql: ${employed} = "2" ;;
         label: "Yes"
       }
       else: "None"
@@ -160,11 +160,11 @@ GROUP BY 1
     label: "gender_english"
     case: {
       when: {
-        sql: ${gender} = 1 ;;
+        sql: ${gender} = "1" ;;
         label: "Male"
       }
       when: {
-        sql: ${gender} = 2 ;;
+        sql: ${gender} = "2" ;;
         label: "Female"
       }
       else: "None"
@@ -177,15 +177,15 @@ GROUP BY 1
     label: "gender_mfp_english"
     case: {
       when: {
-        sql: ${gender_m_f_p} = 1 ;;
+        sql: ${gender_m_f_p} = "1" ;;
         label: "Male"
       }
       when: {
-        sql: ${gender_m_f_p} = 2 ;;
+        sql: ${gender_m_f_p} = "2" ;;
         label: "Female"
       }
       when: {
-        sql: ${gender_m_f_p} = 3 ;;
+        sql: ${gender_m_f_p} = "3" ;;
         label: "Prefer not to say"
       }
       else: "None"
@@ -202,11 +202,11 @@ GROUP BY 1
     label: "medication_english"
     case: {
       when: {
-        sql: ${medication} = 1 ;;
+        sql: ${medication} = "1" ;;
         label: "No"
       }
       when: {
-        sql: ${medication} = 2 ;;
+        sql: ${medication} = "2" ;;
         label: "Yes"
       }
       else: "None"
@@ -221,11 +221,11 @@ GROUP BY 1
     label: "smoker_english"
     case: {
       when: {
-        sql: ${smoker} = 1 ;;
+        sql: ${smoker} = "1" ;;
         label: "No"
       }
       when: {
-        sql: ${smoker} = 2 ;;
+        sql: ${smoker} = "2" ;;
         label: "Yes"
       }
       else: "None"
@@ -237,19 +237,19 @@ GROUP BY 1
     label: "diagnosis_time_english"
     case: {
       when: {
-        sql: ${time_since_diagnosis} = 1 ;;
+        sql: ${time_since_diagnosis} = "1" ;;
         label: "Less than 12 months"
       }
       when: {
-        sql: ${time_since_diagnosis} = 2 ;;
+        sql: ${time_since_diagnosis} = "2" ;;
         label: "1-5 years"
       }
       when: {
-        sql: ${time_since_diagnosis} = 3 ;;
+        sql: ${time_since_diagnosis} = "3" ;;
         label: "6-10 years"
       }
       when: {
-        sql: ${time_since_diagnosis} = 4 ;;
+        sql: ${time_since_diagnosis} = "4" ;;
         label: "10+ years"
       }
     }
