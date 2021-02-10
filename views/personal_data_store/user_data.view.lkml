@@ -25,6 +25,18 @@ view: user_data {
     sql: ${TABLE}.birthdate ;;
   }
 
+  dimension: age {
+    type: number
+    sql: DATEDIFF( year, ${birthdate_date}, now()) ;;
+  }
+
+  dimension: age_group {
+    type: tier
+    tiers: [0,18,25,30,35,40,45,50,55,60,65,70,75,80]
+    style: integer
+    sql: ${age} ;;
+  }
+
   dimension_group: created {
     hidden: yes
     type: time
