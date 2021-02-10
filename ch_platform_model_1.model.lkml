@@ -13,8 +13,8 @@ label: "CH Master Model"
 
 explore: users {
   persist_with: daily_refresh
-  group_label: "CH Platform Data Model"
-  label: "Changing Health"
+  group_label: "Changing Health"
+  label: "CH Platform Data Model"
 
   join: logins {
     view_label: "1. User Account"
