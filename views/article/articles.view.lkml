@@ -16,7 +16,9 @@ view: articles {
   }
 
   dimension_group: created {
+    group_label: "Article/Video Data"
     label: "Article Created"
+    description: "Date this article was created"
     type: time
     timeframes: [
       raw,
@@ -43,7 +45,9 @@ view: articles {
   }
 
   dimension_group: deleted {
+    group_label: "Article/Video Data"
     label: "Article Deleted"
+    description: "When was an article deleted from the platform"
     type: time
     timeframes: [
       raw,
@@ -64,8 +68,10 @@ view: articles {
   }
 
   dimension: name {
+    group_label: "Article/Video Data"
     view_label: "7. Activity Data"
-    label: "Article Name"
+    label: "Article/Video Name"
+    description: "What is the name of the article or video"
     type: string
     sql: ${TABLE}.name ;;
   }
@@ -84,9 +90,11 @@ view: articles {
 
   dimension: type {
     hidden: yes
-    #split into article and video.
+    group_label: "Article/Video Data"
+
     view_label: "7. Activity Data"
     label: "Article Type (article/video)"
+    description: "Is this an article or a video? Filter by this if you want to distinguish between articles and videos"
     type: string
     sql: ${TABLE}.type ;;
   }
@@ -119,6 +127,7 @@ view: articles {
 
   measure: count {
     hidden: yes
+    description: "Count of articles/video available in the platform by name"
     label: "Count - Article Names"
     type: count
     drill_fields: [id, name, articles_accessed.count]

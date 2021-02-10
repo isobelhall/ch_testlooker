@@ -17,8 +17,10 @@ view: articles_accessed {
   }
 
   dimension_group: created {
+    group_label: "Article/Video Data"
     view_label: "7. Activity Data"
-    label: "Article Accessed"
+    description: "When this article or video was accessed by a user"
+    label: "Article/Video Accessed"
     type: time
     timeframes: [
       raw,
@@ -39,6 +41,7 @@ view: articles_accessed {
   }
 
   dimension_group: updated {
+    group_label: "Article/Video Data"
     hidden:  yes
     type: time
     timeframes: [
@@ -61,18 +64,24 @@ view: articles_accessed {
   }
 
   measure: count {
+    group_label: "Article/Video Data"
+    hidden: yes
     label: "Count - Articles Accessed"
     type: count
     drill_fields: [id, users.id, articles.id, articles.name]
   }
 
   measure: average {
+    group_label: "Article/Video Data"
+    hidden: yes
     label: "Average - Articles Accessed"
     type: average
     drill_fields: [id, users.id, articles.id, articles.name]
   }
 
   measure: average_distinct {
+    group_label: "Article/Video Data"
+    hidden: yes
     label: "Average Distinct - Articles Accessed"
     type: average
     drill_fields: [id, users.id, articles.id, articles.name]
