@@ -27,7 +27,7 @@ view: user_data {
 
   dimension_group: age {
     view_label: "3. Identifiables"
-    label: "Birthdate"
+    label: "Age"
     type: time
     timeframes: [
       raw,
