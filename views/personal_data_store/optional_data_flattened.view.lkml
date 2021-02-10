@@ -47,7 +47,7 @@ view: optional_data_flattened {
       }
     }
   }
-  dimension: diabetes_status_healthy_living_update {sql:JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.diabetes_status_healthy_living_update"));;}
+  dimension: diabetes_status_healthy_living_update {sql:TRIM(BOTH '"' FROM JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.hl_properties, '$."diabetes-status-healthy-living-update"')));;}
   dimension: diabetes_status_healthy_living {
     type: string
     label: "diabetes_status_healthy_living_english"
@@ -78,7 +78,7 @@ view: optional_data_flattened {
       }
     }
   }
-  dimension: disability_status_healthy_living_update {sql: JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.disability_status_healthy_living_update"));;}
+  dimension: disability_status_healthy_living_update {sql:TRIM(BOTH '"' FROM JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.hl_properties, '$."disability-status-healthy-living-update"')));;}
   dimension: disability_status_healthy_living {
     type: string
     label: "disability_status_healthy_living_english"
@@ -97,7 +97,7 @@ view: optional_data_flattened {
       }
     }
   }
-  dimension: ethnicity_healthy_living {sql: JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.ethnicity_healthy_living"));;}
+  dimension: ethnicity_healthy_living {sql:TRIM(BOTH '"' FROM JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.hl_properties, '$."ethnicity-healthy-living"')));;}
   dimension: ethnic_background_healthy_living {
     type: string
     label: "ethnicity_healthy_living_english"
@@ -168,7 +168,7 @@ view: optional_data_flattened {
       }
     }
   }
-  dimension: gender_m_f_i_p {sql: JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.gender_m_f_i_p"));;}
+  dimension: gender_m_f_i_p {sql:TRIM(BOTH '"' FROM JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.hl_properties, '$."gender-m-f-i-p"')));;}
   dimension: gender_mfip_healthy_living {
     type: string
     label: "gender_healthy_living_english"
@@ -191,7 +191,7 @@ view: optional_data_flattened {
       }
     }
   }
-  dimension: language_healthy_living_updated {sql: JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.language_healthy_living_updated"));;}
+  dimension: language_healthy_living_updated {sql:TRIM(BOTH '"' FROM JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.hl_properties, '$."language-healthy-living-updated"')));;}
   dimension: language_healthy_living {
     type: string
     label: "language_healthy_living_english"
@@ -286,7 +286,7 @@ view: optional_data_flattened {
       }
     }
   }
-  dimension: serious_mental_illness_status {sql:JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.serious_mental_illness_status"));;}
+  dimension: serious_mental_illness_status {sql:TRIM(BOTH '"' FROM JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.hl_properties, '$."serious-mental-illness-status"')));;}
   dimension: serious_mental_illness_healthy_living {
     type: string
     label: "serious_mental_illness_healthy_living_english"
@@ -305,7 +305,7 @@ view: optional_data_flattened {
       }
     }
   }
-  dimension: smoking_status_healthy_living_updated {sql:JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.smoking_status_healthy_living_updated"));;}
+  dimension: smoking_status_healthy_living_updated {sql:TRIM(BOTH '"' FROM JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.hl_properties, '$."smoking-status-healthy-living-updated"')));;}
   dimension: smokingstatus_healthy_living {
     type: string
     label: "smokingstatus_healthy_living_english"
