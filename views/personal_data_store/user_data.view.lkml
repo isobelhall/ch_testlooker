@@ -25,27 +25,18 @@ view: user_data {
     sql: ${TABLE}.birthdate ;;
   }
 
-  dimension_group: age {
+  dimension: age {
     view_label: "3. Identifiables"
     label: "Age"
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    datatype: date
-    sql: DATEDIFF(now(), ${birthdate_date}) ;;
+    type: number
+    sql: DATEDIFF(now(), ${birthdate_date}) / 365 ;;
   }
 
   dimension: age_group {
     type: tier
     tiers: [0,18,25,30,35,40,45,50,55,60,65,70,75,80]
     style: integer
-    sql: ${age_year} ;;
+    sql: ${age} ;;
   }
 
   dimension_group: created {
