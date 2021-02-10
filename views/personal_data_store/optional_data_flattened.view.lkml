@@ -13,6 +13,7 @@ view: optional_data_flattened {
   }
 
   dimension: user_id {
+    primary_key: yes
     type: number
     sql: ${TABLE}.user_id ;;
   }
