@@ -29,7 +29,8 @@ view: user_data {
     view_label: "3. Identifiables"
     label: "Age"
     type: number
-    sql: DATEDIFF(now(), ${birthdate_date}) / 365 ;;
+    value_format: ""
+    sql: FLOOR(DATEDIFF(now(), ${birthdate_date}) / 365.25) ;;
   }
 
   dimension: age_group {
