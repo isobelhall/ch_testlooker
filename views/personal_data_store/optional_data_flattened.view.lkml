@@ -23,7 +23,7 @@ view: optional_data_flattened {
     sql: ${TABLE}.hl_properties ;;
   }
 
-  dimension: diabetes_diagnosis_updated {sql: JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, "$.diabetes_diagnosis_updated"));;}
+  dimension: diabetes_diagnosis_updated {sql: TRIM(BOTH '"' FROM JSON_UNQUOTE(JSON_EXTRACT(${hl_properties}, '$."diabetes_diagnosis_updated"'));;}
   dimension: diabetes_diagnosis_healthy_living {
     type: string
     label: "healthy_living_diagnosis_time_english"
@@ -319,6 +319,9 @@ view: optional_data_flattened {
       }
     }
   }
+
+
+
 
   set: detail {
     fields: [user_id, hl_properties]
