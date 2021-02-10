@@ -31,12 +31,14 @@ view: progress_statistics {
   }
 
   dimension: progress {
+    group_label: "Progress Statistics"
     label: "Progress Percent"
     type: number
     sql: ${TABLE}.progress ;;
   }
 
   dimension_group: updated {
+    group_label: "Progress Statistics"
     label: "Progress Updated"
     type: time
     timeframes: [
@@ -59,6 +61,8 @@ view: progress_statistics {
   }
 
   measure: count {
+    group_label: "Progress Statistics"
+    hidden: yes
     label: "Progress Count"
     type: count
     drill_fields: [id, users.id]

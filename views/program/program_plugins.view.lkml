@@ -10,6 +10,8 @@ view: program_plugins {
   }
 
   dimension_group: created {
+    group_label: "Plugin Data"
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -24,52 +26,69 @@ view: program_plugins {
   }
 
   dimension: description {
+    group_label: "Plugin Data"
+    hidden: yes
     type: string
     sql: ${TABLE}.description ;;
   }
 
   dimension: display_name {
+    group_label: "Plugin Data"
+    label: "Plugin Name"
     type: string
     sql: ${TABLE}.display_name ;;
   }
 
   dimension: icon_text {
+    group_label: "Plugin Data"
+    hidden: yes
     type: string
     sql: ${TABLE}.icon_text ;;
   }
 
   dimension: locked_message {
+    group_label: "Plugin Data"
+    hidden: yes
     type: string
     sql: ${TABLE}.locked_message ;;
   }
 
   dimension: message {
+    group_label: "Plugin Data"
+    hidden: yes
     type: string
     sql: ${TABLE}.message ;;
   }
 
   dimension: optional {
+    group_label: "Plugin Data"
+    hidden: yes
     type: string
     sql: ${TABLE}.optional ;;
   }
 
   dimension: system_name {
-    label: "Plugin Name"
+    label: "Plugin Name 2"
     type: string
     sql: ${TABLE}.system_name ;;
   }
 
   dimension: title {
+    group_label: "Plugin Data"
+    label: "Plugin Title"
     type: string
     sql: ${TABLE}.title ;;
   }
 
   dimension: translations {
+    group_label: "Plugin Data"
+    hidden: yes
     type: string
     sql: ${TABLE}.translations ;;
   }
 
   dimension_group: updated {
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -84,17 +103,20 @@ view: program_plugins {
   }
 
   dimension: user_id {
+    hidden: yes
     type: number
     # hidden: yes
     sql: ${TABLE}.user_id ;;
   }
 
   dimension: webmethod {
+    hidden: yes
     type: string
     sql: ${TABLE}.webmethod ;;
   }
 
   measure: count {
+    group_label: "Plugin Data"
     hidden: yes
     label: "Count - Plugins In Platform"
     type: count

@@ -10,6 +10,7 @@ view: plugins_accessed {
   }
 
   dimension_group: created {
+    group_label: "Plugin Data"
     view_label: "7. Activity Data"
     label: "Plugin Accessed Date"
     type: time
@@ -59,6 +60,7 @@ view: plugins_accessed {
   }
 
   measure: count {
+    group_label: "Plugin Data"
     label: "Count - Plugins Accessed"
     type: count
     drill_fields: [id, users.id, coaching_plugins.id]
