@@ -10,6 +10,7 @@ view: weight_tracks {
   }
 
   dimension_group: created {
+    group_label: "Weight Data"
     view_label: "7. Activity Data"
     label: "Weight Recorded"
     #hidden: yes
@@ -33,12 +34,14 @@ view: weight_tracks {
   }
 
   dimension: hit_target {
-    hidden: yes
+    group_label: "Weight Data"
     type: yesno
     sql: ${TABLE}.hit_target ;;
   }
 
   dimension_group: updated {
+    label: "Weight Recorded"
+    group_label: "Weight Data"
     type: time
     timeframes: [
       raw,
@@ -54,11 +57,12 @@ view: weight_tracks {
 
   dimension: user_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.user_id ;;
   }
 
   dimension: weight_goal {
+    group_label: "Weight Data"
     view_label: "7. Activity Data"
     label: "Weight Recorded Value"
     type: number
@@ -66,6 +70,7 @@ view: weight_tracks {
   }
 
   measure: average {
+    group_label: "Weight Data"
     label: "Average - Recorded Weight"
     type: average
     sql: ${TABLE}.weight_goal ;;
@@ -73,6 +78,7 @@ view: weight_tracks {
   }
 
   measure: count {
+    group_label: "Weight Data"
     label: "Count - Weights Tracked"
     type: count
     drill_fields: [id, users.id]
