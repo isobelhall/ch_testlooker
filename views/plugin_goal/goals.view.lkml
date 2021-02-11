@@ -10,6 +10,7 @@ view: goals {
   }
 
   dimension_group: completed {
+    group_label: "Goal Data"
     view_label: "7. Activity Data"
     label: "Goal Completion Date"
     type: time
@@ -26,6 +27,7 @@ view: goals {
   }
 
   dimension_group: created {
+    group_label: "Goal Data"
     view_label: "7. Activity Data"
     label: "Goal Creation Date"
     type: time
@@ -76,6 +78,7 @@ view: goals {
   }
 
   measure: count {
+    group_label: "Goal Data"
     label: "Count - Goals"
     type: count
     drill_fields: [id, profiles.id, profiles.name, users.id, answers.count]

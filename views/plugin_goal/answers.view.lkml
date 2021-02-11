@@ -10,12 +10,12 @@ view: answers {
   }
 
   dimension: content {
+    group_label: "Goal Data"
     type: string
     sql: ${TABLE}.content ;;
   }
 
-  dimension_group: created {
-    hidden: yes
+  dimension_group: goal_created {
     type: time
     timeframes: [
       raw,
@@ -64,6 +64,7 @@ view: answers {
   }
 
   measure: count {
+    group_label: "Goal Data"
     type: count
     drill_fields: [id, goals.id]
   }

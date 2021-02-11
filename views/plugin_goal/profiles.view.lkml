@@ -86,6 +86,7 @@ view: profiles {
   }
 
   dimension: name {
+    group_label: "Goal Data"
     view_label: "7. Activity Data"
     label: "Goal Name"
     type: string
@@ -105,14 +106,16 @@ view: profiles {
   }
 
   dimension: title {
+    group_label: "Goal Data"
+    label: "Profile Title"
     type: string
     hidden: yes
     sql: ${TABLE}.title ;;
   }
 
   dimension: type {
-    hidden: yes
-    label: "Goal Type"
+    group_label: "Goal Data"
+    label: "Profile Type"
     type: yesno
     sql: ${TABLE}.type ;;
   }

@@ -276,7 +276,6 @@ view: derived_activity_2 {
   measure: min_event {
     label: "First activity"
     #hidden: yes
-
     type: date
     sql: MIN(${event_raw}) ;;
   }
@@ -301,7 +300,7 @@ view: derived_activity_2 {
   }
 
   dimension_group: since_account_creation {
-    label: "Since Account Creation"
+    label: "between Account Creation and Activity"
     type: duration
     intervals: [day, week, month, hour,minute]
     sql_start: ${users.created_raw} ;;

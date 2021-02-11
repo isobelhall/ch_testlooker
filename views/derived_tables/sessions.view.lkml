@@ -6,11 +6,14 @@ view: sessions {
         session_id,
         MIN(event) as session_start,
         MAX(event) as session_end
-      FROM ${events.SQL_TABLE_NAME}
+      FROM ${derived_activity_2.SQL_TABLE_NAME}
       GROUP BY 1
     ;;
   }
-  dimension: session_id {primary_key:yes}
+  dimension: session_id {
+    primary_key:yes
+    }
+
   dimension_group: session_start {
     type: time
     timeframes: [raw, time, date, week, month]
