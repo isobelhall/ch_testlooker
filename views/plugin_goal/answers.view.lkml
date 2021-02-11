@@ -16,6 +16,7 @@ view: answers {
   }
 
   dimension_group: goal_created {
+    hidden: yes
     type: time
     timeframes: [
       raw,
