@@ -17,7 +17,7 @@ view: derived_activity_2 {
         TIMESTAMPDIFF(SECOND,lag(event) over (partition by user_id order by event), event) as `secs_since_last_event`
           FROM (
             SELECT
-                 user_event_logs.user_id "UID",
+                 user_event_logs.user_id,
                  user_event_logs.id "ObjectID",
                  user_event_logs.event_type "ObjectValue",
                  'status change' as "ObjectType",
