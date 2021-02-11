@@ -39,6 +39,13 @@ view: program_plugins {
     sql: ${TABLE}.display_name ;;
   }
 
+  dimension: system_name {
+    label: "Plugin Name"
+    description: "Name of plugin accessed"
+    type: string
+    sql: ${TABLE}.system_name ;;
+  }
+
   dimension: icon_text {
     group_label: "Plugin Data"
     hidden: yes
@@ -67,14 +74,12 @@ view: program_plugins {
     sql: ${TABLE}.optional ;;
   }
 
-  dimension: system_name {
-    label: "Plugin Name 2"
-    type: string
-    sql: ${TABLE}.system_name ;;
-  }
+
 
   dimension: title {
     group_label: "Plugin Data"
+    hidden: yes
+    description: "Plugin locked or not"
     label: "Plugin Title"
     type: string
     sql: ${TABLE}.title ;;

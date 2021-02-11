@@ -302,6 +302,7 @@ view: derived_activity_2 {
   }
 
   measure: days_since_max_event {
+    group_label: "Activity Time Measures"
     label: "Days since latest activity"
     type: number
     sql:DATEDIFF(now(), MAX(${event_raw})) ;;
@@ -317,6 +318,7 @@ view: derived_activity_2 {
 
 #added 12/01 SL
   dimension: mnth_since_last_event {
+    group_label: "Activity Time Measures"
     label: "Months Since Previous Event"
     #hidden: yes
     type: number
@@ -325,6 +327,7 @@ view: derived_activity_2 {
   }
 #added 12/01 SL
   dimension: week_since_last_event {
+    group_label: "Activity Time Measures"
     label: "Weeks Since Previous Event"
     #hidden: yes
     type: number
@@ -333,6 +336,7 @@ view: derived_activity_2 {
   }
 #added 12/01 SL
   dimension: days_since_last_event {
+    group_label: "Activity Time Measures"
     label: "Days Since Previous Event"
     #hidden: yes
     type: number
@@ -341,6 +345,7 @@ view: derived_activity_2 {
   }
 
   dimension: mins_since_last_event {
+    group_label: "Activity Time Measures"
     label: "Mins Since Previous Event"
     #hidden: yes
     type: number
@@ -349,6 +354,7 @@ view: derived_activity_2 {
   }
 
   dimension: secs_since_last_event {
+    group_label: "Activity Time Measures"
     label: "Seconds Since Previous Event"
     #hidden: yes
     type: number
@@ -357,6 +363,7 @@ view: derived_activity_2 {
   }
 
   measure: sum_secs_since_last_event {
+    group_label: "Activity Time Measures"
     label: "Count - Seconds Since Previous Event"
     #hidden: yes
     type: sum
@@ -365,6 +372,7 @@ view: derived_activity_2 {
   }
 
   measure: sum_derived_mins_since_last_event {
+    group_label: "Activity Time Measures"
     label: "Count - Minutes Since Previous Event"
     #hidden: yes
     type: sum
@@ -373,6 +381,7 @@ view: derived_activity_2 {
   }
 
   measure: sum_derived_mins_since_last_event_per_user{
+    group_label: "Activity Time Measures"
     label: "Average - Minutes Since Previous Event, Per User"
     #hidden: yes
     type: number
@@ -384,18 +393,20 @@ view: derived_activity_2 {
 
 #SESSION DIMENSIONS
   dimension: is_new_session {
+    group_label: "Sessions"
     hidden: yes
     type: number
     sql: ${TABLE}.is_new_session ;;
   }
 
   dimension: session_id {
-    #hidden: yes
+    hidden: yes
     type: number
     sql: ${TABLE}.session_id ;;
   }
 
   dimension: user_session_sequence {
+    group_label: "Sessions"
     label: "Session Number"
     description: "Is this the user's 1st session, or their 3rd, etc."
     type: number
@@ -403,6 +414,7 @@ view: derived_activity_2 {
   }
 
   measure: max_sessions {
+    group_label: "Sessions"
     label: "Maximum session count"
     type: max
     sql: ${TABLE}.user_session_sequence ;;

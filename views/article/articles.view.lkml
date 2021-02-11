@@ -99,7 +99,8 @@ view: articles {
     sql: ${TABLE}.type ;;
   }
 
-  dimension_group: updated {
+  dimension_group: article_updated {
+    group_label: "Article/Video Data"
     hidden: yes
     type: time
     timeframes: [
@@ -114,7 +115,9 @@ view: articles {
     sql: ${TABLE}.updated_at ;;
   }
 
-  dimension: updated_by {
+  dimension: article_updated_by {
+    group_label: "Article/Video Data"
+    description: "ID of user who updated the article or video"
     type: number
     sql: ${TABLE}.updated_by ;;
   }
