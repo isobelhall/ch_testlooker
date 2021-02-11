@@ -225,6 +225,7 @@ view: derived_activity_2 {
 
 #v2 - replaced with has done activity in derived_characteristics
   measure:  has_done_activity{
+    view_label: "1. User Account"
     label: "User Has Done Activity - Yes/No"
     type: yesno
     case: {
@@ -282,6 +283,7 @@ view: derived_activity_2 {
   #MIN and MAX measures must be type: date, then use SQL in order to calculate
   #EARLIEST ACTIVITY
   measure: min_event {
+    view_label: "1. User Account"
     label: "First activity"
     #hidden: yes
     type: date
@@ -289,6 +291,7 @@ view: derived_activity_2 {
   }
 
   measure: days_since_min_event {
+    view_label: "1. User Account"
     label: "Days since first activity"
     type: number
     sql:DATEDIFF(now(), MIN(${event_raw})) ;;
@@ -296,6 +299,7 @@ view: derived_activity_2 {
 
 #LATEST ACTIVITY
   measure: max_event {
+    view_label: "1. User Account"
     label: "Latest activity"
     type: date
     sql: MAX(${event_raw}) ;;
@@ -309,7 +313,9 @@ view: derived_activity_2 {
   }
 
   dimension_group: since_account_creation {
+    group_label: "Activity Time Measures"
     label: "between Account Creation and Activity"
+    description: "When used with CHUID, shows amount of time between this activity and the users account creation"
     type: duration
     intervals: [day, week, month, hour,minute]
     sql_start: ${users.created_raw} ;;

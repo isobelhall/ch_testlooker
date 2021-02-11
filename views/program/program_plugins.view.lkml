@@ -40,6 +40,7 @@ view: program_plugins {
   }
 
   dimension: system_name {
+    group_label: "Plugin Data"
     label: "Plugin Name"
     description: "Name of plugin accessed"
     type: string
