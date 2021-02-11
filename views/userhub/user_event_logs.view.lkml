@@ -25,6 +25,14 @@ view: user_event_logs {
     sql: ${TABLE}.created_at ;;
   }
 
+  #user_id = user_event_logs.user_id
+  #objectid = user_event_logs.
+  #objectvalue =  user_event_logs.
+  #objectname = user_event_logs.
+  #objecttype = user_event_logs.event_type
+  #objectdate = user_event_logs.created
+
+
   dimension: event_type {
     view_label: "1. User Account"
     label: "System Status"
@@ -69,6 +77,7 @@ view: user_event_logs {
   }
 
   measure: count {
+    hidden: yes
     label: "Count - User Events"
     type: count
     drill_fields: [id, users.id]

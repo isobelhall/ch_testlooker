@@ -11,6 +11,7 @@ view: sessions {
     ;;
   }
   dimension: session_id {
+    hidden: yes
     primary_key:yes
     }
 

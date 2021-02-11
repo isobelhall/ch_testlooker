@@ -2,7 +2,8 @@ view: derived_activity_tables {
 
   derived_table: {
   #ISOBEL: ADD IN ALL PLATFORM USAGE (EG, PLUGINS, GOALS)
-    sql: SELECT
+    sql:
+      SELECT
            article.articles_accessed.user_id "UID",
            article.articles.id "ObjectID",
            articles.name "ObjectValue",

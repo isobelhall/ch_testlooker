@@ -17,6 +17,13 @@ view: derived_activity_2 {
         TIMESTAMPDIFF(SECOND,lag(event) over (partition by user_id order by event), event) as `secs_since_last_event`
           FROM (
             SELECT
+                 user_event_logs.user_id "UID",
+                 user_event_logs.id "ObjectID",
+                 user_event_logs.event_type "ObjectValue",
+                 'status change' as "ObjectType",
+                 user_event_logs.created "ObjectAccessedDate"
+            FROM  user_event_logs.articles_accessed
+            SELECT
                  article.articles_accessed.user_id,
                  article.articles.id "ObjectID",
                  articles.name "ObjectValue",
@@ -388,7 +395,7 @@ view: derived_activity_2 {
   }
 
   dimension: user_session_sequence {
-    label: "Sessions"
+    label: "Session Number"
     description: "Is this the user's 1st session, or their 3rd, etc."
     type: number
     sql: ${TABLE}.user_session_sequence ;;
