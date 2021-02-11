@@ -1,4 +1,5 @@
-view: derived_activity_2 {
+view: derived_all_user_activity_table {
+
 
   derived_table: {
     sql: SELECT
@@ -16,6 +17,14 @@ view: derived_activity_2 {
         TIMESTAMPDIFF(MINUTE,lag(event) over (partition by user_id order by event), event) as `mins_since_last_event`,
         TIMESTAMPDIFF(SECOND,lag(event) over (partition by user_id order by event), event) as `secs_since_last_event`
           FROM (
+            SELECT
+                 user_event_logs.user_id,
+                 user_event_logs.id "ObjectID",
+                 user_event_logs.event_type "ObjectValue",
+                 'status change' as "ObjectType",
+                 user_event_logs.created_at "event"
+            FROM  userhub.user_event_logs
+            UNION
             SELECT
                  article.articles_accessed.user_id,
                  article.articles.id "ObjectID",
@@ -65,6 +74,22 @@ view: derived_activity_2 {
                  'appointment' as "ObjectType",
                  coaching.appointments.since "event"
             FROM  coaching.appointments
+            UNION
+            SELECT
+                 personal_data_store.optional_data.user_id,
+                 personal_data_store.optional_data.id "ObjectID",
+                 personal_data_store.optional_data.value "ObjectValue",
+                 CONCAT("pops-", personal_data_store.optional_data.scope) as "ObjectType",
+                 personal_data_store.optional_data.created_at "event"
+            FROM  personal_data_store.optional_data
+            UNION
+            SELECT
+                 opd.pops_data_replica.user_id,
+                 opd.pops_data_replica.id "ObjectID",
+                 opd.pops_data_replica.value "ObjectValue",
+                 CONCAT("pops-", opd.pops_data_replica.scope) as "ObjectType",
+                 opd.pops_data_replica.created_at "event"
+            FROM  opd.pops_data_replica
             UNION
             SELECT
                  plugin_goal.goals.user_id,
@@ -333,15 +358,15 @@ view: derived_activity_2 {
     type: number
     drill_fields: [detail*]
     sql: ${TABLE}.mins_since_last_event;
-  }
+        }
 
-  dimension: secs_since_last_event {
-    group_label: "Activity Time Measures"
-    label: "Seconds Since Previous Event"
-    #hidden: yes
-    type: number
-    drill_fields: [detail*]
-    sql: ${TABLE}.secs_since_last_event;;
+        dimension: secs_since_last_event {
+          group_label: "Activity Time Measures"
+          label: "Seconds Since Previous Event"
+          #hidden: yes
+          type: number
+          drill_fields: [detail*]
+          sql: ${TABLE}.secs_since_last_event;;
   }
 
   measure: sum_secs_since_last_event {

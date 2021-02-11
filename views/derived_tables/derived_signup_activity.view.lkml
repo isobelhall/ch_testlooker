@@ -1,82 +1,31 @@
-view: derived_activity_2 {
+view: derived_signup_activity {
 
   derived_table: {
-    sql: SELECT
-      *,
-      SUM(is_new_session) over (order by user_id,event) as `session_id`,
-      SUM(is_new_session) over (partition by user_id order by event) as `user_session_sequence`
-      FROM
-      ( SELECT *,
-        mins_since_last_event > 10 or mins_since_last_event is null as `is_new_session`
-        FROM (SELECT
-        *,
-        TIMESTAMPDIFF(MONTH,lag(event) over (partition by user_id order by event), event) as `mnth_since_last_event`,
-        TIMESTAMPDIFF(WEEK,lag(event) over (partition by user_id order by event), event) as `week_since_last_event`,
-        TIMESTAMPDIFF(DAY,lag(event) over (partition by user_id order by event), event) as `days_since_last_event`,
-        TIMESTAMPDIFF(MINUTE,lag(event) over (partition by user_id order by event), event) as `mins_since_last_event`,
-        TIMESTAMPDIFF(SECOND,lag(event) over (partition by user_id order by event), event) as `secs_since_last_event`
-          FROM (
+    sql:
             SELECT
-                 article.articles_accessed.user_id,
-                 article.articles.id "ObjectID",
-                 articles.name "ObjectValue",
-                 articles.type as "ObjectType",
-                 article.articles_accessed.created_at "event"
-            FROM  article.articles_accessed
-            JOIN article.articles ON article.articles_accessed.article_id  = article.articles.id
+              user_event_logs.user_id,
+              user_event_logs.id "ObjectID",
+              user_event_logs.event_type "ObjectValue",
+              'status change' as "ObjectType",
+              user_event_logs.created_at "event"
+            FROM  userhub.user_event_logs
             UNION
             SELECT
-                 program.plugins_accessed.user_id,
-                 program.plugins.id "ObjectID",
-                 program.plugins.system_name "ObjectValue",
-                 'plugins' as "ObjectType",
-                 program.plugins_accessed.created_at "event"
-            FROM program.plugins_accessed
-            JOIN program.plugins ON program.plugins_accessed.plugin_id = program.plugins.id
+                 personal_data_store.optional_data.user_id,
+                 personal_data_store.optional_data.id "ObjectID",
+                 personal_data_store.optional_data.value "ObjectValue",
+                 CONCAT("pops-", personal_data_store.optional_data.scope) as "ObjectType",
+                 personal_data_store.optional_data.created_at "event"
+            FROM  personal_data_store.optional_data
             UNION
             SELECT
-                 plugin_weight.weight_tracks.user_id,
-                 plugin_weight.weight_tracks.id "ObjectID",
-                 plugin_weight.weight_tracks.weight_goal "ObjectValue",
-                 'weight tracker' as "ObjectType",
-                 plugin_weight.weight_tracks.created_at "event"
-            FROM  plugin_weight.weight_tracks
-            UNION
-            SELECT
-                 step.fit_tracks.user_id,
-                 step.fit_tracks.id "ObjectID",
-                 step.fit_tracks.logging_steps "ObjectValue",
-                 'step tracker' as "ObjectType",
-                 step.fit_tracks.created_at "event"
-            FROM  step.fit_tracks
-            UNION
-            SELECT
-                 plugin_food.food_tracks.user_id,
-                 plugin_food.food_tracks.id "ObjectID",
-                 plugin_food.food_tracks.label_foods "ObjectValue",
-                 'food tracker' as "ObjectType",
-                 plugin_food.food_tracks.created_at "event"
-            FROM  plugin_food.food_tracks
-            UNION
-            SELECT
-                 coaching.appointments.user_id,
-                 coaching.appointments.id "ObjectID",
-                 coaching.appointments.result "ObjectValue",
-                 'appointment' as "ObjectType",
-                 coaching.appointments.since "event"
-            FROM  coaching.appointments
-            UNION
-            SELECT
-                 plugin_goal.goals.user_id,
-                 plugin_goal.goals.id "ObjectID",
-                 plugin_goal.profiles.name "ObjectValue",
-                 'goals' as "ObjectType",
-                 plugin_goal.goals.created_at "event"
-            FROM plugin_goal.goals
-            JOIN plugin_goal.profiles ON plugin_goal.goals.profile_id = plugin_goal.profiles.id
+                 opd.pops_data_replica.user_id,
+                 opd.pops_data_replica.id "ObjectID",
+                 opd.pops_data_replica.value "ObjectValue",
+                 CONCAT("pops-", opd.pops_data_replica.scope) as "ObjectType",
+                 opd.pops_data_replica.created_at "event"
+            FROM  opd.pops_data_replica
             ORDER BY user_id, event
-            ) as events ) as events_lag
-          ) events_session_flag
        ;;
   }
 
@@ -333,15 +282,15 @@ view: derived_activity_2 {
     type: number
     drill_fields: [detail*]
     sql: ${TABLE}.mins_since_last_event;
-  }
+        }
 
-  dimension: secs_since_last_event {
-    group_label: "Activity Time Measures"
-    label: "Seconds Since Previous Event"
-    #hidden: yes
-    type: number
-    drill_fields: [detail*]
-    sql: ${TABLE}.secs_since_last_event;;
+        dimension: secs_since_last_event {
+          group_label: "Activity Time Measures"
+          label: "Seconds Since Previous Event"
+          #hidden: yes
+          type: number
+          drill_fields: [detail*]
+          sql: ${TABLE}.secs_since_last_event;;
   }
 
   measure: sum_secs_since_last_event {
@@ -372,7 +321,6 @@ view: derived_activity_2 {
     sql: ${sum_derived_mins_since_last_event} / ${count_users} ;;
   }
 
-
 #SESSION DIMENSIONS
   dimension: is_new_session {
     group_label: "Sessions"
@@ -402,7 +350,6 @@ view: derived_activity_2 {
     sql: ${TABLE}.user_session_sequence ;;
     description: "Highest session count by this participant"
   }
-
 
   set: detail {
     fields: [
