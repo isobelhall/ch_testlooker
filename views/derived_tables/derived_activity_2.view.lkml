@@ -21,7 +21,7 @@ view: derived_activity_2 {
                  user_event_logs.id "ObjectID",
                  user_event_logs.event_type "ObjectValue",
                  'status change' as "ObjectType",
-                 user_event_logs.created "ObjectAccessedDate"
+                 user_event_logs.created_at "ObjectAccessedDate"
             FROM  userhub.user_event_logs
             UNION
             SELECT
