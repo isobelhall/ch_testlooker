@@ -18,18 +18,12 @@ view: derived_engagement_12m {
 
   dimension: engaged_12m {
     type: yesno
-    label: "Users Active at 12 Months"
-    case: {
-      when: {
-        sql: ${TABLE}.ppuid is null ;;
-        label: "No"
-      }
-      when: {
-        sql: ${TABLE}.ppuid is not null ;;
-        label: "Yes"
-      }
+    sql:
+    CASE
+    WHEN ${ppuid} IS NULL THEN 'No'
+    ELSE 'Yes'
+    END ;;
     }
-  }
 
 
   measure: count {
