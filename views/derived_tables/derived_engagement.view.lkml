@@ -42,7 +42,7 @@ view: derived_engagement_6m {
     description: "User was active at 6 month mark"
   }
 
-  dimension: engaged_12m {
+  dimension: engaged_6m {
     type: yesno
     label: "Users Active at 6 Months"
     description: "Was user active at 6 month mark?"
