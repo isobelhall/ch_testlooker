@@ -3,7 +3,7 @@ view: derived_characteristics {
 
   view_label: "8. Temporary Derived Characteristics"
 
-
+  #@ISOBEL
   #ACTIVITIES DONE
   derived_table: {
     explore_source: users {

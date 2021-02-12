@@ -200,6 +200,7 @@ view: derived_activity_2 {
 
 
 #v2 - replaced with has done activity in derived_characteristics
+  #@ISOBEL example of converting count into yesno
   measure:  has_done_activity{
     view_label: "1. User Account"
     label: "User Has Done Activity - Yes/No"

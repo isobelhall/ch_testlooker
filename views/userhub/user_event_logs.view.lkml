@@ -25,12 +25,9 @@ view: user_event_logs {
     sql: ${TABLE}.created_at ;;
   }
 
-  #user_id = user_event_logs.user_id
-  #objectid = user_event_logs.
-  #objectvalue =  user_event_logs.
-  #objectname = user_event_logs.
-  #objecttype = user_event_logs.event_type
-  #objectdate = user_event_logs.created
+  #@ISOBEL 6 measures required, 3 date, 3 yesno
+ #measure for SQL: max event date where type = invitation, activation, deletion
+ #measure for SQL: yesno where count of invitation, activation, deletion > 0
 
 
   dimension: event_type {
