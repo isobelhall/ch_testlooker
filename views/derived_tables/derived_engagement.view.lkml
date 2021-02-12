@@ -18,13 +18,10 @@ view: derived_engagement_12m {
 
   dimension: engaged_12m {
     type: yesno
-    sql:
-    CASE
-    WHEN LENGTH(${ppuid}) > 0 THEN 'Yes'
-    ELSE 'No'
-    END ;;
+    sql: CONCAT("Yes") ;;
     }
 
+    #WHEN LENGTH(${ppuid}) > 0 THEN 'Yes'
 
   measure: count {
     type: count
