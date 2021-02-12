@@ -21,10 +21,16 @@ view: derived_engagement_12m {
     label: "Users Active at 12 Months"
     case: {
       when: {
-        sql: ${TABLE}.ppuid IS NOT NULL ;;
+        sql: TRUE ;;
         label: "Yes"
       }
     }
+    description: "Was user active at 12 month mark?"
+  }
+
+  measure: count {
+    type: count
+    label: "Count - Users Active at 12 Months"
     description: "Was user active at 12 month mark?"
   }
 
