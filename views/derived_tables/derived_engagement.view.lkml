@@ -18,14 +18,10 @@ view: derived_engagement_12m {
   dimension: engaged_12m {
     type: yesno
     label: "Users Active at 12 Months"
-    case: {
-      when: {
-        sql: TRUE ;;
-        label: "Yes"
-      }
-    }
+        sql: "Yes" ;;
     description: "Was user active at 12 month mark?"
-  }
+    }
+
 
   measure: count {
     type: count
