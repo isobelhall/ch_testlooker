@@ -18,7 +18,7 @@ view: derived_engagement_12m {
 
   dimension: engaged_12m {
     type: yesno
-    sql: CONCAT("Yes") ;;
+    sql: "Yes" ;;
     }
 
     #WHEN LENGTH(${ppuid}) > 0 THEN 'Yes'
