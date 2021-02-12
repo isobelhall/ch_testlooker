@@ -20,8 +20,8 @@ view: derived_engagement_12m {
     type: yesno
     sql:
     CASE
-    WHEN ${ppuid} IS NULL THEN 'No'
-    ELSE 'Yes'
+    WHEN LEN(${ppuid}) > 0 THEN 'Yes'
+    ELSE 'No'
     END ;;
     }
 
