@@ -165,7 +165,7 @@ explore: users {
 
   join: derived_engagement_6m {
     view_label: "1. User Account"
-    sql_on: ${derived_engagement_6m.ppuid}m.ppuid} = ${users.ppuid} ;;
+    sql_on: ${derived_engagement_6m.ppuid} = ${users.ppuid} ;;
     relationship: one_to_one
     }
 
