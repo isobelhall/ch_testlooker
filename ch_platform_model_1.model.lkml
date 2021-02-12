@@ -163,8 +163,9 @@ explore: users {
     view_label: "2. HL Demographics / User Attributes"
   }
 
+
   join: derived_engagement_12m {
-    view_label: "1. User Account"
+    view_label: "1a. Engagement at 12m"
     sql_on: ${derived_engagement_12m.ppuid} = ${users.ppuid} ;;
     relationship: one_to_one
   }
