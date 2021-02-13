@@ -18,11 +18,12 @@ view: derived_engagement_12m {
 
   dimension: engaged_6m {
     type: yesno
-    sql: TRUE ;;
+    sql: CASE  WHEN LENGTH(${ppuid}) > 0 THEN TRUE ;;
     }
 
-    #WHEN LENGTH(${ppuid}) > 0 THEN 'Yes'
+    #WHEN LENGTH(${ppuid}) > 0 THEN 'Yes' <- all output is 'No'
 
+#    sql: TRUE ;; <-all output is 'Yes', even null ones
   measure: count {
     type: count
     label: "Count - Users Active at 6 Months"
