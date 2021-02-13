@@ -17,7 +17,10 @@ view: derived_engagement_12m {
 
   dimension: engaged_6m {
     type: yesno
-    sql: CASE WHEN LENGTH(${ppuid}) > 0 THEN TRUE ;;
+    sql: CASE
+    WHEN LENGTH(${ppuid}) > 0 THEN TRUE
+    ELSE FALSE
+    END;;
     }
 
 
