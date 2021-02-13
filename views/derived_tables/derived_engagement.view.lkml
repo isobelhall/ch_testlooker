@@ -16,9 +16,9 @@ view: derived_engagement_12m {
     }
 
 
-  dimension: engaged_12m {
+  dimension: engaged_6m {
     type: yesno
-    sql: "Yes" ;;
+    sql: TRUE ;;
     }
 
     #WHEN LENGTH(${ppuid}) > 0 THEN 'Yes'
@@ -26,6 +26,13 @@ view: derived_engagement_12m {
   measure: count {
     type: count
     label: "Count - Users Active at 6 Months"
+    description: "Was user active at 6 month mark?"
+  }
+
+  measure: percent {
+    type: percent_of_total
+    label: "Percent - Users Active at 6 Months"
+    sql: ${count} ;;
     description: "Was user active at 6 month mark?"
   }
 
