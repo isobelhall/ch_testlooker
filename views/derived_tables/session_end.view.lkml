@@ -8,26 +8,29 @@ view: session_end {
         column: object_id { field: derived_activity_2.ObjectID }
         column: object_accessed_date_date { field: derived_activity_2.object_accessed_date_date }
         column: sum_secs_since_last_event { field: derived_activity_2.sum_secs_since_last_event }
+        column: max_event { field: derived_activity_2.max_event }
         column: user_disengaged { field: derived_characteristics.is_disengaged }
       }
     }
 
-    dimension: object_id {
-      hidden: yes
-      primary_key: yes
-      label: "7. Activity Data All Activities - Type"
-    }
+  dimension: object_id {
+    hidden: yes
+    primary_key: yes
+  }
 
   dimension: object_accessed_date_date {
-    label: "7. Activity Data All Activities - Activity Completed Date"
     type: date
   }
 
-    dimension: sum_secs_since_last_event {
-      hidden: yes
-      label: "7. Activity Data Count - Seconds Since Previous Event"
-      type: number
-    }
+  dimension: sum_secs_since_last_event {
+    hidden: yes
+    type: number
+  }
+
+  dimension: max_event {
+    hidden: yes
+    type: number
+  }
 
   dimension: user_disengaged {
     hidden: yes
@@ -45,10 +48,10 @@ view: session_end {
   }
 
   dimension: session_end_point_user_disengaged {
-    label: ""
+    label: "Is last event for user"
     sql:
     CASE
-    WHEN ${sum_secs_since_last_event} > 600 and ${user_disengaged} THEN TRUE
+    WHEN ${sum_secs_since_last_event} > 600 AND ${object_accessed_date_date} = ${max_event} THEN TRUE
     ELSE FALSE
     END;;
   }
