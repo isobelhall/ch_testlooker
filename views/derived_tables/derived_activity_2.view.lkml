@@ -259,7 +259,7 @@ view: derived_activity_2 {
 #TIME DIFFERENCE MEASURES/DIMENSIONS
   #MIN and MAX measures must be type: date, then use SQL in order to calculate
   #EARLIEST ACTIVITY
-  measure: min_event {
+  dimension: min_event {
     view_label: "1. User Account"
     label: "First activity"
     #hidden: yes
@@ -275,7 +275,7 @@ view: derived_activity_2 {
   }
 
 #LATEST ACTIVITY
-  measure: max_event {
+  dimension: max_event {
     view_label: "1. User Account"
     label: "Latest activity"
     type: date
