@@ -40,6 +40,7 @@ view: session_end {
   }
 
   dimension: session_end_point {
+    type: yesno
     sql:
     CASE
     WHEN ${sum_secs_since_last_event} > 600 THEN TRUE
