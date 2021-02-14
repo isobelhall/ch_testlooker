@@ -125,11 +125,22 @@ explore: users {
     relationship: one_to_many
   }
 
+  join: derived_signup_activity {
+    view_label: "7a. Sign Up Activity Data"
+    sql_on: ${users.id} = ${derived_signup_activity.uid} ;;
+    relationship: one_to_many
+  }
 
   join: sessions {
     view_label: "7. Activity Data"
     sql_on: ${derived_activity_2.uid} = ${sessions.session_id} ;;
     relationship: many_to_one
+  }
+
+  join: session_end {
+    view_label: "7. Activity Data"
+    sql_on: ${session_end.object_id} = ${derived_activity_2.object_id} ;;
+    relationship: one_to_one
   }
 
   join: plugins_accessed {

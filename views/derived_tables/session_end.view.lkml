@@ -4,8 +4,8 @@ view: session_end {
 # include: "ch_platform_model_1.model.lkml"
 
     derived_table: {
-      explore_source: derived_activity_2 {
-        column: object_id { field: derived_activity_2.ObjectID }
+      explore_source: users {
+        column: object_id { field: derived_activity_2.object_id }
         column: object_accessed_date_date { field: derived_activity_2.object_accessed_date_date }
         column: sum_secs_since_last_event { field: derived_activity_2.sum_secs_since_last_event }
         column: max_event { field: derived_activity_2.max_event }
