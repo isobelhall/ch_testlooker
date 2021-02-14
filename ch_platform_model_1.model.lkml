@@ -164,9 +164,15 @@ explore: users {
   }
 
 
-  join: derived_engagement_12m {
-    view_label: "1a. Engagement at 12m"
-    sql_on: ${derived_engagement_12m.ppuid} = ${users.ppuid} ;;
+  join: derived_engagement_3m {
+    view_label: "1a. Engagement at 3m"
+    sql_on: ${derived_engagement_3m.ppuid} = ${users.ppuid} ;;
+    relationship: one_to_one
+  }
+
+  join: derived_engagement_6m {
+    view_label: "1a. Engagement at 6m"
+    sql_on: ${derived_engagement_6m.ppuid} = ${users.ppuid} ;;
     relationship: one_to_one
   }
 
