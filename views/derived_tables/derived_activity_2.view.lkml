@@ -359,7 +359,7 @@ view: derived_activity_2 {
     type: number
     drill_fields: [detail*]
     sql:
-    CASE WHEN ${TABLE}.secs_since_last_event > 60 THEN ${TABLE}.secs_since_last_event
+    CASE WHEN ${TABLE}.secs_since_last_event < 60 THEN ${TABLE}.secs_since_last_event
     ELSE NULL
     END;;
   }
