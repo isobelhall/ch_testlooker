@@ -9,6 +9,8 @@ view: derived_characteristics {
     explore_source: users {
       column: ppuid {}
       column: is_referred {}
+      column: first_login {field: logins.first_login}
+      column: count_logins {field: logins.count}
       column: is_activated {}
       column: is_deleted {}
       column: days_since_account_created {}
@@ -42,7 +44,6 @@ view: derived_characteristics {
     }
 
   dimension: days_since_max_event {
-
     label: "Days since latest Activity"
     description: "Number of days since participant last did something in activity table"
   }
@@ -53,6 +54,19 @@ view: derived_characteristics {
     }
 
 #ACTIVITY COUNTS, HAVE THEY DONE ACTIVITY? HOW MUCH?
+  dimension_group: first_login {
+    timeframes: [raw, time, hour_of_day, day_of_week, date, week, month, quarter, year]
+    type: time
+    drill_fields: [detail*]
+  }
+
+  dimension: has_logged_in {
+      type: number
+      drill_fields: [detail*]
+      sql: CASE WHEN (${TABLE}.count_logins > 0) THEN 1 ELSE 0 END ;;
+    }
+
+
     dimension: has_done_activity {
       type: number
       drill_fields: [detail*]
@@ -65,69 +79,70 @@ view: derived_characteristics {
       sql: CASE WHEN (${TABLE}.count > 0) THEN TRUE ELSE FALSE END ;;
     }
 
+##15/02/21 - CHANGED FROM Yesno to Number (1 = true, 0 = false) Test and revert if fails
   #activity types
   dimension: has_done_articles {
     group_label: "Activity Breakdown"
-    type: yesno
-    sql: CASE WHEN (${TABLE}.count_articles > 0) THEN TRUE ELSE FALSE END ;;
+    type: number
+    sql: CASE WHEN (${TABLE}.count_articles > 0) THEN 1 ELSE 0 END ;;
     drill_fields: [detail*]
   }
   dimension: has_done_video {
     group_label: "Activity Breakdown"
-    type: yesno
-    sql: CASE WHEN (${TABLE}.count_video > 0) THEN TRUE ELSE FALSE END ;;
+    type: number
+    sql: CASE WHEN (${TABLE}.count_video > 0) THEN 1 ELSE 0 END ;;
     drill_fields: [detail*]
   }
   dimension: has_done_steps {
     group_label: "Activity Breakdown"
-    type: yesno
-    sql: CASE WHEN (${TABLE}.count_steps > 0) THEN TRUE ELSE FALSE END ;;
+    type: number
+    sql: CASE WHEN (${TABLE}.count_steps > 0) THEN 1 ELSE 0 END ;;
     drill_fields: [detail*]
   }
   dimension: has_done_weight {
     group_label: "Activity Breakdown"
-    type: yesno
-    sql: CASE WHEN (${TABLE}.count_weight > 0) THEN TRUE ELSE FALSE END ;;
+    type: number
+    sql: CASE WHEN (${TABLE}.count_weight > 0) THEN 1 ELSE 0 END ;;
     drill_fields: [detail*]
   }
   dimension: has_done_goal {
     group_label: "Activity Breakdown"
-    type: yesno
-    sql: CASE WHEN (${TABLE}.count_goal > 0) THEN TRUE ELSE FALSE END ;;
+    type: number
+    sql: CASE WHEN (${TABLE}.count_goal > 0) THEN 1 ELSE 0 END ;;
     drill_fields: [detail*]
   }
   dimension: has_done_food {
     group_label: "Activity Breakdown"
-    type: yesno
-    sql: CASE WHEN (${TABLE}.count_food > 0) THEN TRUE ELSE FALSE END ;;
+    type: number
+    sql: CASE WHEN (${TABLE}.count_food > 0) THEN 1 ELSE 0 END ;;
     drill_fields: [detail*]
   }
   dimension: has_done_appt {
     group_label: "Activity Breakdown"
-    type: yesno
-    sql: CASE WHEN (${TABLE}.count_appt > 0) THEN TRUE ELSE FALSE END ;;
+    type: number
+    sql: CASE WHEN (${TABLE}.count_appt > 0) THEN 1 ELSE 0 END ;;
     drill_fields: [detail*]
   }
 
   dimension: has_done_blood_glucose {
     group_label: "Activity Breakdown"
-    type: yesno
-    sql: CASE WHEN (${TABLE}.count_blood_glucose > 0) THEN TRUE ELSE FALSE END ;;
+    type: number
+    sql: CASE WHEN (${TABLE}.count_blood_glucose > 0) THEN 1 ELSE 0 END ;;
     drill_fields: [detail*]
   }
 
   dimension: has_done_reading_room {
     group_label: "Activity Breakdown"
-    type: yesno
-    sql: CASE WHEN (${TABLE}.count_reading_room > 0) THEN TRUE ELSE FALSE END ;;
+    type: number
+    sql: CASE WHEN (${TABLE}.count_reading_room > 0) THEN 1 ELSE 0 END ;;
     drill_fields: [detail*]
   }
 
 
   #HAS OPENED ACCOUNT/BEEN REFERRED
-  dimension: is_referred{
+  dimension: is_referred {
     group_label: "Programme Progress"
-    label: "1. Is Referred"
+    label: "1. Accounts Created"
     type: number
     drill_fields: [detail*]
   }
@@ -143,7 +158,7 @@ view: derived_characteristics {
   #HAS ACTIVATED
   dimension: is_activated{
     group_label: "Programme Progress"
-    label: "2. Has Activated"
+    label: "2. Is Enabled"
     type: number
     drill_fields: [detail*]
   }

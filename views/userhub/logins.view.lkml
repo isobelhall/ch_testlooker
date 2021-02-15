@@ -48,6 +48,18 @@ view: logins {
     sql: ${TABLE}.user_id ;;
   }
 
+  measure: first_login {
+    label: "First Login for This User"
+    type: date
+    sql: MIN(${created_date} ;;
+  }
+
+  measure: max_login {
+    label: "First Login for This User"
+    type: date
+    sql: Max(${created_date} ;;
+  }
+
   measure: count {
     label: "Count - Logins"
     type: count
