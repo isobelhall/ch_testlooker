@@ -182,6 +182,7 @@ view: derived_characteristics {
     label: "Percent - Has Activated"
     description: "Percent of accounts that have been activated, out of all referrals"
     type: number
+    value_format: "0.0%"
     drill_fields: [detail*]
     sql: ${count_activated} / ${count_referred} * 100 ;;
   }

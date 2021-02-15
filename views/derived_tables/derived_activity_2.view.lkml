@@ -309,7 +309,7 @@ view: derived_activity_2 {
 #added 12/01 SL
   dimension: mnth_since_last_event {
     group_label: "Activity Time Measures"
-    label: "Months Since Previous Event"
+    label: "5. Months Since Previous Event"
     #hidden: yes
     type: number
     drill_fields: [detail*]
@@ -318,7 +318,7 @@ view: derived_activity_2 {
 #added 12/01 SL
   dimension: week_since_last_event {
     group_label: "Activity Time Measures"
-    label: "Weeks Since Previous Event"
+    label: "4. Weeks Since Previous Event"
     #hidden: yes
     type: number
     drill_fields: [detail*]
@@ -327,7 +327,7 @@ view: derived_activity_2 {
 #added 12/01 SL
   dimension: days_since_last_event {
     group_label: "Activity Time Measures"
-    label: "Days Since Previous Event"
+    label: "3. Days Since Previous Event"
     #hidden: yes
     type: number
     drill_fields: [detail*]
@@ -336,20 +336,32 @@ view: derived_activity_2 {
 
   dimension: mins_since_last_event {
     group_label: "Activity Time Measures"
-    label: "Mins Since Previous Event"
+    label: "2. Mins Since Previous Event"
     #hidden: yes
     type: number
     drill_fields: [detail*]
-    sql: ${TABLE}.mins_since_last_event;
+    sql: ${TABLE}.mins_since_last_event;;
   }
+
+#  dimension: secs_since_last_event {
+#    group_label: "Activity Time Measures"
+#    label: "1. Seconds Since Previous Event"
+#    hidden: yes
+#    type: number
+#    drill_fields: [detail*]
+#    sql: ${TABLE}.secs_since_last_event;;
+#  }
 
   dimension: secs_since_last_event {
     group_label: "Activity Time Measures"
-    label: "Seconds Since Previous Event"
+    label: "1. Seconds Since Previous Event"
     #hidden: yes
     type: number
     drill_fields: [detail*]
-    sql: ${TABLE}.secs_since_last_event;;
+    sql:
+    CASE WHEN ${TABLE}.secs_since_last_event > 60 THEN ${TABLE}.secs_since_last_event
+    ELSE NULL
+    END;;
   }
 
   measure: sum_secs_since_last_event {
