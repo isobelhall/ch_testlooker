@@ -26,6 +26,7 @@ view: logins {
   }
 
   dimension_group: updated {
+    view_label: "1. User Account"
     label: "Account Last Updated"
     type: time
     timeframes: [
@@ -41,6 +42,7 @@ view: logins {
   }
 
   dimension: user_id {
+    view_label: "1. User Account"
     hidden: yes
     label: "Login User ID"
     type: number
@@ -49,18 +51,21 @@ view: logins {
   }
 
   measure: first_login {
+    view_label: "1. User Account"
     label: "First Login for This User"
     type: date
-    sql: MIN(${created_date} ;;
+    sql: MIN(${created_date}) ;;
   }
 
   measure: max_login {
-    label: "First Login for This User"
+    view_label: "1. User Account"
+    label: "Latest Login for This User"
     type: date
-    sql: Max(${created_date} ;;
+    sql: Max(${created_date}) ;;
   }
 
   measure: count {
+    view_label: "1. User Account"
     label: "Count - Logins"
     type: count
     drill_fields: [id, users.id, user_id]
