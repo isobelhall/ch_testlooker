@@ -23,6 +23,8 @@ view: derived_characteristics {
       column: count_goal { field: derived_activity_2.count_goal }
       column: count_food { field: derived_activity_2.count_food }
       column: count_appt { field: derived_activity_2.count_appt }
+      column: count_blood_glucose { field: derived_activity_2.count_blood_glucose}
+      column: count_reading_room { field: derived_activity_2.count_reading_room}
       column: count_articles { field: derived_activity_2.count_articles }
     }
     #datagroup_trigger:  daily_refresh
@@ -104,6 +106,20 @@ view: derived_characteristics {
     group_label: "Activity Breakdown"
     type: yesno
     sql: CASE WHEN (${TABLE}.count_appt > 0) THEN TRUE ELSE FALSE END ;;
+    drill_fields: [detail*]
+  }
+
+  dimension: has_done_blood_glucose {
+    group_label: "Activity Breakdown"
+    type: yesno
+    sql: CASE WHEN (${TABLE}.count_blood_glucose > 0) THEN TRUE ELSE FALSE END ;;
+    drill_fields: [detail*]
+  }
+
+  dimension: has_done_reading_room {
+    group_label: "Activity Breakdown"
+    type: yesno
+    sql: CASE WHEN (${TABLE}.count_reading_room > 0) THEN TRUE ELSE FALSE END ;;
     drill_fields: [detail*]
   }
 

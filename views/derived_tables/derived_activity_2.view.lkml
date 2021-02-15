@@ -165,14 +165,21 @@ view: derived_activity_2 {
     filters: [object_type: "appointment"]
   }
 
-#count - has had coach appointment
-  measure: count_plugin {
+#count - has used blood glucose tracker
+  measure: count_blood_glucose {
     group_label: "Test Activity Counts"
-    label: "Count - Accessed Plugins"
+    label: "Count - Accessed Blood Glucose Tracker"
     type: count
-    filters: [object_type: "plugins"]
+    filters: [object_type: "plugins", object_value: "Blood Glucose Tracking"]
   }
 
+#count - has used blood glucose tracker
+  measure: count_reading_room {
+    group_label: "Test Activity Counts"
+    label: "Count - Accessed Reading Room"
+    type: count
+    filters: [object_type: "plugins", object_value: "Reading room"]
+  }
 
 
   dimension: uid {
