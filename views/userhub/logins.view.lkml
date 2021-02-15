@@ -30,13 +30,7 @@ view: logins {
     label: "Account Last Updated"
     type: time
     timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
+      raw, time, date, week, month, quarter, year
     ]
     sql: ${TABLE}.updated_at ;;
   }
