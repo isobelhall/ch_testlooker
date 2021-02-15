@@ -66,6 +66,12 @@ view: derived_characteristics {
       sql: CASE WHEN (${TABLE}.count_logins > 0) THEN 1 ELSE 0 END ;;
     }
 
+  measure: count_logged_in {
+    group_label: "Programme Progress"
+    label: "2. Is Enabled"
+    type: count
+    sql: ${has_logged_in} ;;
+  }
 
     dimension: has_done_activity {
       type: number
