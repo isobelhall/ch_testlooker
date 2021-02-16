@@ -29,12 +29,42 @@ view: user_event_logs {
  #measure for SQL: max event date where type = invitation, activation, deletion
  #measure for SQL: yesno where count of invitation, activation, deletion > 0
 
-
   dimension: event_type {
     view_label: "1. User Account"
     label: "System Status"
     type: string
+    hidden: yes
     sql: ${TABLE}.event_type ;;
+  }
+
+  dimension: invitation_sent {
+    view_label: "1. User Account"
+    label: "Invitation sent"
+    type: date
+    sql:
+      CASE WHEN ${event_type} = 'invitation_sent' THEN ${created_date} END;;
+  }
+
+  measure: event_type_invitation {
+    view_label: "1. User Account"
+    label: "Invitation Sent Date"
+    type: date
+    sql: MAX(${invitation_sent}) ;;
+  }
+
+  dimension: completed_activation {
+    view_label: "1. User Account"
+    label: "Completed activation"
+    type: date
+    sql:
+      CASE WHEN ${event_type} = 'completed_activation' THEN ${created_date};;
+  }
+
+  measure: event_type_activation {
+    view_label: "1. User Account"
+    label: "Completed Activation Date"
+    type: date
+    sql: MAX(${completed_activation} ;;
   }
 
   #to fix 'enabled' issue, filter bye event type representing activated.
