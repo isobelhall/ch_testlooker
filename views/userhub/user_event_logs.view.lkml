@@ -33,10 +33,9 @@ view: user_event_logs {
     view_label: "1. User Account"
     label: "System Status"
     type: string
+    hidden: yes
     sql: ${TABLE}.event_type ;;
   }
-
-
 
   #to fix 'enabled' issue, filter bye event type representing activated.
 
