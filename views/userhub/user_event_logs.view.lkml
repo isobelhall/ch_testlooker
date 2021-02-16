@@ -29,12 +29,18 @@ view: user_event_logs {
  #measure for SQL: max event date where type = invitation, activation, deletion
  #measure for SQL: yesno where count of invitation, activation, deletion > 0
 
-
   dimension: event_type {
     view_label: "1. User Account"
     label: "System Status"
     type: string
     sql: ${TABLE}.event_type ;;
+  }
+
+  dimension: event_type_referred {
+    view_label: "1. User Account"
+    label: "Status - Referred"
+    type: string
+    sql: [select ${event_type} from userhub.user_event_logs where ${event_type}='invitation_sent'] ;;
   }
 
   #to fix 'enabled' issue, filter bye event type representing activated.
