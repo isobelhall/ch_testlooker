@@ -37,6 +37,21 @@ view: user_event_logs {
     sql: ${TABLE}.event_type ;;
   }
 
+  dimension: invitation_sent {
+    view_label: "1. User Account"
+    label: "Invitation sent"
+    type: date
+    sql:
+      CASE WHEN ${event_type} = 'invitation_sent' THEN ${created_date} END;;
+  }
+
+  measure: event_type_invitation {
+    view_label: "1. User Account"
+    label: "Invitation Sent Date"
+    type: date
+    sql: MAX(${invitation_sent}) ;;
+  }
+
   #to fix 'enabled' issue, filter bye event type representing activated.
 
   dimension: payload {
