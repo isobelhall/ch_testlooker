@@ -42,6 +42,11 @@ view: appointments {
     sql: ${TABLE}.created_at ;;
   }
 
+  dimension: days_since_start {
+    type: number
+    sql: DATEDIFF(${since_raw}, ${users.created_raw}) ;;
+  }
+
   dimension: created_by {
     hidden: yes
     type: number
