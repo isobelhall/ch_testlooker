@@ -36,12 +36,7 @@ view: user_event_logs {
     sql: ${TABLE}.event_type ;;
   }
 
-  dimension: event_type_referred {
-    view_label: "1. User Account"
-    label: "Status - Referred"
-    type: string
-    sql: [select ${event_type} from userhub.user_event_logs where ${event_type}='invitation_sent'] ;;
-  }
+
 
   #to fix 'enabled' issue, filter bye event type representing activated.
 
