@@ -359,9 +359,10 @@ view: derived_activity_2 {
     type: number
     drill_fields: [detail*]
     sql:
-    CASE WHEN ${TABLE}.secs_since_last_event < 60 THEN ${TABLE}.secs_since_last_event
+    CASE WHEN ${TABLE}.secs_since_last_event < 60 THEN (${TABLE}.secs_since_last_event) / 86400.0
     ELSE NULL
     END;;
+    value_format: "HH:MM:SS"
   }
 
   measure: sum_secs_since_last_event {
@@ -370,7 +371,9 @@ view: derived_activity_2 {
     #hidden: yes
     type: sum
     drill_fields: [detail*]
-    sql: ${TABLE}.secs_since_last_event ;;
+    sql: ${TABLE}.secs_since_last_event
+    ;;
+    value_format: "HH:MM:SS"
   }
 
   measure: sum_derived_mins_since_last_event {
