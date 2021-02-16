@@ -44,19 +44,19 @@ view: appointments {
 
   dimension: days_since_start {
     type: number
-    sql: DATEDIFF(${since_raw}, ${users.created_raw}) ;;
+    sql: ROUND(DATEDIFF(${since_raw}, ${users.created_raw})) ;;
     value_format: "0"
   }
 
   dimension: weeks_since_start {
     type: number
-    sql: DATEDIFF(${since_raw}, ${users.created_raw})/7 ;;
+    sql: ROUND(DATEDIFF(${since_raw}, ${users.created_raw})/7) ;;
     value_format: "0"
   }
 
   dimension: months_since_start {
     type: number
-    sql: DATEDIFF(${since_raw}, ${users.created_raw})/30 ;;
+    sql: ROUND(DATEDIFF(${since_raw}, ${users.created_raw})/30) ;;
     value_format: "0"
   }
 
