@@ -35,6 +35,7 @@ view: weight_tracks {
 
   dimension: hit_target {
     group_label: "Weight Data"
+    label: "Did this weight meet weight target?"
     type: yesno
     sql: ${TABLE}.hit_target ;;
   }
@@ -69,6 +70,7 @@ view: weight_tracks {
     sql: ${TABLE}.weight_goal ;;
   }
 
+
   measure: average {
     group_label: "Weight Data"
     label: "Average - Recorded Weight"
@@ -83,4 +85,7 @@ view: weight_tracks {
     type: count
     drill_fields: [id, users.id]
   }
+
+
+
 }

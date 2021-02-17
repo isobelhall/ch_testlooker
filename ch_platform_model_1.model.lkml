@@ -63,7 +63,13 @@ explore: users {
   join: weight_tracks {
     sql_on: ${users.id} = ${weight_tracks.user_id} ;;
     relationship: one_to_many
-    view_label: "7. Activity Data"
+    view_label: "7a. Activity Data - Weight"
+  }
+
+  join: weight_facts {
+    sql_on: ${users.ppuid} = ${weight_facts.ppuid} ;;
+    relationship: one_to_many
+    view_label: "7a. Activity Data - Weight"
   }
 
   join: food_tracks {
