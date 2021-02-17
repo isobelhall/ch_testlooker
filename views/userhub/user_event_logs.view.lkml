@@ -54,17 +54,17 @@ view: user_event_logs {
 
   dimension: completed_activation {
     view_label: "1. User Account"
-    label: "Completed activation"
+    label: "Completed Activation"
     type: date
     sql:
-      CASE WHEN ${event_type} = 'completed_activation' THEN ${created_date};;
+      CASE WHEN ${event_type} = 'completed_activation' THEN ${created_date} END;;
   }
 
   measure: event_type_activation {
     view_label: "1. User Account"
     label: "Completed Activation Date"
     type: date
-    sql: MAX(${completed_activation} ;;
+    sql: MAX(${completed_activation}) ;;
   }
 
   #to fix 'enabled' issue, filter bye event type representing activated.
