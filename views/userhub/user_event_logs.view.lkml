@@ -41,6 +41,7 @@ view: user_event_logs {
     view_label: "1. User Account"
     label: "Invitation sent"
     type: date
+    hidden: yes
     sql:
       CASE WHEN ${event_type} = 'invitation_sent' THEN ${created_date} END;;
   }
@@ -56,6 +57,7 @@ view: user_event_logs {
     view_label: "1. User Account"
     label: "Completed Activation"
     type: date
+    hidden: yes
     sql:
       CASE WHEN ${event_type} = 'completed_activation' THEN ${created_date} END;;
   }
@@ -71,6 +73,7 @@ view: user_event_logs {
     view_label: "1. User Account"
     label: "User Deletion Activated"
     type: date
+    hidden: yes
     sql:
       CASE WHEN ${event_type} = 'user_deleted' THEN ${created_date} END;;
   }
