@@ -45,8 +45,13 @@ view: weight_target_facts {
     hidden: yes
     description: "Platform identifier for each participant"
   }
+
   dimension: hit_target {
-    label: "Has this user hit a weight target? (Yes / No)"
+    label: "Has this user hit a weight target?"
     type: yesno
+    sql: CASE
+    WHEN LENGTH(${ppuid}) > 0 THEN TRUE
+    ELSE FALSE
+    END;;
   }
 }
