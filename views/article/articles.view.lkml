@@ -89,9 +89,7 @@ view: articles {
   }
 
   dimension: type {
-    hidden: yes
     group_label: "Article/Video Data"
-
     view_label: "7. Activity Data"
     label: "Article Type (article/video)"
     description: "Is this an article or a video? Filter by this if you want to distinguish between articles and videos"
@@ -135,4 +133,5 @@ view: articles {
     type: count
     drill_fields: [id, name, articles_accessed.count]
   }
+
 }
