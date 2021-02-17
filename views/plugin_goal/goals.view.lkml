@@ -62,8 +62,7 @@ view: goals {
     sql: ${TABLE}.program_id ;;
   }
 
-  dimension_group: updated {
-    hidden: yes
+  dimension_group: goal_updated {
     type: time
     timeframes: [
       raw,
@@ -75,6 +74,14 @@ view: goals {
       year
     ]
     sql: ${TABLE}.updated_at ;;
+  }
+
+  dimension: goal_has_been_completed {
+    group_label: "Goal Data"
+    label: "Goal Was Updated"
+    type: yesno
+    sql: CASE WHEN ${goal_updated_raw} IS NOT NULL THEN TRUE
+      ELSE FALSE END ;;
   }
 
   dimension: user_id {

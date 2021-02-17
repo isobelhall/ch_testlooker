@@ -116,6 +116,7 @@ view: profiles {
   dimension: type {
     group_label: "Goal Data"
     label: "Profile Type"
+    hidden: yes
     type: yesno
     sql: ${TABLE}.type ;;
   }
