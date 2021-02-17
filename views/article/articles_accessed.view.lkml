@@ -65,7 +65,6 @@ view: articles_accessed {
 
   measure: count {
     group_label: "Article/Video Data"
-    hidden: yes
     label: "Count - Articles Accessed"
     type: count
     drill_fields: [id, users.id, articles.id, articles.name]
@@ -86,4 +85,6 @@ view: articles_accessed {
     type: average
     drill_fields: [id, users.id, articles.id, articles.name]
   }
+
+
 }
