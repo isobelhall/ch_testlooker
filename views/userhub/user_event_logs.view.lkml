@@ -37,6 +37,13 @@ view: user_event_logs {
     sql: ${TABLE}.event_type ;;
   }
 
+  measure: current_event_status {
+    view_label: "1. User Account"
+    label: "Current System Status"
+    type: string
+    sql: MAX(${event_type} ;;
+  }
+
   dimension: invitation_sent {
     view_label: "1. User Account"
     label: "Invitation sent"
@@ -54,20 +61,34 @@ view: user_event_logs {
 
   dimension: completed_activation {
     view_label: "1. User Account"
-    label: "Completed activation"
+    label: "Completed Activation"
     type: date
     sql:
-      CASE WHEN ${event_type} = 'completed_activation' THEN ${created_date};;
+      CASE WHEN ${event_type} = 'completed_activation' THEN ${created_date} END;;
   }
 
   measure: event_type_activation {
     view_label: "1. User Account"
     label: "Completed Activation Date"
     type: date
-    sql: MAX(${completed_activation} ;;
+    sql: MAX(${completed_activation}) ;;
   }
 
-  #to fix 'enabled' issue, filter bye event type representing activated.
+  dimension: user_deletion_activated {
+    view_label: "1. User Account"
+    label: "User Deletion Activated"
+    type: date
+    sql:
+      CASE WHEN ${event_type} = 'user_deleted' THEN ${created_date} END;;
+  }
+
+  measure: event_type_deletion {
+    view_label: "1. User Account"
+    label: "User Deletion Activation Date"
+    type: date
+    sql: MAX(${user_deletion_activated}) ;;
+  }
+  #to fix 'enabled' issue, filter by event type representing activated.
 
   dimension: payload {
     hidden: yes
