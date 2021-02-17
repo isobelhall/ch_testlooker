@@ -41,7 +41,6 @@ view: user_event_logs {
     view_label: "1. User Account"
     label: "Invitation sent"
     type: date
-    hidden: yes
     sql:
       CASE WHEN ${event_type} = 'invitation_sent' THEN MAX(${created_date}) END;;
   }
