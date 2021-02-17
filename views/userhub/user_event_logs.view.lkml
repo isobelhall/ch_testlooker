@@ -37,6 +37,13 @@ view: user_event_logs {
     sql: ${TABLE}.event_type ;;
   }
 
+  measure: current_event_status {
+    view_label: "1. User Account"
+    label: "Current System Status"
+    type: string
+    sql: MAX(${event_type} ;;
+  }
+
   dimension: invitation_sent {
     view_label: "1. User Account"
     label: "Invitation sent"
