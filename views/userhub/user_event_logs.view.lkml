@@ -37,7 +37,32 @@ view: user_event_logs {
     sql: ${TABLE}.event_type ;;
   }
 
+  dimension: event_type_english {
+    view_label: "1. User Account"
+    label: "System Account Status"
+    type: string
+    case: {
+      when: {
+        sql: ${event_type} = 'invitation_sent' ;;
+        label: "Referred"
+      }
+      when: {
+        sql: ${event_type} = 'completed_activation' ;;
+        label: "Active"
+      }
+      when: {
+        sql: ${event_type} = 'user_deleted' ;;
+        label: "User Deleted"
+      }
+    }
+  }
 
+  measure: event_type_invitation {
+    view_label: "1. User Account"
+    label: "Invitation Sent Date"
+    type: date
+    sql: MAX(${created_date}) ;;
+  }
 
 
   #to fix 'enabled' issue, filter by event type representing activated.
