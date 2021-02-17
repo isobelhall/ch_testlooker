@@ -43,15 +43,15 @@ view: user_event_logs {
     type: date
     hidden: yes
     sql:
-      CASE WHEN ${event_type} = 'invitation_sent' THEN ${created_date} END;;
+      CASE WHEN ${event_type} = 'invitation_sent' THEN MAX(${created_date}) END;;
   }
 
-  measure: event_type_invitation {
-    view_label: "1. User Account"
-    label: "Invitation Sent Date"
-    type: date
-    sql: MAX(${invitation_sent}) ;;
-  }
+  #measure: event_type_invitation {
+  #  view_label: "1. User Account"
+  #  label: "Invitation Sent Date"
+  #  type: date
+  #  sql: MAX(${invitation_sent}) ;;
+  #}
 
   dimension: completed_activation {
     view_label: "1. User Account"
