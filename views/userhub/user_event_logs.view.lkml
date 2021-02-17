@@ -67,6 +67,21 @@ view: user_event_logs {
     sql: MAX(${completed_activation}) ;;
   }
 
+  dimension: user_deletion_activated {
+    view_label: "1. User Account"
+    label: "User Deletion Activated"
+    type: date
+    sql:
+      CASE WHEN ${event_type} = 'user_deleted' THEN ${created_date} END;;
+  }
+
+  measure: event_type_deletion {
+    view_label: "1. User Account"
+    label: "User Deletion Activation Date"
+    type: date
+    sql: MAX(${user_deletion_activated}) ;;
+  }
+
   #to fix 'enabled' issue, filter bye event type representing activated.
 
   dimension: payload {
