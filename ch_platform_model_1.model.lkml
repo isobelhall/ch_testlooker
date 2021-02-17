@@ -61,36 +61,36 @@ explore: users {
   }
 
   join: weight_tracks {
-    sql_on: ${users.id} = ${weight_tracks.user_id} ;;
-    relationship: one_to_many
+    sql_on: ${weight_tracks.user_id} =${users.id};;
+    relationship: many_to_one
     view_label: "7a. Activity Data - Weight"
   }
 
   join: weight_facts {
-    sql_on: ${users.ppuid} = ${weight_facts.ppuid} ;;
-    relationship: one_to_many
+    sql_on: ${weight_facts.ppuid} = ${users.ppuid};;
+    relationship: many_to_one
     view_label: "7a. Activity Data - Weight"
   }
 
   join: food_tracks {
-    sql_on: ${users.id}= ${food_tracks.user_id};;
-    relationship: one_to_many
+    sql_on: ${users.id} = ${food_tracks.user_id} ;;
+    relationship: many_to_one
     view_label: "7. Activity Data"
   }
 
   join: fit_tracks {
-    sql_on: ${users.id} = ${fit_tracks.user_id};;
-    relationship: one_to_many
+    sql_on:  ${fit_tracks.user_id} = ${users.id} ;;
+    relationship: many_to_one
     view_label: "7. Activity Data"
   }
   join: progress_statistics {
-    sql_on: ${users.id} = ${progress_statistics.user_id} ;;
-    relationship: one_to_many
+    sql_on: ${progress_statistics.user_id} = ${users.id};;
+    relationship: many_to_one
     view_label: "7. Activity Data"
   }
 
   join: appointments {
-    sql_on: ${users.id} =  ${appointments.user_id};;
+    sql_on: ${appointments.user_id} = ${users.id};;
     relationship: one_to_many
     view_label: "6. Coaching"
   }
@@ -102,20 +102,20 @@ explore: users {
   }
 
   join: coaches{
-    sql_on: ${users.id} = ${coaches.user_id} ;;
-    relationship: one_to_many
+    sql_on:  ${coaches.user_id} = ${users.id} ;;
+    relationship: many_to_one
     view_label: "6. Coaching"
   }
 
   join: coach_users {
-    sql_on: ${users.id} = ${coach_users.user_id}  ;;
-    relationship: one_to_many
+    sql_on:  ${coach_users.user_id} = ${users.id}  ;;
+    relationship: many_to_one
     view_label: "6. Coaching"
   }
 
   join: goals {
-    sql_on: ${users.id} =  ${goals.user_id};;
-    relationship: one_to_many
+    sql_on:   ${goals.user_id} = ${users.id};;
+    relationship: many_to_one
     view_label: "7. Activity Data"
   }
 
@@ -127,14 +127,14 @@ explore: users {
 
   join: derived_activity_2 {
     view_label: "7. Activity Data"
-    sql_on: ${users.id} = ${derived_activity_2.uid} ;;
-    relationship: one_to_many
+    sql_on: ${derived_activity_2.uid} = ${users.id} ;;
+    relationship: many_to_one
   }
 
   join: derived_signup_activity {
     view_label: "7a. Sign Up Activity Data"
-    sql_on: ${users.id} = ${derived_signup_activity.uid} ;;
-    relationship: one_to_many
+    sql_on:  ${derived_signup_activity.uid} = ${users.id} ;;
+    relationship: many_to_one
   }
 
   join: sessions {
@@ -168,15 +168,15 @@ explore: users {
   }
 
   join: pops_data_replica_flattened {
-    sql_on: ${users.id} = ${pops_data_replica_flattened.user_id} ;;
-    relationship: one_to_many
+    sql_on: ${pops_data_replica_flattened.user_id} =  ${users.id} ;;
+    relationship: many_to_one
     view_label: "2. Demographics / User Attributes"
   }
 
 # flattened views for pops and optional data table
   join: optional_data_flattened {
-    sql_on: ${users.id} = ${optional_data_flattened.user_id} ;;
-    relationship: one_to_many
+    sql_on:${optional_data_flattened.user_id} =  ${users.id} ;;
+    relationship: many_to_one
     view_label: "2. HL Demographics / User Attributes"
   }
 
