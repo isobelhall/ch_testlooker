@@ -7,7 +7,8 @@ view: weight_facts {
     }
   }
   dimension: ppuid {
-    label: "1. User Account CHUID"
+    primary_key: yes
+    hidden: yes
     description: "Platform identifier for each participant"
   }
   dimension: count {
@@ -25,3 +26,27 @@ view: weight_facts {
   }
 
  }
+
+
+
+view: weight_target_facts {
+  derived_table: {
+    explore_source: users {
+      column: ppuid {}
+      column: hit_target { field: weight_tracks.hit_target }
+      filters: {
+        field: weight_tracks.hit_target
+        value: "Yes"
+      }
+    }
+  }
+  dimension: ppuid {
+    primary_key: yes
+    hidden: yes
+    description: "Platform identifier for each participant"
+  }
+  dimension: hit_target {
+    label: "Has this user hit a weight target? (Yes / No)"
+    type: yesno
+  }
+}
