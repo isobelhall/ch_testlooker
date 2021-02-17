@@ -80,7 +80,7 @@ view: goals {
     group_label: "Goal Data"
     label: "Goal Was Updated"
     type: yesno
-    sql: CASE WHEN ${goal_updated_raw} IS NOT NULL THEN TRUE
+    sql: CASE WHEN ${goal_updated_raw} IS NOT NULL AND ${goal_updated_date} > ${created_date} THEN TRUE
       ELSE FALSE END ;;
   }
 
