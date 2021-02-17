@@ -26,6 +26,13 @@ view: goals {
     sql: ${TABLE}.completed_at ;;
   }
 
+  dimension: goal_completed {
+    label: "Goal Completed"
+    type: yesno
+    sql: CASE WHEN ${completed_date} IS NOT NULL THEN TRUE
+    ELSE FALSE END ;;
+  }
+
   dimension_group: created {
     group_label: "Goal Data"
     view_label: "7. Activity Data"
