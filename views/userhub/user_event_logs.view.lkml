@@ -37,34 +37,50 @@ view: user_event_logs {
     sql: ${TABLE}.event_type ;;
   }
 
-  dimension: event_type_english {
+  dimension: invitation_sent {
     view_label: "1. User Account"
-    label: "System Account Status"
-    type: string
-    case: {
-      when: {
-        sql: ${event_type} = 'invitation_sent' ;;
-        label: "Referred"
-      }
-      when: {
-        sql: ${event_type} = 'completed_activation' ;;
-        label: "Active"
-      }
-      when: {
-        sql: ${event_type} = 'user_deleted' ;;
-        label: "User Deleted"
-      }
-    }
+    label: "Invitation sent"
+    type: date
+    sql:
+      CASE WHEN ${event_type} = 'invitation_sent' THEN ${created_date} END;;
   }
 
   measure: event_type_invitation {
     view_label: "1. User Account"
     label: "Invitation Sent Date"
     type: date
-    sql: MAX(${created_date}) ;;
+    sql: MAX(${invitation_sent}) ;;
   }
 
+  dimension: completed_activation {
+    view_label: "1. User Account"
+    label: "Completed Activation"
+    type: date
+    sql:
+      CASE WHEN ${event_type} = 'completed_activation' THEN ${created_date} END;;
+  }
 
+  measure: event_type_activation {
+    view_label: "1. User Account"
+    label: "Completed Activation Date"
+    type: date
+    sql: MAX(${completed_activation}) ;;
+  }
+
+  dimension: user_deletion_activated {
+    view_label: "1. User Account"
+    label: "User Deletion Activated"
+    type: date
+    sql:
+      CASE WHEN ${event_type} = 'user_deleted' THEN ${created_date} END;;
+  }
+
+  measure: event_type_deletion {
+    view_label: "1. User Account"
+    label: "User Deletion Activation Date"
+    type: date
+    sql: MAX(${user_deletion_activated}) ;;
+  }
   #to fix 'enabled' issue, filter by event type representing activated.
 
   dimension: payload {
