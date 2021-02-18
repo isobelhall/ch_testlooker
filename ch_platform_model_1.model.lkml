@@ -30,6 +30,7 @@ explore: users {
     relationship: many_to_one
   }
 
+
   join: derived_characteristics {
     sql_on: ${derived_characteristics.ppuid} = ${users.ppuid} ;;
     relationship: one_to_one
