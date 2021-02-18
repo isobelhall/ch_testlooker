@@ -18,13 +18,17 @@ view: weight_target_facts {
   dimension: hit_target {
     label: "Has this user hit a weight target?"
     type: yesno
-    sql: CASE
+    sql:
+        CASE
           WHEN LENGTH(${ppuid}) > 0 THEN TRUE
           ELSE FALSE
-          END;;
+        END;;
   }
 
   measure: count {
-    type: count
+    type: count_distinct
+    group_label: "Weight Data"
+    label: "Count - Hit Weight Target"
+    sql: ${hit_target} ;;
   }
 }

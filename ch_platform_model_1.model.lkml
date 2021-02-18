@@ -68,7 +68,7 @@ explore: users {
 
   join: weight_facts {
     sql_on: ${weight_facts.ppuid} = ${users.ppuid};;
-    relationship: many_to_one
+    relationship: one_to_one
     view_label: "7a. Activity Data - Weight"
   }
 
