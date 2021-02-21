@@ -23,6 +23,7 @@ view: goal_facts {
 
     dimension: set_weight_goal {
       label: "Has set weight goal"
+      type: yesno
       description: "User has set a weight goal. Count of 'Weight Goal' is greater than or equal to 1."
       sql:
       CASE
@@ -33,7 +34,7 @@ view: goal_facts {
       }
 
   dimension: set_step_goal {
-    label: "Has set step goal"
+    type: yesno
     description: "User has set a step goal. Count of 'Daily Steps Goal' is greater than or equal to 1."
     sql:
       CASE
