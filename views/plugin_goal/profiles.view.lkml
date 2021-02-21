@@ -28,8 +28,6 @@ view: profiles {
   }
 
   dimension_group: completed {
-    hidden: yes
-    view_label: "7. Activity Data"
     type: time
     timeframes: [
       raw,
@@ -86,8 +84,6 @@ view: profiles {
   }
 
   dimension: name {
-    group_label: "Goal Data"
-    view_label: "7. Activity Data"
     label: "Goal Name"
     type: string
     sql: ${TABLE}.name ;;
@@ -106,7 +102,6 @@ view: profiles {
   }
 
   dimension: title {
-    group_label: "Goal Data"
     label: "Profile Title"
     type: string
     hidden: yes
@@ -114,7 +109,6 @@ view: profiles {
   }
 
   dimension: type {
-    group_label: "Goal Data"
     label: "Profile Type"
     hidden: yes
     type: yesno

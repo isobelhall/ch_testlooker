@@ -10,8 +10,6 @@ view: goals {
   }
 
   dimension_group: completed {
-    group_label: "Goal Data"
-    view_label: "7. Activity Data"
     label: "Goal Completion Date"
     type: time
     timeframes: [
@@ -34,8 +32,6 @@ view: goals {
   }
 
   dimension_group: created {
-    group_label: "Goal Data"
-    view_label: "7. Activity Data"
     label: "Goal Creation Date"
     type: time
     timeframes: [
@@ -77,7 +73,6 @@ view: goals {
   }
 
   dimension: goal_has_been_completed {
-    group_label: "Goal Data"
     label: "Goal Was Updated"
     type: yesno
     sql: CASE WHEN ${goal_updated_raw} IS NOT NULL AND ${goal_updated_date} > ${created_date} THEN TRUE
@@ -92,7 +87,6 @@ view: goals {
   }
 
   measure: count {
-    group_label: "Goal Data"
     label: "Count - Goals"
     type: count
     drill_fields: [id, profiles.id, profiles.name, users.id, answers.count]
