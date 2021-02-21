@@ -23,7 +23,6 @@ view: weight_facts {
   }
 
   dimension: has_tracked_weight {
-    group_label: "Weight Data"
     label: "User has hit a weight target"
     type: yesno
     sql:
