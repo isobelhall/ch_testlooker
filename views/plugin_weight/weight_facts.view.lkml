@@ -18,13 +18,13 @@ view: weight_facts {
   }
 
   dimension: count_hit_target {
-    label: "Count - Weights Tracked"
+    label: "Count - Hit Weight Target"
     type: number
   }
 
   dimension: has_tracked_weight {
     group_label: "Weight Data"
-    label: "User has recorded a weight"
+    label: "User has hit a weight target"
     type: yesno
     sql:
     CASE WHEN ${count_hit_target} > 0 THEN TRUE
