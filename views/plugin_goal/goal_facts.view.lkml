@@ -26,7 +26,7 @@ view: goal_facts {
       description: "User has set a weight goal. Count of 'Weight Goal' is greater than or equal to 1."
       sql:
       CASE
-      ${name} = "Weight Tracking Plugin Weight Goal" AND ${count2} > 0 THEN TRUE
+      WHEN ${name} = "Weight Tracking Plugin Weight Goal" AND ${count2} > 0 THEN TRUE
       ELSE FALSE
       END
       ;;
@@ -37,7 +37,7 @@ view: goal_facts {
     description: "User has set a step goal. Count of 'Daily Steps Goal' is greater than or equal to 1."
     sql:
       CASE
-      ${name} = "Steps Plugin Daily Steps Goal" AND ${count2} > 0 THEN TRUE
+      WHEN ${name} = "Steps Plugin Daily Steps Goal" AND ${count2} > 0 THEN TRUE
       ELSE FALSE
       END
       ;;
