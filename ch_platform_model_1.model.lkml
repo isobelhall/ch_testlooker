@@ -93,13 +93,13 @@ explore: users {
   join: goals {
     sql_on:   ${goals.user_id} = ${users.id};;
     relationship: many_to_one
-    view_label: "7.5 Activity Data - All Goals Tracking"
+    view_label: "7.6 Activity Data - All Goals Tracking"
   }
 
   join: goal_facts {
     sql_on:   ${users.ppuid} = ${goal_facts.ppuid};;
     relationship: many_to_one
-    view_label: "7.5 Activity Data - All Goals Tracking"
+    view_label: "7.6 Activity Data - All Goals Tracking"
   }
 
   join: profiles {
