@@ -4,6 +4,7 @@ view: weight_facts {
     explore_source: users {
       column: ppuid {}
       column: count { field: weight_tracks.count }
+      column: count_hit_target {field: weight_tracks.count_hit_target}
     }
   }
   dimension: ppuid {
@@ -15,12 +16,18 @@ view: weight_facts {
     label: "Count - Weights Tracked"
     type: number
   }
+
+  dimension: count_hit_target {
+    label: "Count - Weights Tracked"
+    type: number
+  }
+
   dimension: has_tracked_weight {
     group_label: "Weight Data"
     label: "User has recorded a weight"
     type: yesno
     sql:
-    CASE WHEN ${count} > 0 THEN TRUE
+    CASE WHEN ${count_hit_target} > 0 THEN TRUE
     ELSE FALSE
     END;;
   }

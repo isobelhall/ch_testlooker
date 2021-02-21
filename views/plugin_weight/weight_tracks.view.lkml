@@ -86,6 +86,12 @@ view: weight_tracks {
     drill_fields: [id, users.ppuid]
   }
 
-
+  measure: count_hit_target {
+    #group_label: "Weight Data"
+    label: "Count - Times Weight Target Hit"
+    type: count
+  filters: [hit_target: "Yes"]
+    drill_fields: [id, users.ppuid]
+  }
 
 }

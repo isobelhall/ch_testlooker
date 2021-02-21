@@ -73,13 +73,6 @@ explore: users {
     view_label: "7a. Activity Data - Weight"
   }
 
-#weight_target_facts
-  join: weight_target_facts {
-    sql_on: ${weight_target_facts.ppuid} = ${users.ppuid};;
-    relationship: many_to_one
-    view_label: "7a. Activity Data - Weight"
-  }
-
   join: food_tracks {
     sql_on: ${users.id} = ${food_tracks.user_id} ;;
     relationship: many_to_one
