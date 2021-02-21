@@ -82,7 +82,7 @@ explore: users {
   join: fit_tracks {
     sql_on:  ${fit_tracks.user_id} = ${users.id} ;;
     relationship: many_to_one
-    view_label: "7.4 Activity Data - Step Tracking"
+    view_label: "7.4 Activity Data - Step/Fit Tracking"
   }
   join: progress_statistics {
     sql_on: ${progress_statistics.user_id} = ${users.id};;
@@ -105,7 +105,7 @@ explore: users {
   join: profiles {
     sql_on: ${goals.profile_id} = ${profiles.id} ;;
     relationship: many_to_one
-    view_label: "7.5 Activity Data - All Goals Tracking"
+    view_label: "7.6 Activity Data - All Goals Tracking"
   }
   join: appointments {
     sql_on: ${appointments.user_id} = ${users.id};;

@@ -16,7 +16,6 @@ view: articles {
   }
 
   dimension_group: created {
-    group_label: "Article/Video Data"
     label: "Article Created"
     description: "Date this article was created"
     type: time
@@ -45,7 +44,6 @@ view: articles {
   }
 
   dimension_group: deleted {
-    group_label: "Article/Video Data"
     label: "Article Deleted"
     description: "When was an article deleted from the platform"
     type: time
@@ -68,7 +66,6 @@ view: articles {
   }
 
   dimension: name {
-    group_label: "Article/Video Data"
     view_label: "7. Activity Data"
     label: "Article/Video Name"
     description: "What is the name of the article or video"
@@ -89,8 +86,6 @@ view: articles {
   }
 
   dimension: type {
-    group_label: "Article/Video Data"
-    view_label: "7. Activity Data"
     label: "Article Type (article/video)"
     description: "Is this an article or a video? Filter by this if you want to distinguish between articles and videos"
     type: string
@@ -98,7 +93,6 @@ view: articles {
   }
 
   dimension_group: article_updated {
-    group_label: "Article/Video Data"
     hidden: yes
     type: time
     timeframes: [
@@ -114,7 +108,6 @@ view: articles {
   }
 
   dimension: article_updated_by {
-    group_label: "Article/Video Data"
     description: "ID of user who updated the article or video"
     type: number
     sql: ${TABLE}.updated_by ;;
