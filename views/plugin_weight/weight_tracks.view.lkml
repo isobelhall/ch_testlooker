@@ -31,11 +31,6 @@ view: weight_tracks {
     sql: ${TABLE}.hit_half_target ;;
   }
 
-  dimension: hit_target {
-    label: "Did this weight meet weight target?"
-    type: yesno
-    sql: ${TABLE}.hit_target ;;
-  }
 
   dimension_group: updated {
     type: time
@@ -64,6 +59,12 @@ view: weight_tracks {
   }
 
 
+  dimension: hit_target {
+    label: "Weight Measurement meets weight target?"
+    type: yesno
+    sql: ${TABLE}.hit_target ;;
+  }
+
   measure: average {
     label: "Average - Recorded Weight"
     type: average
@@ -80,7 +81,7 @@ view: weight_tracks {
   measure: count_hit_target {
     label: "Count - Times Weight Target Hit"
     type: count
-  filters: [hit_target: "Yes"]
+    filters: [hit_target: "Yes"]
     drill_fields: [id, users.ppuid]
   }
 

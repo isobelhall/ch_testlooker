@@ -22,6 +22,14 @@ view: weight_facts {
     type: number
   }
 
+  dimension: user_has_tracked_weights {
+    type: yesno
+    sql:
+    CASE WHEN ${count} > 0 THEN TRUE
+    ELSE FALSE
+    END;;
+  }
+
   dimension: has_tracked_weight {
     label: "User has hit a weight target"
     type: yesno

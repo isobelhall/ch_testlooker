@@ -1,69 +1,45 @@
 view: goal_facts {
-  # # You can specify the table name if it's different from the view name:
-  # sql_table_name: my_schema_name.tester ;;
-  #
-  # # Define your dimensions and measures here, like this:
-  # dimension: user_id {
-  #   description: "Unique ID for each user that has ordered"
-  #   type: number
-  #   sql: ${TABLE}.user_id ;;
-  # }
-  #
-  # dimension: lifetime_orders {
-  #   description: "The total number of orders for each user"
-  #   type: number
-  #   sql: ${TABLE}.lifetime_orders ;;
-  # }
-  #
-  # dimension_group: most_recent_purchase {
-  #   description: "The date when each user last ordered"
-  #   type: time
-  #   timeframes: [date, week, month, year]
-  #   sql: ${TABLE}.most_recent_purchase_at ;;
-  # }
-  #
-  # measure: total_lifetime_orders {
-  #   description: "Use this for counting lifetime orders across many users"
-  #   type: sum
-  #   sql: ${lifetime_orders} ;;
-  # }
-}
 
-# view: goal_facts {
-#   # Or, you could make this view a derived table, like this:
-#   derived_table: {
-#     sql: SELECT
-#         user_id as user_id
-#         , COUNT(*) as lifetime_orders
-#         , MAX(orders.created_at) as most_recent_purchase_at
-#       FROM orders
-#       GROUP BY user_id
-#       ;;
-#   }
-#
-#   # Define your dimensions and measures here, like this:
-#   dimension: user_id {
-#     description: "Unique ID for each user that has ordered"
-#     type: number
-#     sql: ${TABLE}.user_id ;;
-#   }
-#
-#   dimension: lifetime_orders {
-#     description: "The total number of orders for each user"
-#     type: number
-#     sql: ${TABLE}.lifetime_orders ;;
-#   }
-#
-#   dimension_group: most_recent_purchase {
-#     description: "The date when each user last ordered"
-#     type: time
-#     timeframes: [date, week, month, year]
-#     sql: ${TABLE}.most_recent_purchase_at ;;
-#   }
-#
-#   measure: total_lifetime_orders {
-#     description: "Use this for counting lifetime orders across many users"
-#     type: sum
-#     sql: ${lifetime_orders} ;;
-#   }
-# }
+    derived_table: {
+      explore_source: users {
+        column: name { field: profiles.name }
+        column: count2 {}
+        column: ppuid {}
+      }
+    }
+    dimension: name {
+      hidden: yes
+    }
+    dimension: count2 {
+      hidden: yes
+      label: "0. General Count - Participants"
+      description: "Count of all participants against other selected criteria"
+      type: number
+    }
+    dimension: ppuid {
+      label: "1. User Account CHUID"
+      description: "Platform identifier for each participant"
+    }
+
+    dimension: set_weight_goal {
+      label: "Has set weight goal"
+      description: "User has set a weight goal. Count of 'Weight Goal' is greater than or equal to 1."
+      sql:
+      CASE
+      ${name} = "Weight Tracking Plugin Weight Goal" AND ${count2} > 0 THEN TRUE
+      ELSE FALSE
+      END
+      ;;
+      }
+
+  dimension: set_step_goal {
+    label: "Has set step goal"
+    description: "User has set a step goal. Count of 'Daily Steps Goal' is greater than or equal to 1."
+    sql:
+      CASE
+      ${name} = "Steps Plugin Daily Steps Goal" AND ${count2} > 0 THEN TRUE
+      ELSE FALSE
+      END
+      ;;
+  }
+ }
