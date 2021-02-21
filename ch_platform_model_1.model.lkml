@@ -53,43 +53,60 @@ explore: users {
     sql_on: ${users.id} = ${articles_accessed.user_id} ;;
     #changed to "one to many"
     relationship: many_to_one
-    view_label: "7. Activity Data"
+    view_label: "7.1 Activity Data - Articles"
   }
   join: articles {
     sql_on: ${articles_accessed.article_id} = ${articles.id} ;;
     relationship: many_to_one
-    view_label: "7. Activity Data"
+    view_label: "7.1 Activity Data - Articles"
   }
 
   join: weight_tracks {
     sql_on: ${weight_tracks.user_id} =${users.id};;
     relationship: many_to_one
-    view_label: "7a. Activity Data - Weight"
+    view_label: "7.2 Activity Data - Weight Tracking"
   }
 
   join: weight_facts {
     sql_on: ${weight_facts.ppuid} = ${users.ppuid};;
     relationship: one_to_one
-    view_label: "7a. Activity Data - Weight"
+    view_label: "7.2 Activity Data - Weight Tracking"
   }
 
   join: food_tracks {
     sql_on: ${users.id} = ${food_tracks.user_id} ;;
     relationship: many_to_one
-    view_label: "7. Activity Data"
+    view_label: "7.3 Activity Data - Meal/Food Tracking"
   }
 
   join: fit_tracks {
     sql_on:  ${fit_tracks.user_id} = ${users.id} ;;
     relationship: many_to_one
-    view_label: "7. Activity Data"
+    view_label: "7.4 Activity Data - Step Tracking"
   }
   join: progress_statistics {
     sql_on: ${progress_statistics.user_id} = ${users.id};;
     relationship: many_to_one
-    view_label: "7. Activity Data"
+    view_label: "7.5 Activity Data - Progress Tracking"
   }
 
+  join: goals {
+    sql_on:   ${goals.user_id} = ${users.id};;
+    relationship: many_to_one
+    view_label: "7.5 Activity Data - All Goals Tracking"
+  }
+
+  join: goal_facts {
+    sql_on:   ${users.ppuid} = ${goal_facts.ppuid};;
+    relationship: many_to_one
+    view_label: "7.5 Activity Data - All Goals Tracking"
+  }
+
+  join: profiles {
+    sql_on: ${goals.profile_id} = ${profiles.id} ;;
+    relationship: many_to_one
+    view_label: "7.5 Activity Data - All Goals Tracking"
+  }
   join: appointments {
     sql_on: ${appointments.user_id} = ${users.id};;
     relationship: one_to_many
@@ -114,17 +131,7 @@ explore: users {
     view_label: "6. Coaching"
   }
 
-  join: goals {
-    sql_on:   ${goals.user_id} = ${users.id};;
-    relationship: many_to_one
-    view_label: "7. Activity Data"
-  }
 
-  join: profiles {
-    sql_on: ${goals.profile_id} = ${profiles.id} ;;
-    relationship: many_to_one
-    view_label: "7. Activity Data"
-  }
 
   join: derived_activity_2 {
     view_label: "7. Activity Data"
