@@ -17,6 +17,7 @@ view: goal_facts {
       type: number
     }
     dimension: ppuid {
+      hidden: yes
       label: "1. User Account CHUID"
       description: "Platform identifier for each participant"
     }
