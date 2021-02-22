@@ -118,6 +118,7 @@ view: derived_signup_activity {
     type: string
     map_layer_name: uk_postcode_areas
     sql:
+    CASE WHEN LEFT (${postcode_object}, 1) REGEXP '^[0-9]+$' THEN NULL
     CASE WHEN right(${postcode_object}, 1) REGEXP '^[0-9]+$' THEN LEFT(${postcode_object}, 1)
     ELSE ${postcode_object}
     END;;
