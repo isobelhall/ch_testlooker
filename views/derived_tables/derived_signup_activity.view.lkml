@@ -118,7 +118,7 @@ view: derived_signup_activity {
     label: "Postcode Map Data"
     type: string
     map_layer_name: uk_postcode_areas
-    sql: ${postcode_object} ;;
+    sql: replace(${postcode_object},'"', '') ;;
   }
 
   dimension: postcode_testing_validation {
