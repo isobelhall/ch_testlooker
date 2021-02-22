@@ -56,14 +56,6 @@ view: user_event_logs {
     }
   }
 
-  measure: latest_event_system_status {
-    view_label: "1. User Account"
-    label: "System Account Status Date"
-    type: date
-    sql: WITH latest_status_date as (SELECT ${id}, max(${created_date} as timestamp FROM ${TABLE} GROUP BY ${id})
-      SELECT ${created_date} FROM ${TABLE} WHERE (${id}, timestamp) in latest_status_date ;;
-  }
-
 
   #to fix 'enabled' issue, filter by event type representing activated.
 
