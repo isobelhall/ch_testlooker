@@ -113,6 +113,13 @@ view: derived_signup_activity {
     END;;
   }
 
+  dimension: postcode_location {
+    label: "Sign Up Activities - Postcode"
+    sql:  REPLACE
+    ;;
+  ###  sql: INSERT PARCING SQL HERE
+  }
+
   dimension: object_type {
     label: "Sign Up Activities - Type"
     type: string
