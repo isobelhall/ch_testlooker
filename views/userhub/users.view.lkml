@@ -330,6 +330,19 @@ view: users {
     drill_fields: [detail*]
   }
 
+
+# goal_facts
+#  dimension: set_weight_goal {
+#    type: yesno
+#    description: "User has set a weight goal. Count of 'Weight Goal' is greater than or equal to 1."
+#    sql:
+#      CASE
+#      WHEN ${goal_facts.name} = "Weight Tracking Plugin Weight Goal" AND ${goal_facts.count2} > 0 THEN TRUE
+#      ELSE FALSE
+#      END
+#      ;;
+#  }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [

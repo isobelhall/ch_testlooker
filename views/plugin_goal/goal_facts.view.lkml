@@ -17,21 +17,22 @@ view: goal_facts {
       type: number
     }
     dimension: ppuid {
+      hidden: yes
       label: "1. User Account CHUID"
       description: "Platform identifier for each participant"
     }
 
-    dimension: set_weight_goal {
-      label: "Has set weight goal"
-      type: yesno
-      description: "User has set a weight goal. Count of 'Weight Goal' is greater than or equal to 1."
-      sql:
-      CASE
-      WHEN ${name} = "Weight Tracking Plugin Weight Goal" AND ${count2} > 0 THEN TRUE
-      ELSE FALSE
-      END
-      ;;
-      }
+# goal_facts
+#    dimension: set_weight_goal {
+#      type: yesno
+#      description: "User has set a weight goal. Count of 'Weight Goal' is greater than or equal to 1."
+#      sql:
+#      CASE
+#      WHEN ${name} = "Weight Tracking Plugin Weight Goal" AND ${count2} > 0 THEN TRUE
+#      ELSE FALSE
+#      END
+#      ;;
+#      }
 
   dimension: set_step_goal {
     type: yesno

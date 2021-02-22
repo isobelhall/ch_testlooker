@@ -10,7 +10,6 @@ view: answers {
   }
 
   dimension: content {
-    group_label: "Goal Data"
     type: string
     sql: ${TABLE}.content ;;
   }
