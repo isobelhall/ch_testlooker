@@ -113,13 +113,15 @@ view: derived_signup_activity {
     END;;
   }
 
-#  dimension: postcode_location {
-#    label: "Postcode Map Data"
-#    type: string
-#    map_layer_name: uk_postcode_areas
-#    sql:
-#    CASE WHEN ${postcode_object} WHERE right(col1 REGEXP '^[0-9]+$' ;;
-#  }
+  dimension: postcode_location {
+    label: "Postcode Map Data"
+    type: string
+    map_layer_name: uk_postcode_areas
+    sql:
+    CASE WHEN right(${postcode_object}, 1) REGEXP '^[0-9]+$' THEN LEFT(${postcode_object}, 1)
+    ELSE ${postcode_object}
+    END;;
+  }
 
   dimension: postcode_testing_validation {
     label: "Sign Up Activities - Postcode"
