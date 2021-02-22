@@ -108,18 +108,18 @@ view: derived_signup_activity {
   dimension: postcode_object {
     label: "Sign Up Activities - Postcode"
     type: string
-    sql: CASE WHEN ${object_type} = "pops-address" THEN ${TABLE}.ObjectValue
+    sql: CASE WHEN ${object_type} = "pops-address" THEN LEFT(REPLACE(REPLACE(${TABLE}.ObjectValue,'"', ''),' ',''),2)
     ELSE NULL
     END;;
   }
 
-
-  dimension: postcode_location {
-    label: "Postcode Map Data"
-    type: string
-    map_layer_name: uk_postcode_areas
-    sql: replace(${postcode_object},'"', '') ;;
-  }
+#  dimension: postcode_location {
+#    label: "Postcode Map Data"
+#    type: string
+#    map_layer_name: uk_postcode_areas
+#    sql:
+#    CASE WHEN ${postcode_object} WHERE right(col1 REGEXP '^[0-9]+$' ;;
+#  }
 
   dimension: postcode_testing_validation {
     label: "Sign Up Activities - Postcode"
