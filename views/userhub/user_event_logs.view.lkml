@@ -26,7 +26,6 @@ view: user_event_logs {
   }
 
   #@ISOBEL 6 measures required, 3 date, 3 yesno
- #measure for SQL: max event date where type = invitation, activation, deletion
  #measure for SQL: yesno where count of invitation, activation, deletion > 0
 
   dimension: event_type {
@@ -37,50 +36,45 @@ view: user_event_logs {
     sql: ${TABLE}.event_type ;;
   }
 
-  #dimensions and measures for user event log event type link to user account status
-  dimension: invitation_sent {
+  dimension: event_invitation_sent {
     view_label: "1. User Account"
-    label: "Invitation sent"
-    type: date
-    sql:
-      CASE WHEN ${event_type} = 'invitation_sent' THEN ${created_date} END;;
+    label: "Event Invitation Sent"
+    case: {
+      when: {
+        sql: ${event_type} = 'invitation_sent' ;;
+        label: "Referred - Invitation"
+      }
+    }
   }
 
-  measure: event_type_invitation {
+  dimension: event_completed_activation {
+    view_label: "1. User Account"
+    label: "Event Completed Activation"
+    case: {
+      when: {
+        sql: ${event_type} = 'completed_activation' ;;
+        label: "Active - Completed Activation"
+      }
+    }
+  }
+
+  dimension: event_user_deletion  {
+    view_label: "1. User Account"
+    label: "Event User Deletion"
+    case: {
+      when: {
+        sql: ${event_type} = 'user_deleted' ;;
+        label: "User Deleted"
+      }
+    }
+  }
+
+  measure: event_invitation_date {
     view_label: "1. User Account"
     label: "Invitation Sent Date"
     type: date
-    sql: MAX(${invitation_sent}) ;;
-  }
+    sql: CASE WHEN ${event_invitation_sent} IS NOT NULL THEN MAX(${created_date} ;;
 
-  dimension: completed_activation {
-    view_label: "1. User Account"
-    label: "Completed Activation"
-    type: date
-    sql:
-      CASE WHEN ${event_type} = 'completed_activation' THEN ${created_date} END;;
-  }
-
-  measure: event_type_activation {
-    view_label: "1. User Account"
-    label: "Completed Activation Date"
-    type: date
-    sql: MAX(${completed_activation}) ;;
-  }
-
-  dimension: user_deletion_activated {
-    view_label: "1. User Account"
-    label: "User Deletion Activated"
-    type: date
-    sql:
-      CASE WHEN ${event_type} = 'user_deleted' THEN ${created_date} END;;
-  }
-
-  measure: event_type_deletion {
-    view_label: "1. User Account"
-    label: "User Deletion Activation Date"
-    type: date
-    sql: MAX(${user_deletion_activated}) ;;
   }
   #to fix 'enabled' issue, filter by event type representing activated.
 
