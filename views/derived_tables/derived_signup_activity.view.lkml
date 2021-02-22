@@ -113,6 +113,14 @@ view: derived_signup_activity {
     END;;
   }
 
+
+  dimension: postcode_location {
+    label: "Postcode Map Data"
+    type: string
+    map_layer_name: uk_postcode_areas
+    sql: ${postcode_object} ;;
+  }
+
   dimension: postcode_testing_validation {
     label: "Sign Up Activities - Postcode"
     sql:  REPLACE(${postcode_object}, " ", "")
