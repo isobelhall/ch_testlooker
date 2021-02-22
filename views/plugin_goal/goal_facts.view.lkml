@@ -23,24 +23,25 @@ view: goal_facts {
     }
 
 # goal_facts
-#    dimension: set_weight_goal {
-#      type: yesno
-#      description: "User has set a weight goal. Count of 'Weight Goal' is greater than or equal to 1."
-#      sql:
-#      CASE
-#      WHEN ${name} = "Weight Tracking Plugin Weight Goal" AND ${count2} > 0 THEN TRUE
-#      ELSE FALSE
-#      END
-#      ;;
-#      }
+    dimension: set_weight_goal {
+      type: yesno
+      description: "User has set a weight goal. Count of 'Weight Goal' is greater than or equal to 1."
+      sql:
+      CASE
+      WHEN ${name} = "Weight Tracking Plugin Weight Goal" AND ${count2} > 0 THEN 1
+      ELSE 0
+      END
+      ;;
+      }
+
 
   dimension: set_step_goal {
     type: yesno
     description: "User has set a step goal. Count of 'Daily Steps Goal' is greater than or equal to 1."
     sql:
       CASE
-      WHEN ${name} = "Steps Plugin Daily Steps Goal" AND ${count2} > 0 THEN TRUE
-      ELSE FALSE
+      WHEN ${name} = "Steps Plugin Daily Steps Goal" AND ${count2} > 0 THEN 1
+      ELSE 0
       END
       ;;
   }

@@ -72,7 +72,7 @@ view: goals {
     sql: ${TABLE}.updated_at ;;
   }
 
-  dimension: goal_has_been_completed {
+  dimension: goal_has_been_updated {
     label: "Goal Was Updated"
     type: yesno
     sql: CASE WHEN ${goal_updated_raw} IS NOT NULL AND ${goal_updated_date} > ${created_date} THEN TRUE

@@ -114,7 +114,8 @@ view: derived_signup_activity {
   }
 
   dimension: postcode_location {
-    label: "Postcode Map Data"
+    label: "Postcode Area"
+    description: "Postcode area (eg. NG for Nottingham) for mapping to postcode area"
     type: string
     map_layer_name: uk_postcode_areas
     sql:
