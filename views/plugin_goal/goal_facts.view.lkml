@@ -24,6 +24,7 @@ view: goal_facts {
 
 # goal_facts
     dimension: set_weight_goal {
+      hidden: yes
       type: number
       description: "User has set a weight goal. Count of 'Weight Goal' is greater than or equal to 1."
       sql:
@@ -34,6 +35,20 @@ view: goal_facts {
       ;;
       }
 
+  measure: weight_goals {
+    type: sum
+    sql: ${set_weight_goal} ;;
+  }
+
+  measure: has_set_weight_goal {
+    label: "TEST Has set weight goal"
+    type: yesno
+    sql:
+    CASE
+    WHEN ${weight_goals} > 0 then TRUE
+    ELSE FALSE
+    END;;
+  }
 
   dimension: set_step_goal {
     type: yesno
