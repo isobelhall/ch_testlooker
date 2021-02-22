@@ -24,7 +24,7 @@ view: goal_facts {
 
 # goal_facts
     dimension: set_weight_goal {
-      type: yesno
+      type: number
       description: "User has set a weight goal. Count of 'Weight Goal' is greater than or equal to 1."
       sql:
       CASE
