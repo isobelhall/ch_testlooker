@@ -87,6 +87,7 @@ view: user_data {
     view_label: "3. Identifiables"
     label: "First Name"
     type: string
+    hidden: yes
     sql: ${TABLE}.first_name ;;
   }
 
@@ -101,6 +102,7 @@ view: user_data {
     view_label: "3. Identifiables"
     label: "Last Name"
     type: string
+    hidden: yes
     sql: ${TABLE}.last_name ;;
   }
 
@@ -135,6 +137,13 @@ view: user_data {
     label: "System Last Name"
     type: string
     sql: ${TABLE}.sys_last_name ;;
+  }
+
+  # Concatenate first and last name for user
+
+  dimension: full_name {
+    description: "The first and last name for user"
+    sql: CONCAT(${TABLE}.sys_first_name,' ', ${TABLE}.sys_last_name) ;;
   }
 
   dimension_group: updated {
