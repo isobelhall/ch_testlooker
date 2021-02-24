@@ -96,11 +96,11 @@ explore: users {
     view_label: "7.6 Activity Data - All Goals Tracking"
   }
 
-  join: goal_facts {
-    sql_on:   ${users.ppuid} = ${goal_facts.ppuid};;
-    relationship: many_to_one
-    view_label: "7.6 Activity Data - All Goals Tracking"
-  }
+#  join: goal_facts {
+#    sql_on:   ${users.ppuid} = ${goal_facts.ppuid};;
+#    relationship: many_to_one
+#    view_label: "7.6 Activity Data - All Goals Tracking"
+#  }
 
   join: profiles {
     sql_on: ${goals.profile_id} = ${profiles.id} ;;
