@@ -220,11 +220,11 @@ GROUP BY 1
     label: "Programme Elected"
     case: {
       when: {
-        sql: ${result_score_duk} between 0 and 6 ;;
+        sql: ${result_score_duk} between '0' and '6' ;;
         label: "Weight"
       }
       when: {
-        sql: ${result_score_duk} > 7 ;;
+        sql: ${result_score_duk} > '7' ;;
         label: "Prevention"
       }
     }
