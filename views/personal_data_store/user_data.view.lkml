@@ -143,6 +143,9 @@ view: user_data {
 
   dimension: full_name {
     description: "The first and last name for user"
+    view_label: "3. Identifiables"
+    label: "Full Name"
+    type: string
     sql: CONCAT(${TABLE}.sys_first_name,' ', ${TABLE}.sys_last_name) ;;
   }
 
