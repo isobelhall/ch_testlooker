@@ -39,7 +39,7 @@ view: goal_facts {
     type: number
   }
 
-  dimension: user_has_hit_goals {
+  dimension: user_has_updated_goals {
     label: "User has hit a weight target"
     type: yesno
     sql:
