@@ -9,6 +9,27 @@ view: units {
     sql: ${TABLE}.id ;;
   }
 
+  # Add dimension for identifying programme for partner
+  dimension: programme_name {
+    description: "The programme name for a specific partner"
+    group_label: "1. User Account"
+    label: "Programme"
+    case: {
+      when: {
+        sql: ${id} in (13,17,20,43,47) ;;
+        label: "Management"
+      }
+      when: {
+        sql: ${id} = 38 ;;
+        label: "Programme-derived"
+      }
+      when: {
+        sql: ${id} in (44, 45) ;;
+        label: "Not Live"
+      }
+    }
+  }
+
   dimension_group: created {
     hidden: yes
     type: time
