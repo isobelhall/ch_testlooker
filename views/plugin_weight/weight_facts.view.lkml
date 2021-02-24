@@ -18,6 +18,7 @@ view: weight_facts {
   }
 
   dimension: count_hit_target {
+    hidden: yes
     label: "Count - Hit Weight Target"
     type: number
   }

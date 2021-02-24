@@ -1,63 +1,51 @@
 view: goal_facts {
 
-    derived_table: {
-      explore_source: users {
-        column: ppuid {}
-        column: name { field: profiles.name }
-        column: goal_completed { field: goals.goal_completed}
-        column: goal_updated { field: goals.goal_has_been_updated}
-        }
+  derived_table: {
+    explore_source: users {
+      column: ppuid {}
+      column: count { field: goals.count }
+      column: count_hit_target {field: goals.count_hit_target}
+      column: count_goals_updated {field: goals.count_goals_updated}
     }
-    dimension: name {
-      hidden: yes
-    }
-    dimension: count2 {
-      hidden: yes
-      label: "0. General Count - Participants"
-      description: "Count of all participants against other selected criteria"
-      type: number
-    }
-    dimension: ppuid {
-      primary_key: yes
-      label: "1. User Account CHUID"
-      description: "Platform identifier for each participant"
-    }
-
-# goal_facts
-    dimension: set_weight_goal {
-      type: number
-      description: "User has set a weight goal. Count of 'Weight Goal' is greater than or equal to 1."
-      sql:
-      CASE
-      WHEN ${name} = "Weight Tracking Plugin Weight Goal" AND ${count2} > 0 THEN 1
-      ELSE 0
-      END
-      ;;
-      }
-
-  measure: weight_goals {
-    type: sum
-    sql: ${set_weight_goal} ;;
+  }
+  dimension: ppuid {
+    primary_key: yes
+    hidden: yes
+    description: "Platform identifier for each participant"
+  }
+  dimension: count {
+    hidden: yes
+    label: "Count - Weights Tracked"
+    type: number
   }
 
-  measure: has_set_weight_goal {
-    label: "TEST Has set weight goal"
+  dimension: count_hit_target {
+    hidden: yes
+    label: "Count - Hit Weight Target"
+    type: number
+  }
+
+  dimension: user_has_tracked_goals {
     type: yesno
     sql:
-    CASE
-    WHEN ${weight_goals} > 0 then TRUE
+    CASE WHEN ${count} > 0 THEN TRUE
     ELSE FALSE
     END;;
   }
 
-  dimension: set_step_goal {
-    type: yesno
-    description: "User has set a step goal. Count of 'Daily Steps Goal' is greater than or equal to 1."
-    sql:
-      CASE
-      WHEN ${name} = "Steps Plugin Daily Steps Goal" AND ${count2} > 0 THEN 1
-      ELSE 0
-      END
-      ;;
+  dimension: count_goals_updated {
+    hidden: yes
+    label: "Count - Hit Goal Targets"
+    type: number
   }
+
+  dimension: user_has_hit_goals {
+    label: "User has hit a weight target"
+    type: yesno
+    sql:
+    CASE WHEN ${count_goals_updated} > 0 THEN TRUE
+    ELSE FALSE
+    END;;
+  }
+
  }

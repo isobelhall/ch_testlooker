@@ -9,6 +9,12 @@ view: goals {
     sql: ${TABLE}.id ;;
   }
 
+  dimension: user_id {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.user_id ;;
+  }
+
   dimension_group: completed {
     label: "Goal Completion Date"
     type: time
@@ -24,12 +30,6 @@ view: goals {
     sql: ${TABLE}.completed_at ;;
   }
 
-  dimension: goal_completed {
-    label: "Goal Completed"
-    type: yesno
-    sql: CASE WHEN ${completed_date} IS NOT NULL THEN TRUE
-    ELSE FALSE END ;;
-  }
 
   dimension_group: created {
     label: "Goal Creation Date"
@@ -72,6 +72,29 @@ view: goals {
     sql: ${TABLE}.updated_at ;;
   }
 
+#MEASURES/DIMENSIONS FOR IF USER HAS HIT A WEIGHT TARGET
+  measure: count {
+    label: "Count - Goals Tracked"
+    type: count
+    drill_fields: [id, users.ppuid]
+  }
+
+  dimension: goal_completed {
+    label: "Goal Completed"
+    type: yesno
+    sql:
+      CASE WHEN ${completed_date} IS NOT NULL THEN TRUE
+      ELSE FALSE END ;;
+    drill_fields: [id, users.ppuid]
+    }
+
+  measure: count_hit_target {
+    label: "Count - Goals hit"
+    type: count
+    filters: [goal_completed: "Yes"]
+    drill_fields: [id, users.ppuid, profiles.name]
+  }
+
   dimension: goal_has_been_updated {
     label: "Goal Was Updated"
     type: yesno
@@ -79,16 +102,11 @@ view: goals {
       ELSE FALSE END ;;
   }
 
-  dimension: user_id {
-    hidden: yes
-    type: number
-    # hidden: yes
-    sql: ${TABLE}.user_id ;;
+  measure: count_goals_updated {
+    label: "Count - Goals hit"
+    type: count
+    filters: [goal_has_been_updated: "Yes"]
+    drill_fields: [id, users.ppuid, profiles.name]
   }
 
-  measure: count {
-    label: "Count - Goals"
-    type: count
-    drill_fields: [id, profiles.id, profiles.name, users.id, answers.count]
-  }
 }
