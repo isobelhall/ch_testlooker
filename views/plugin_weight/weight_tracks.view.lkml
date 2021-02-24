@@ -58,7 +58,7 @@ view: weight_tracks {
     sql: ${TABLE}.weight_goal ;;
   }
 
-
+#MEASURES/DIMENSIONS FOR IF USER HAS HIT A WEIGHT TARGET
   dimension: hit_target {
     label: "Weight Measurement meets weight target?"
     type: yesno
