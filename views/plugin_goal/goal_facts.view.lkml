@@ -2,10 +2,11 @@ view: goal_facts {
 
     derived_table: {
       explore_source: users {
-        column: name { field: profiles.name }
-        column: count2 {}
         column: ppuid {}
-      }
+        column: name { field: profiles.name }
+        column: goal_completed { field: goals.goal_completed}
+        column: goal_updated { field: goals.goal_has_been_updated}
+        }
     }
     dimension: name {
       hidden: yes
@@ -17,7 +18,6 @@ view: goal_facts {
       type: number
     }
     dimension: ppuid {
-      hidden: yes
       primary_key: yes
       label: "1. User Account CHUID"
       description: "Platform identifier for each participant"
