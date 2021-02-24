@@ -216,6 +216,20 @@ GROUP BY 1
   dimension: navigator_call_phoenix {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.navigator_call_phoenix"));;}
   dimension: result_duk {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.result_duk"));;}
   dimension: result_score_duk {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.result_score_duk"));;}
+  dimension: duk_result_programme {
+    label: "Programme Elected"
+    case: {
+      when: {
+        sql: ${result_score_duk} between 0 and 6 ;;
+        label: "Weight"
+      }
+      when: {
+        sql: ${result_score_duk} > 7 ;;
+        label: "Prevention"
+      }
+    }
+  }
+
   dimension: smoker {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.smoker"));;}
   dimension: smoker_english {
     type: string
