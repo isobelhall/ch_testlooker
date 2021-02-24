@@ -11,7 +11,6 @@ view: units {
 
   # Add dimension for identifying programme for partner
   dimension: programme_name {
-    group_label: "1. User Account"
     label: "Programme"
     case: {
       when: {
