@@ -4,18 +4,21 @@ view: feedbacks {
 
   dimension: id {
     primary_key: yes
+    group_label: "1. User Account"
     label: "Feedback UID"
     type: number
     sql: ${TABLE}.id ;;
   }
 
   dimension: comment {
+    group_label: "1. User Account"
     label: "Feedback Comments"
     type: string
     sql: ${TABLE}.comment ;;
   }
 
   dimension_group: created {
+    group_label: "1. User Account"
     type: time
     label: "Feedback Date"
     timeframes: [
@@ -32,22 +35,26 @@ view: feedbacks {
 
   dimension: package_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.package_id ;;
   }
 
   dimension: page_name {
+    group_label: "1. User Account"
     label: "Page Name"
     type: string
     sql: ${TABLE}.page_name ;;
   }
 
   dimension: page_type {
+    group_label: "1. User Account"
     label: "Page Type"
     type: string
     sql: ${TABLE}.page_type ;;
   }
 
   dimension: page_url {
+    group_label: "1. User Account"
     label: "Page Name URL"
     type: string
     sql: ${TABLE}.page_url ;;
@@ -55,10 +62,12 @@ view: feedbacks {
 
   dimension: program_id {
     type: number
+    hidden: yes
     sql: ${TABLE}.program_id ;;
   }
 
   dimension: rating {
+    group_label: "1. User Account"
     label: "Feedback Rating"
     type: string
     sql: ${TABLE}.rating ;;
@@ -66,12 +75,13 @@ view: feedbacks {
 
   dimension: unit_id {
     type: number
-    # hidden: yes
+    hidden: yes
     sql: ${TABLE}.unit_id ;;
   }
 
   dimension_group: updated {
     type: time
+    hidden: yes
     timeframes: [
       raw,
       time,
