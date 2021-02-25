@@ -13,8 +13,8 @@ view: fit_tracks_facts {
     description: "Platform identifier for each participant"
   }
   dimension: has_counted_steps {
-    label: "Count - Fit track/steps Tracked"
-    type: number
+    label: "User has tracked steps"
+    type: yesno
   }
 
 #  dimension: user_has_tracked_steps {
