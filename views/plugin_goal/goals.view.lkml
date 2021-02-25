@@ -104,6 +104,7 @@ view: goals {
 
   measure: count_goals_updated {
     label: "Count - Goals hit"
+    hidden: yes
     type: count
     filters: [goal_has_been_updated: "Yes"]
     drill_fields: [id, users.ppuid, profiles.name]
