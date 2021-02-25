@@ -1,5 +1,6 @@
 view: goal_facts {
 
+
   derived_table: {
     explore_source: users {
       column: ppuid {}
@@ -15,8 +16,18 @@ view: goal_facts {
   }
   dimension: count {
     hidden: yes
-    label: "Count - Weights Tracked"
+    label: "Count - Goals Tracked"
     type: number
+  }
+
+  dimension: has_set_goal {
+    label: "User has set a goal"
+    description: "Has this user set at least one goal on the goals plugin?"
+    type: yesno
+    sql:
+    CASE WHEN ${count} > 0 THEN TRUE
+    ELSE FALSE
+    END;;
   }
 
   dimension: count_hit_target {
@@ -25,22 +36,25 @@ view: goal_facts {
     type: number
   }
 
-  dimension: user_has_tracked_goals {
+  dimension: user_has_completed_goals {
+    label: "User has completed a goal"
+    description: "Has this user completed any goals?"
     type: yesno
     sql:
-    CASE WHEN ${count} > 0 THEN TRUE
+    CASE WHEN ${count_hit_target} > 0 THEN TRUE
     ELSE FALSE
     END;;
   }
 
   dimension: count_goals_updated {
     hidden: yes
-    label: "Count - Hit Goal Targets"
+    label: "Count - Goals Updated"
     type: number
   }
 
   dimension: user_has_updated_goals {
-    label: "User has hit a weight target"
+    label: "User has updated a goal"
+    description: "Has this user updated any goals?"
     type: yesno
     sql:
     CASE WHEN ${count_goals_updated} > 0 THEN TRUE
