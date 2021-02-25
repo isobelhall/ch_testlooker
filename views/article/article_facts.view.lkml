@@ -20,12 +20,11 @@ view: article_facts {
 
     dimension: count {
       hidden: yes
-      label: "7.1 Activity Data - Articles Count - Articles Accessed"
       type: number
     }
 
-  dimension: has_watched_video {
-    label: "Has watched a video"
+  dimension: has_read_article {
+    label: "Has read an article"
     description: "Has this participant watched a video?"
     type: yesno
     sql:
