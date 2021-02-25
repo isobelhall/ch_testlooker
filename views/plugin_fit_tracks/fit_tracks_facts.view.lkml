@@ -4,7 +4,7 @@ view: fit_tracks_facts {
     explore_source: users {
       column: ppuid {}
       column: count { field: fit_tracks.count }
-      column: count_hit_target {field: fit_tracks.count_hit_target}
+      column: count_hit_step_target {field: fit_tracks.count_hit_target}
     }
   }
   dimension: ppuid {
