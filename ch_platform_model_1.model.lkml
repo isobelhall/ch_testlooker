@@ -57,6 +57,13 @@ explore: users {
     view_label: "1. User Account"
   }
 
+  # Add relationship join for Feedbacks as view necessary for Healthy Living Feedback Report
+  join: feedbacks {
+    sql_on: ${users.id} = ${feedbacks.user_id} ;;
+    relationship: many_to_one
+    view_label: "1. User Account"
+  }
+
   join: articles_accessed {
     sql_on: ${users.id} = ${articles_accessed.user_id} ;;
     #changed to "one to many"
