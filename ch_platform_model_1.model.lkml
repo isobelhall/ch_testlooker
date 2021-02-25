@@ -147,8 +147,6 @@ explore: users {
     view_label: "6. Coaching"
   }
 
-
-
   join: derived_activity_2 {
     view_label: "7. Activity Data"
     sql_on: ${derived_activity_2.uid} = ${users.id} ;;
