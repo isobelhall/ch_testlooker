@@ -24,6 +24,7 @@ view: optional_data_flattened {
     sql: ${TABLE}.hl_properties ;;
   }
 
+  dimension: hl_address_postcode {sql:TRIM(BOTH '"' FROM JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.hl_properties, '$."postcode"')));;}
   dimension: diabetes_diagnosis_updated {sql:TRIM(BOTH '"' FROM JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.hl_properties, '$."diabetes-diagnosis-updated"')));;}
   dimension: diabetes_diagnosis_healthy_living {
     type: string

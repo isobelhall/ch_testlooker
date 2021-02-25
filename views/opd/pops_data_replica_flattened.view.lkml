@@ -230,6 +230,8 @@ GROUP BY 1
     }
   }
 
+  dimension: source_of_referral {sql:JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.find_out_about_healthy_living"));;}
+
   dimension: smoker {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.smoker"));;}
   dimension: smoker_english {
     type: string

@@ -28,6 +28,33 @@ view: units {
     }
   }
 
+  # Add dimension for Healthy Living route of referral
+  dimension: HL_route_of_referral {
+    label: "HL Route of Referral"
+    case: {
+      when: {
+        sql: ${id} = 47 ;;
+        label: "Private Beta Self-Referral"
+      }
+      when: {
+        sql: ${id} = 37 ;;
+        label: "Live - Self referral"
+      }
+      when: {
+        sql: ${id} = 36 ;;
+        label: "Live - Hub / Other referral"
+      }
+      when: {
+        sql: ${id} = 35 ;;
+        label: "Live - GP referrals"
+      }
+      when: {
+        sql: ${id} = 34 ;;
+        label: "Live - Controlled onboarding"
+      }
+    }
+  }
+
   dimension_group: created {
     hidden: yes
     type: time
