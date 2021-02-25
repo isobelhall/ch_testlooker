@@ -4,17 +4,20 @@ view: feedbacks {
 
   dimension: id {
     primary_key: yes
+    label: "Feedback UID"
     type: number
     sql: ${TABLE}.id ;;
   }
 
   dimension: comment {
+    label: "Feedback Comments"
     type: string
     sql: ${TABLE}.comment ;;
   }
 
   dimension_group: created {
     type: time
+    label: "Feedback Date"
     timeframes: [
       raw,
       time,
@@ -33,16 +36,19 @@ view: feedbacks {
   }
 
   dimension: page_name {
+    label: "Page Name"
     type: string
     sql: ${TABLE}.page_name ;;
   }
 
   dimension: page_type {
+    label: "Page Type"
     type: string
     sql: ${TABLE}.page_type ;;
   }
 
   dimension: page_url {
+    label: "Page Name URL"
     type: string
     sql: ${TABLE}.page_url ;;
   }
@@ -53,6 +59,7 @@ view: feedbacks {
   }
 
   dimension: rating {
+    label: "Feedback Rating"
     type: string
     sql: ${TABLE}.rating ;;
   }
