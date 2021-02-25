@@ -77,7 +77,9 @@ view: fit_tracks {
   }
 
   measure: has_counted_steps {
-    label: "Has counted steps TEST"
+    #hidden so only fit_track_facts measure shows
+    hidden: yes
+    label: "Has counted steps?"
     type: yesno
     sql:
     CASE WHEN ${count} > 0 THEN TRUE
