@@ -87,7 +87,6 @@ view: user_data {
     view_label: "3. Identifiables"
     label: "First Name"
     type: string
-    hidden: yes
     sql: ${TABLE}.first_name ;;
   }
 
@@ -102,7 +101,6 @@ view: user_data {
     view_label: "3. Identifiables"
     label: "Last Name"
     type: string
-    hidden: yes
     sql: ${TABLE}.last_name ;;
   }
 
