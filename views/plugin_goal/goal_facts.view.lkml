@@ -38,7 +38,13 @@ view: goal_facts {
     drill_fields: [users.ppuid]
   }
 
-  dimension: count_hit_target {
+  measure: count_users_set_goals{
+    label: "Counts - Users that have completed goals"
+    type: count
+    filters: [has_set_goal: "Yes"]
+  }
+
+  dimension: count_goal_completed {
     label: "Count - Times Goal Completed"
     type: number
     drill_fields: [users.ppuid]
@@ -49,10 +55,16 @@ view: goal_facts {
     description: "Has this user completed any goals?"
     type: yesno
     sql:
-    CASE WHEN ${count_hit_target} > 0 THEN TRUE
+    CASE WHEN ${count_goal_completed} > 0 THEN TRUE
     ELSE FALSE
     END;;
     drill_fields: [users.ppuid]
+  }
+
+  measure: count_users_completed_goals {
+    label: "Counts - Users that have completed goals"
+    type: count_distinct
+    filters: [user_has_completed_goals: "Yes"]
   }
 
   dimension: count_goals_updated {
@@ -71,5 +83,11 @@ view: goal_facts {
     END;;
     drill_fields: [users.ppuid]
   }
+
+measure: count_users_updated_goals {
+  label: "Counts - Users that have updated goals"
+  type: count_distinct
+  filters: [user_has_updated_goals: "Yes"]
+}
 
  }
