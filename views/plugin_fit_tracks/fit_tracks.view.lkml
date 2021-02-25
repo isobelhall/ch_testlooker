@@ -76,6 +76,16 @@ view: fit_tracks {
     drill_fields: [id, users.ppuid]
   }
 
+  measure: has_counted_steps {
+    label: "Has counted steps TEST"
+    type: yesno
+    sql:
+    CASE WHEN ${count} > 0 THEN TRUE
+    ELSE FALSE
+    END;;
+    drill_fields: [id, users.ppuid]
+  }
+
 #MEASURES/DIMENSIONS FOR IF USER HAS HIT A WEIGHT TARGET
   dimension: hit_target {
     label: "Fit Track Hit Target"
