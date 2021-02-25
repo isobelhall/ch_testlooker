@@ -5,7 +5,7 @@ view: goal_facts {
     explore_source: users {
       column: ppuid {}
       column: count { field: goals.count }
-      column: count_hit_target {field: goals.count_hit_target}
+      column: count_goal_completed {field: goals.count_hit_target}
       column: count_goals_updated {field: goals.count_goals_updated}
     }
   }
