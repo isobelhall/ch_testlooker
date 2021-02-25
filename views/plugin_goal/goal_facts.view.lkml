@@ -30,10 +30,10 @@ view: goal_facts {
   dimension: has_set_goal {
     label: "User has set a goal"
     description: "Has this user set at least one goal on the goals plugin?"
-    type: yesno
+    type: number
     sql:
-    CASE WHEN ${count} > 0 THEN TRUE
-    ELSE FALSE
+    CASE WHEN ${count} > 0 THEN 1
+    ELSE 0
     END;;
     drill_fields: [users.ppuid]
   }
@@ -41,7 +41,7 @@ view: goal_facts {
   measure: count_users_set_goals{
     label: "Counts - Users that have completed goals"
     type: count
-    filters: [has_set_goal: "Yes"]
+    filters: [has_set_goal: "1"]
   }
 
   dimension: count_goal_completed {
@@ -53,10 +53,10 @@ view: goal_facts {
   dimension: user_has_completed_goals {
     label: "User has completed a goal"
     description: "Has this user completed any goals?"
-    type: yesno
+    type: number
     sql:
-    CASE WHEN ${count_goal_completed} > 0 THEN TRUE
-    ELSE FALSE
+    CASE WHEN ${count_goal_completed} > 0 THEN 1
+    ELSE 0
     END;;
     drill_fields: [users.ppuid]
   }
@@ -64,7 +64,7 @@ view: goal_facts {
   measure: count_users_completed_goals {
     label: "Counts - Users that have completed goals"
     type: count_distinct
-    filters: [user_has_completed_goals: "Yes"]
+    filters: [user_has_completed_goals: "1"]
   }
 
   dimension: count_goals_updated {
@@ -76,10 +76,10 @@ view: goal_facts {
   dimension: user_has_updated_goals {
     label: "User has updated a goal"
     description: "Has this user updated any goals?"
-    type: yesno
+    type: number
     sql:
-    CASE WHEN ${count_goals_updated} > 0 THEN TRUE
-    ELSE FALSE
+    CASE WHEN ${count_goals_updated} > 0 THEN 1
+    ELSE 0
     END;;
     drill_fields: [users.ppuid]
   }
@@ -87,7 +87,7 @@ view: goal_facts {
 measure: count_users_updated_goals {
   label: "Counts - Users that have updated goals"
   type: count_distinct
-  filters: [user_has_updated_goals: "Yes"]
+  filters: [user_has_updated_goals: "1"]
 }
 
  }
