@@ -16,6 +16,10 @@ view: user_3appts {
           field: appointments.count_attended
           value: ">=3"
         }
+        filters: {
+          field: users.ppuid
+          value: "-NULL"
+        }
       }
     }
 
