@@ -57,6 +57,13 @@ explore: users {
     view_label: "1. User Account"
   }
 
+  # Add relationship join for Feedbacks as view necessary for Healthy Living Feedback Report
+  join: feedbacks {
+    sql_on: ${users.id} = ${feedbacks.user_id} ;;
+    relationship: many_to_one
+    view_label: "1. User Account"
+  }
+
   join: articles_accessed {
     sql_on: ${users.id} = ${articles_accessed.user_id} ;;
     #changed to "one to many"
@@ -202,20 +209,25 @@ explore: users {
     view_label: "3. Identifiables"
   }
 
+# flattened views for pops and optional data table
   join: pops_data_replica_flattened {
     sql_on: ${pops_data_replica_flattened.user_id} =  ${users.id} ;;
     relationship: many_to_one
     view_label: "2. Demographics / User Attributes"
   }
 
-# flattened views for pops and optional data table
   join: optional_data_flattened {
     sql_on:${optional_data_flattened.user_id} =  ${users.id} ;;
     relationship: many_to_one
     view_label: "2. HL Demographics / User Attributes"
   }
 
-
+# Add relationship and join for excluding participants from reporting
+  join: exclude_participants {
+    sql_on: ${exclude_participants.ch_uid} = ${users.ppuid} ;;
+    relationship: many_to_one
+    view_label: "1. User Account"
+  }
 
 # REMOVED 25/02/2021 - derived_engagement... needs linking to derived_activity_3,
 #  join: derived_engagement_3m {
