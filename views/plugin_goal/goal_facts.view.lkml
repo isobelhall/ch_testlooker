@@ -18,6 +18,7 @@ view: goal_facts {
   measure: count_ppts_with_goals {
     label: "Count - Participants with goals"
     type: count
+    drill_fields: [users.ppuid]
   }
 
   dimension: count {
@@ -34,12 +35,13 @@ view: goal_facts {
     CASE WHEN ${count} > 0 THEN TRUE
     ELSE FALSE
     END;;
+    drill_fields: [users.ppuid]
   }
 
   dimension: count_hit_target {
-    hidden: yes
-    label: "Count - Hit Weight Target"
+    label: "Count - Times Goal Completed"
     type: number
+    drill_fields: [users.ppuid]
   }
 
   dimension: user_has_completed_goals {
@@ -50,12 +52,13 @@ view: goal_facts {
     CASE WHEN ${count_hit_target} > 0 THEN TRUE
     ELSE FALSE
     END;;
+    drill_fields: [users.ppuid]
   }
 
   dimension: count_goals_updated {
-    hidden: yes
-    label: "Count - Goals Updated"
+    label: "Count - Times Goals Updated"
     type: number
+    drill_fields: [users.ppuid]
   }
 
   dimension: user_has_updated_goals {
@@ -66,6 +69,7 @@ view: goal_facts {
     CASE WHEN ${count_goals_updated} > 0 THEN TRUE
     ELSE FALSE
     END;;
+    drill_fields: [users.ppuid]
   }
 
  }
