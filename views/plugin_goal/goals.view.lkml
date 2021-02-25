@@ -72,7 +72,6 @@ view: goals {
     sql: ${TABLE}.updated_at ;;
   }
 
-#MEASURES/DIMENSIONS FOR IF USER HAS HIT A WEIGHT TARGET
   measure: count {
     label: "Count - Goals Tracked"
     type: count
@@ -110,4 +109,11 @@ view: goals {
     drill_fields: [id, users.ppuid, profiles.name]
   }
 
+
+#MEASURES/DIMENSIONS FOR IF USER HAS HIT A WEIGHT TARGET,
+#Weight Tracking Plugin Weight Goal
+#Steps Plugin Daily Steps Goal
+  #  dimension:  {
+
+  #  }
 }
