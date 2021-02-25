@@ -17,8 +17,8 @@ view: derived_characteristics {
       column: count { field: derived_activity_2.count }
       column: progress { field: progress_statistics.progress }
       column: account_older_than_90_days {}
-      column: max_sessions { field: derived_activity_2.max_sessions }
-      column: days_since_max_event {field: derived_activity_2.days_since_max_event}
+#      column: max_sessions { field: derived_activity_2.max_sessions }
+#      column: days_since_max_event {field: derived_activity_2.days_since_max_event}
       column: count_weight { field: derived_activity_2.count_weight }
       column: count_video { field: derived_activity_2.count_video }
       column: count_steps { field: derived_activity_2.count_steps }

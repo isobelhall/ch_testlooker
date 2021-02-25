@@ -99,8 +99,17 @@ view: food_tracks {
     group_label: "Food Tracker Data"
     label: "Count - Food Tracker"
     type: count
-    drill_fields: [id, users.id]
+    drill_fields: [id, users.ppuid]
   }
 
+  measure: user_has_tracked_meals {
+    label: "Has tracked Meals"
+    type: yesno
+    sql:
+    CASE WHEN ${count} > 0 THEN TRUE
+    ELSE FALSE
+    END;;
+    drill_fields: [id, users.ppuid]
+  }
 
 }

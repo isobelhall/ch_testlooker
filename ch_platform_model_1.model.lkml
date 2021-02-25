@@ -63,6 +63,7 @@ explore: users {
     relationship: many_to_one
     view_label: "7.1 Activity Data - Articles"
   }
+
   join: articles {
     sql_on: ${articles_accessed.article_id} = ${articles.id} ;;
     relationship: many_to_one
@@ -160,17 +161,18 @@ explore: users {
     relationship: many_to_one
   }
 
-  join: sessions {
-    view_label: "7. Activity Data"
-    sql_on: ${derived_activity_2.uid} = ${sessions.session_id} ;;
-    relationship: many_to_one
-  }
-
-  join: session_end {
-    view_label: "7. Activity Data"
-    sql_on: ${session_end.object_id} = ${derived_activity_2.object_id} ;;
-    relationship: one_to_one
-  }
+# REMOVED 25/02/2021 - sessions... needs linking to derived_activity_3,
+#  join: sessions {
+#    view_label: "7. Activity Data"
+#    sql_on: ${derived_activity_2.uid} = ${sessions.session_id} ;;
+#    relationship: many_to_one
+#  }
+#
+#  join: session_end {
+#    view_label: "7. Activity Data"
+#    sql_on: ${session_end.object_id} = ${derived_activity_2.object_id} ;;
+#    relationship: one_to_one
+#  }
 
   join: plugins_accessed {
     sql_on: ${plugins_accessed.user_id} = ${users.id};;
@@ -204,16 +206,17 @@ explore: users {
   }
 
 
-  join: derived_engagement_3m {
-    view_label: "1a. Engagement at 3m"
-    sql_on: ${derived_engagement_3m.ppuid} = ${users.ppuid} ;;
-    relationship: one_to_one
-  }
 
-  join: derived_engagement_6m {
-    view_label: "1a. Engagement at 6m"
-    sql_on: ${derived_engagement_6m.ppuid} = ${users.ppuid} ;;
-    relationship: one_to_one
-  }
+# REMOVED 25/02/2021 - derived_engagement... needs linking to derived_activity_3,
+#  join: derived_engagement_3m {
+#    view_label: "1a. Engagement at 3m"
+#    sql_on: ${derived_engagement_3m.ppuid} = ${users.ppuid} ;;
+#    relationship: one_to_one
+#  }
+#  join: derived_engagement_6m {
+#    view_label: "1a. Engagement at 6m"
+#    sql_on: ${derived_engagement_6m.ppuid} = ${users.ppuid} ;;
+#    relationship: one_to_one
+#  }
 
 }
