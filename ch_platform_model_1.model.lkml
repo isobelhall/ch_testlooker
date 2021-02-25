@@ -70,6 +70,18 @@ explore: users {
     view_label: "7.1 Activity Data - Articles"
   }
 
+    join: article_facts {
+      sql_on: ${article_facts.ppuid} = ${users.ppuid};;
+      relationship: one_to_one
+      view_label: "7.1 Activity Data - Articles"
+    }
+
+    join: video_facts {
+      sql_on: ${video_facts.ppuid}= ${users.ppuid};;
+      relationship: one_to_one
+      view_label: "7.1 Activity Data - Articles"
+    }
+
   join: weight_tracks {
     sql_on: ${weight_tracks.user_id} =${users.id};;
     relationship: many_to_one
