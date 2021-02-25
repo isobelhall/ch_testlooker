@@ -3,7 +3,7 @@ view: fit_tracks_facts {
   derived_table: {
     explore_source: users {
       column: ppuid {}
-      column: count { field: fit_tracks.sum_logging_steps }
+      column: count { field: fit_tracks.count }
       column: count_hit_step_target {field: fit_tracks.count_hit_target}
     }
   }
