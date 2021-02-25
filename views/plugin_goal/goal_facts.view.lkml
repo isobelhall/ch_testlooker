@@ -14,6 +14,12 @@ view: goal_facts {
     hidden: yes
     description: "Platform identifier for each participant"
   }
+
+  measure: count_ppts_with_goals {
+    label: "Count - Participants with goals"
+    type: count
+  }
+
   dimension: count {
     hidden: yes
     label: "Count - Goals Tracked"
