@@ -18,6 +18,7 @@ view: fit_tracks_facts {
   }
 
   dimension: user_has_tracked_steps {
+    label: "User has tracked steps"
     type: yesno
     sql:
     CASE WHEN ${count} > 0 THEN TRUE
@@ -32,8 +33,7 @@ view: fit_tracks_facts {
   }
 
 
-
-  dimension: has_tracked_weight {
+  dimension: has_tracked_steps {
     label: "User has hit a Fit track/steps target"
     type: yesno
     sql:

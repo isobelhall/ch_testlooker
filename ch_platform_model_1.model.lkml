@@ -84,6 +84,13 @@ explore: users {
     relationship: many_to_one
     view_label: "7.4 Activity Data - Step/Fit Tracking"
   }
+
+  join: fit_tracks_facts {
+    sql_on: ${weight_facts.ppuid} = ${users.ppuid};;
+    relationship: one_to_one
+    view_label: "7.4 Activity Data - Step/Fit Tracking"
+  }
+
   join: progress_statistics {
     sql_on: ${progress_statistics.user_id} = ${users.id};;
     relationship: many_to_one
