@@ -30,6 +30,14 @@ explore: users {
     relationship: many_to_one
   }
 
+#view_label: "0. General"
+
+  join: user_3appts {
+    view_label: "0. General"
+    sql_on: ${users.ppuid} = ${user_3appts.CHUID} ;;
+    #changed to "one to many"
+    relationship: many_to_one
+  }
 
   join: derived_characteristics {
     sql_on: ${derived_characteristics.ppuid} = ${users.ppuid} ;;

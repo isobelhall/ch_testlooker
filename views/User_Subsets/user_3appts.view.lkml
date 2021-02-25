@@ -19,7 +19,7 @@ view: user_3appts {
       }
     }
 
-  dimension: Users_appts {
+  dimension: CHUID {
     primary_key: yes
     label: "Users - 3+ appts attended in first 12 weeks"
     sql: ${TABLE}.ppuid ;;
