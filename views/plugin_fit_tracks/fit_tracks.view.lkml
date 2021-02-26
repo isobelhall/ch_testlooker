@@ -33,13 +33,23 @@ view: fit_tracks {
   }
 
 
-
   dimension: logging_steps {
     label: "Fit Track Steps"
     type: number
     sql: ${TABLE}.logging_steps ;;
     drill_fields: [id, users.ppuid]
   }
+
+  dimension: Logged_steps {
+    label: "Step count is greater than 0"
+    type: yesno
+    sql:
+    CASE
+    WHEN ${logging_steps} > 0 THEN TRUE
+    ELSE FALSE
+    END;;
+  }
+
 
   measure: sum_logging_steps {
     label: "Count - Steps Recorded"
