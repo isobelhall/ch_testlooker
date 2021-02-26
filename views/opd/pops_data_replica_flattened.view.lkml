@@ -26,6 +26,29 @@ GROUP BY 1
 
   dimension: activity_plan {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.activity_plan"));;}
   dimension: bmi {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.bmi"));;}
+  # add BMI score to measure points for BMI
+  dimension: menzis_bmi_score {
+    label: "Menzis BMI Score"
+    case: {
+      when: {
+        sql: ${bmi} < 25 ;;
+        label: "0pt"
+      }
+      when: {
+        sql: ${bmi} between 25 and 29.9 ;;
+        label: "3pt"
+      }
+      when: {
+        sql: ${bmi} between 30 and 34.9 ;;
+        label: "5pt"
+      }
+      when: {
+        sql: ${bmi} > 35 ;;
+        label: "8pt"
+      }
+      else: "Null"
+    }
+  }
   dimension: choose_your_eating_plan_female {sql:JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.choose_your_eating_plan_female"));;}
   dimension: choose_your_eating_plan_french {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.choose_your_eating_plan_french"));;}
   dimension: choose_your_eating_plan_german_version {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.choose_your_eating_plan_german_version"));;}
