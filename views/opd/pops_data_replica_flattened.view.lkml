@@ -298,6 +298,7 @@ GROUP BY 1
   dimension: tricky_situations_problem {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.tricky_situations_problem"));;}
   dimension: pops_weight {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.weight"));;}
   dimension: weight_reminder {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.weight_reminder"));;}
+  dimension: menzis_referral_route {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.iam"));;}
 
   set: detail {
     fields: [user_id, properties]
