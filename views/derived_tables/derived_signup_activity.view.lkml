@@ -105,6 +105,14 @@ view: derived_signup_activity {
     sql: ${TABLE}.ObjectValue ;;
   }
 
+  dimension: postcode_raw {
+    label: "Sign Up Activities - Postcode"
+    type: string
+    sql: CASE WHEN ${object_type} = "pops-address" THEN (${TABLE}.ObjectValue)
+          ELSE NULL
+          END;;
+  }
+
   dimension: postcode_object {
     label: "Sign Up Activities - Postcode"
     type: string
