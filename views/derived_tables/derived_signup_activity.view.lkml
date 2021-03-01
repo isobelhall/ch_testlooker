@@ -135,7 +135,7 @@ view: derived_signup_activity {
 
   dimension: postcode_testing_validation {
     label: "Sign Up Activities - Postcode"
-    sql:  REPLACE(${postcode_object}, " ", "")
+    sql:  REPLACE(${postcode_raw}, " ", "")
     ;;
   ###  sql: INSERT PARCING SQL HERE
   }
