@@ -315,6 +315,15 @@ view: users {
     drill_fields: [detail*]
   }
 
+  measure: percent2 {
+    view_label: "0. General"
+    description: "Percent of all participants against other selected criteria"
+    label: "Percent - Participants"
+    type: percent_of_total
+    sql: ${count2} ;;
+    drill_fields: [detail*]
+  }
+
   measure: count1 {
     label: "Count - Participants"
     description: "Count of all participants against other selected criteria"

@@ -38,7 +38,7 @@ view: progress_statistics {
 
   dimension: progress_tier {
     type: tier
-    tiers: [0,25,50,75,100]
+    tiers: [0,25,50,75,90]
     style: integer
     sql: ${progress} ;;
   }

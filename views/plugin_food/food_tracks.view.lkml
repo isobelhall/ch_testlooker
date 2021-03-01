@@ -10,8 +10,6 @@ view: food_tracks {
   }
 
   dimension_group: created {
-    group_label: "Food Tracker Data"
-    view_label: "7. Activity Data"
     label: "Food Track Recorded"
     type: time
     timeframes: [
@@ -39,8 +37,6 @@ view: food_tracks {
   }
 
   dimension: label_foods {
-    group_label: "Food Tracker Data"
-    view_label: "7. Activity Data"
     label: "Food Track Type"
     type: string
     case: {
@@ -96,7 +92,6 @@ view: food_tracks {
   }
 
   measure: count {
-    group_label: "Food Tracker Data"
     label: "Count - Food Tracker"
     type: count
     drill_fields: [id, users.ppuid]

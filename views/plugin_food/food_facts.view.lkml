@@ -4,9 +4,21 @@ view: food_facts {
     explore_source: users {
       column: ppuid {}
       column: count { field: food_tracks.count }
-      column: count_hit_step_target {field: food_tracks.count_hit_target}
+      column: user_has_tracked_meals { field: food_tracks.user_has_tracked_meals }
     }
   }
 
+  dimension: ppuid {
+    hidden: yes
+    description: "Platform identifier for each participant"
+  }
+  dimension: count {
+    label: "Meal/Food Tracking Count - Count Food Tracker"
+    type: number
+  }
+  dimension: user_has_tracked_meals {
+    label: "User Has tracked Meals"
+    type: number
+  }
 
  }

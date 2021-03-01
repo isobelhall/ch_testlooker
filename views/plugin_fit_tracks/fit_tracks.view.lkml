@@ -40,7 +40,7 @@ view: fit_tracks {
     drill_fields: [id, users.ppuid]
   }
 
-  dimension: Logged_steps {
+  dimension: logged_steps {
     label: "Step count is greater than 0"
     type: yesno
     sql:
@@ -50,6 +50,11 @@ view: fit_tracks {
     END;;
   }
 
+  measure: sum_has_counted_steps {
+    label: "Count users who recorded steps TEST"
+    type: sum
+    sql: CASE WHEN ${logged_steps} = true THEN 1 ELSE 0 END ;;
+  }
 
   measure: sum_logging_steps {
     label: "Count - Steps Recorded"
@@ -88,7 +93,7 @@ view: fit_tracks {
 
   measure: has_counted_steps {
     #hidden so only fit_track_facts measure shows
-    hidden: yes
+   # hidden: yes
     label: "Has counted steps?"
     type: yesno
     sql:

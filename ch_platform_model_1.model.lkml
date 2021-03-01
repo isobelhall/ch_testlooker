@@ -106,6 +106,11 @@ explore: users {
     relationship: many_to_one
     view_label: "7.3 Activity Data - Meal/Food Tracking"
   }
+  join: food_facts {
+    sql_on: ${users.id} = ${food_facts.ppuid} ;;
+    relationship: many_to_one
+    view_label: "7.3 Activity Data - Meal/Food Tracking"
+  }
 
   join: fit_tracks {
     sql_on:  ${fit_tracks.user_id} = ${users.id} ;;
@@ -114,7 +119,7 @@ explore: users {
   }
 
   join: fit_tracks_facts {
-    sql_on: ${weight_facts.ppuid} = ${users.ppuid};;
+    sql_on: ${fit_tracks_facts.ppuid} = ${users.ppuid};;
     relationship: one_to_one
     view_label: "7.4 Activity Data - Step/Fit Tracking"
   }
