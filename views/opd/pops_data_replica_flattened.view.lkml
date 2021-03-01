@@ -26,6 +26,29 @@ GROUP BY 1
 
   dimension: activity_plan {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.activity_plan"));;}
   dimension: bmi {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.bmi"));;}
+  # add BMI score to measure points for BMI
+  dimension: menzis_bmi_score {
+    label: "Menzis BMI Score"
+    case: {
+      when: {
+        sql: ${bmi} < 25 ;;
+        label: "0pt"
+      }
+      when: {
+        sql: ${bmi} between 25 and 29.9 ;;
+        label: "3pt"
+      }
+      when: {
+        sql: ${bmi} between 30 and 34.9 ;;
+        label: "5pt"
+      }
+      when: {
+        sql: ${bmi} > 35 ;;
+        label: "8pt"
+      }
+      else: "Null"
+    }
+  }
   dimension: choose_your_eating_plan_female {sql:JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.choose_your_eating_plan_female"));;}
   dimension: choose_your_eating_plan_french {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.choose_your_eating_plan_french"));;}
   dimension: choose_your_eating_plan_german_version {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.choose_your_eating_plan_german_version"));;}
@@ -275,6 +298,7 @@ GROUP BY 1
   dimension: tricky_situations_problem {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.tricky_situations_problem"));;}
   dimension: pops_weight {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.weight"));;}
   dimension: weight_reminder {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.weight_reminder"));;}
+  dimension: menzis_referral_route {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.iam"));;}
 
   set: detail {
     fields: [user_id, properties]
