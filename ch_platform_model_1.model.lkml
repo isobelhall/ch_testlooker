@@ -107,7 +107,7 @@ explore: users {
     view_label: "7.3 Activity Data - Meal/Food Tracking"
   }
   join: food_facts {
-    sql_on: ${users.id} = ${food_facts.ppuid} ;;
+    sql_on: ${users.ppuid} = ${food_facts.ppuid} ;;
     relationship: many_to_one
     view_label: "7.3 Activity Data - Meal/Food Tracking"
   }
@@ -150,26 +150,33 @@ explore: users {
   join: appointments {
     sql_on: ${appointments.user_id} = ${users.id};;
     relationship: one_to_many
-    view_label: "6. Coaching"
+    view_label: "7.7 Coaching"
   }
   join: appointments_coaches {
     from: coaches
     sql_on: ${appointments.coach_id} =  ${coaches.id};;
     relationship: many_to_one
-    view_label: "6. Coaching"
+    view_label: "7.7 Coaching"
   }
 
   join: coaches{
     sql_on:  ${coaches.user_id} = ${users.id} ;;
     relationship: many_to_one
-    view_label: "6. Coaching"
+    view_label: "7.7 Coaching"
   }
 
   join: coach_users {
     sql_on:  ${coach_users.user_id} = ${users.id}  ;;
     relationship: many_to_one
-    view_label: "6. Coaching"
+    view_label: "7.7 Coaching"
   }
+
+  join: coaching_facts {
+    sql_on: ${coaching_facts.ppuid} = ${users.ppuid}  ;;
+    relationship: many_to_one
+    view_label: "7.7 Coaching"
+  }
+
 
   join: derived_activity_2 {
     view_label: "7. Activity Data"

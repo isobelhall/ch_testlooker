@@ -133,11 +133,43 @@ view: derived_signup_activity {
     END;;
   }
 
-  dimension: postcode_testing_validation {
-    label: "Sign Up Activities - Postcode"
-    sql:  REPLACE(${postcode_raw}, " ", "")
+
+#Tidying Postcode
+  # Remove spaces
+  # Upper case whole thing
+  # Re-insert space at the 3rd or 4th location or 5th depending, depending on format
+  #    - If  (ANNAA) then insert space in place 3(+1) (AN NAA)   INSERT(${postcode_raw},4,0," ")
+  #    - If  (ANNNAA) then insert space in place 4(+1) (ANN NAA)
+  #    - If  (AANNAA) then insert space into place 5(+1) (AANN NAA)
+  #    - If  (AANANAA) then insert space into place 5(+1) (AANA NAA)
+  #    - If  (AANNNAA) then insert space into place 5(+1) (AANN NAA)
+  #    - If  (ANANAA) then insert space in place 4(+1) (ANA NAA)
+  #   -  repeat for any other combinations not listed above
+
+   # INSERT(${postcode_raw},{3/4/5},1," ")
+
+  dimension: postcode_formatted {
+    label: "Postcode Formatted"
+    sql:  REPLACE(UPPER(REPLACE(${postcode_raw}, " ", "")),'"',"")
     ;;
   ###  sql: INSERT PARCING SQL HERE
+  #
+  }
+
+
+  dimension: postcode_properly_spaced {
+    label: "Postcode with proper spacing"
+    #sql: CASE
+            #WHEN WHEN postcode LIKE
+                   # THEN INSERT(${postcode_raw},4,0," ")
+            #WHEN XXXXXXXX
+                   # THEN INSERT(${postcode_raw},4,0," ")
+            #WHEN XXXXXXXX
+                   # THEN INSERT(${postcode_raw},4,0," ")
+            #     ...etc
+                  #ELSE NULL
+                  #END;;
+
   }
 
   dimension: object_type {
