@@ -107,7 +107,7 @@ view: derived_signup_activity {
 
   dimension: postcode_raw {
     type: string
-    sql: CASE WHEN ${object_type} = "pops-address" THEN (${TABLE}.ObjectValue)
+    sql: CASE WHEN (${object_type} = "pops-address" OR ${object_type} = "opt-address")  THEN (${TABLE}.ObjectValue)
           ELSE NULL
           END;;
   }
