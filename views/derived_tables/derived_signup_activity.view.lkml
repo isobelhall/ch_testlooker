@@ -157,20 +157,15 @@ view: derived_signup_activity {
   }
 
 
-  dimension: postcode_properly_spaced {
+  dimension: postcode_formatted_concat {
     label: "Postcode with proper spacing"
-    #sql: CASE
-            #WHEN WHEN postcode LIKE
-                   # THEN INSERT(${postcode_raw},4,0," ")
-            #WHEN XXXXXXXX
-                   # THEN INSERT(${postcode_raw},4,0," ")
-            #WHEN XXXXXXXX
-                   # THEN INSERT(${postcode_raw},4,0," ")
-            #     ...etc
-                  #ELSE NULL
-                  #END;;
-
+    sql: CONCAT(LEFT(REPLACE(${postcode_formatted},'.',' '),
+                    LENGTH(REPLACE(${postcode_formatted},' ','')) - 3),
+                     ' ', -- this will give us that elusive space
+                      RIGHT(REPLACE(${postcode_formatted},' ',''), 3)) ;;
   }
+
+
 
   dimension: object_type {
     label: "Sign Up Activities - Type"
