@@ -267,6 +267,14 @@ view: derived_time {
     sql: ${sum_derived_mins_since_last_event} / ${count_users} ;;
   }
 
+  measure: sum_derived_mins_since_last_event_per_event {
+    label: "Average - Minutes Since Previous Event, Per Event"
+    #hidden: yes
+    type: number
+    value_format: "0.##"
+    drill_fields: [detail*]
+    sql: ${sum_derived_mins_since_last_event} / ${count} ;;
+  }
 
 #SESSION DIMENSIONS
   dimension: is_new_session {
