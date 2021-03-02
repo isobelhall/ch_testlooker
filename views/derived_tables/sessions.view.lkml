@@ -6,7 +6,7 @@ view: sessions {
         session_id,
         MIN(event) as session_start,
         MAX(event) as session_end
-      FROM ${derived_activity_2.SQL_TABLE_NAME}
+      FROM ${derived_time.SQL_TABLE_NAME}
       GROUP BY 1
     ;;
   }

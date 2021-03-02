@@ -184,6 +184,12 @@ explore: users {
     relationship: many_to_one
   }
 
+  join: derived_time {
+    view_label: "7. Activity Data"
+    sql_on: ${derived_time.uid} = ${users.id} ;;
+    relationship: many_to_one
+  }
+
   join: derived_signup_activity {
     view_label: "7a. Sign Up Activity Data"
     sql_on:  ${derived_signup_activity.uid} = ${users.id} ;;
@@ -202,6 +208,19 @@ explore: users {
 #    sql_on: ${session_end.object_id} = ${derived_activity_2.object_id} ;;
 #    relationship: one_to_one
 #  }
+
+# INSERTED 02/03/2021
+  join: sessions {
+    view_label: "7. Activity Data"
+    sql_on: ${derived_time.uid} = ${sessions.session_id} ;;
+    relationship: many_to_one
+  }
+
+  join: session_end {
+    view_label: "7. Activity Data"
+    sql_on: ${session_end.object_id} = ${derived_time.object_id} ;;
+    relationship: one_to_one
+  }
 
   join: plugins_accessed {
     sql_on: ${plugins_accessed.user_id} = ${users.id};;

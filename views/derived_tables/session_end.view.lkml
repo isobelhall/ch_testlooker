@@ -5,10 +5,10 @@ view: session_end {
 
     derived_table: {
       explore_source: users {
-        column: object_id { field: derived_activity_2.object_id }
-        column: object_accessed_date_date { field: derived_activity_2.object_accessed_date_date }
-        column: sum_secs_since_last_event { field: derived_activity_2.sum_secs_since_last_event }
-        column: max_event { field: derived_activity_2.max_event }
+        column: object_id { field: derived_time.object_id }
+        column: object_accessed_date_date { field: derived_time.object_accessed_date_date }
+        column: sum_secs_since_last_event { field: derived_time.sum_secs_since_last_event }
+        column: max_event { field: derived_time.max_event }
         column: user_disengaged { field: derived_characteristics.is_disengaged }
       }
     }
