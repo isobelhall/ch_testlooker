@@ -150,7 +150,7 @@ view: derived_signup_activity {
 
   dimension: postcode_formatted {
     label: "Postcode Formatted"
-    sql:  REPLACE(UPPER(REPLACE(${postcode_raw}, " ", "")),'"',"")
+    sql:  UPPER(${postcode_raw})
     ;;
   ###  sql: INSERT PARCING SQL HERE
   #

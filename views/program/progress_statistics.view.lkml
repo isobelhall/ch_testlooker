@@ -43,6 +43,13 @@ view: progress_statistics {
     sql: ${progress} ;;
   }
 
+  dimension: progress_tier_100 {
+    type: tier
+    tiers: [0,65,100]
+    style: integer
+    sql: ${progress} ;;
+  }
+
   dimension_group: updated {
     label: "Progress Updated"
     type: time
