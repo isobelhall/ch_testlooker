@@ -107,14 +107,14 @@ view: derived_time {
     drill_fields: [detail*]
   }
 
-#calculate average users with activity
-  measure: activites_per_user {
-    label: "Average - Activities per user"
-    description: "Number activities (articles read, weights tracked) divided by number of unique users"
-    type: number
-    sql: ${count} / ${count_users} ;;
-    drill_fields: [detail*]
-  }
+##calculate average users with activity
+#  measure: activites_per_user {
+#    label: "Average - Activities per user"
+#    description: "Number activities (articles read, weights tracked) divided by number of unique users"
+#    type: number
+#    sql: ${count} / ${count_users} ;;
+#    drill_fields: [detail*]
+#  }
 
   dimension_group: object_accessed_date {
     hidden: yes
