@@ -14,7 +14,7 @@ view: derived_signup_activity {
                  personal_data_store.optional_data.user_id,
                  personal_data_store.optional_data.id "ObjectID",
                  personal_data_store.optional_data.value "ObjectValue",
-                 CONCAT("pops-", personal_data_store.optional_data.scope) as "ObjectType",
+                 CONCAT("opt-", personal_data_store.optional_data.scope) as "ObjectType",
                  personal_data_store.optional_data.created_at "event"
             FROM  personal_data_store.optional_data
             UNION
@@ -115,7 +115,7 @@ view: derived_signup_activity {
   dimension: postcode_object {
     label: "Sign Up Activities - Postcode"
     type: string
-    sql: CASE WHEN ${object_type} = "pops-address" THEN LEFT(REPLACE(REPLACE(${TABLE}.ObjectValue,'"', ''),' ',''),2)
+    sql: CASE WHEN ${object_type} = "pops-address" THEN UCASE(LEFT(REPLACE(REPLACE(${TABLE}.ObjectValue,'"', ''),' ',''),2))
     ELSE NULL
     END;;
   }

@@ -19,25 +19,36 @@ view: coaching_facts {
       type: number
     }
     dimension: count_attended {
-      label: "6. Coaching Count - Appointments Attended"
+      label: "Measure - Appointments Attended"
       type: number
     }
     dimension: count_cancelled {
-      label: "6. Coaching Count - Appointments Cancelled"
+      label: "Measure - Appointments Cancelled"
       type: number
     }
     dimension: percent_attended {
-      label: "6. Coaching Count - Percent Appointments Attended"
+      label: "Measure - Percent Appointments Attended"
       value_format: "#,##0.0%"
       type: number
     }
     dimension: ppuid {
+      hidden: yes
       label: "0. General Users - 3+ appts attended in first 12 weeks"
     }
 
     measure: average_DNA_rate {
       type: average
       sql: ${percent_attended} ;;
+    }
+
+    dimension: has_done_appts {
+      type: yesno
+      sql:
+      CASE
+      WHEN ${count} > 0 THEN TRUE
+      ELSE FALSE
+      END
+      ;;
     }
 
 }
