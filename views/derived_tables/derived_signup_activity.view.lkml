@@ -159,10 +159,14 @@ view: derived_signup_activity {
 
   dimension: postcode_formatted_concat {
     label: "Postcode with proper spacing"
-    sql: CONCAT(LEFT(REPLACE(${postcode_formatted},'.',' '),
+    sql:
+    CASE WHEN LENGTH(${postcode_formatted}) > 4 THEN CONCAT(LEFT(REPLACE(${postcode_formatted},'.',' '),
                     LENGTH(REPLACE(${postcode_formatted},' ','')) - 3),
                      ' ', -- this will give us that elusive space
-                      RIGHT(REPLACE(${postcode_formatted},' ',''), 3)) ;;
+                      RIGHT(REPLACE(${postcode_formatted},' ',''), 3))
+    ELSE
+    ${postcode_formatted}
+    END;;
   }
 
 
