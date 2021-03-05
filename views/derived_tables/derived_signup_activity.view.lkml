@@ -115,9 +115,8 @@ view: derived_signup_activity {
   dimension: postcode_object {
     label: "Sign Up Activities - Postcode"
     type: string
-    sql: CASE WHEN ${object_type} = "pops-address" THEN UCASE(LEFT(REPLACE(REPLACE(${TABLE}.ObjectValue,'"', ''),' ',''),2))
-    ELSE NULL
-    END;;
+    sql: UCASE(LEFT(REPLACE(REPLACE(${postcode_raw}.ObjectValue,'"', ''),' ',''),2))
+    ;;
   }
 
   dimension: postcode_location {
