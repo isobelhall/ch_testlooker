@@ -34,9 +34,10 @@ view: user_3appts {
     type: count
   }
 
-  measure: percent {
+  measure: percent2 {
     label: "Percent of Total - Users with 3+ appts in first 12 weeks"
     type: percent_of_total
-    sql: ${count} ;;
+    value_format_name: percent_1
+    sql: ${count} / 58 ;;
   }
 }
