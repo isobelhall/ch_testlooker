@@ -107,7 +107,7 @@ view: derived_signup_activity {
 
   dimension: postcode_raw {
     type: string
-    sql: CASE WHEN ${object_type} = "pops-address" THEN (${TABLE}.ObjectValue)
+    sql: CASE WHEN (${object_type} = "pops-address" OR ${object_type} = "opt-address")  THEN (${TABLE}.ObjectValue)
           ELSE NULL
           END;;
   }
@@ -157,20 +157,19 @@ view: derived_signup_activity {
   }
 
 
-  dimension: postcode_properly_spaced {
+  dimension: postcode_formatted_concat {
     label: "Postcode with proper spacing"
-    #sql: CASE
-            #WHEN WHEN postcode LIKE
-                   # THEN INSERT(${postcode_raw},4,0," ")
-            #WHEN XXXXXXXX
-                   # THEN INSERT(${postcode_raw},4,0," ")
-            #WHEN XXXXXXXX
-                   # THEN INSERT(${postcode_raw},4,0," ")
-            #     ...etc
-                  #ELSE NULL
-                  #END;;
-
+    sql:
+    CASE WHEN LENGTH(${postcode_formatted}) > 4 THEN CONCAT(LEFT(REPLACE(${postcode_formatted},'.',' '),
+                    LENGTH(REPLACE(${postcode_formatted},' ','')) - 3),
+                     ' ', -- this will give us that elusive space
+                      RIGHT(REPLACE(${postcode_formatted},' ',''), 3))
+    ELSE
+    ${postcode_formatted}
+    END;;
   }
+
+
 
   dimension: object_type {
     label: "Sign Up Activities - Type"
