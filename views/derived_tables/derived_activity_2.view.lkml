@@ -29,14 +29,6 @@ view: derived_activity_2 {
             FROM  plugin_weight.weight_tracks
             UNION
             SELECT
-                 step.fit_tracks.user_id,
-                 step.fit_tracks.id "ObjectID",
-                 step.fit_tracks.logging_steps "ObjectValue",
-                 'step tracker' as "ObjectType",
-                 step.fit_tracks.created_at "event"
-            FROM  step.fit_tracks
-            UNION
-            SELECT
                  plugin_food.food_tracks.user_id,
                  plugin_food.food_tracks.id "ObjectID",
                  plugin_food.food_tracks.label_foods "ObjectValue",
@@ -62,6 +54,17 @@ view: derived_activity_2 {
             JOIN plugin_goal.profiles ON plugin_goal.goals.profile_id = plugin_goal.profiles.id
        ;;
   }
+
+#fit track removed to see if it improves query time
+#            SELECT
+#                 step.fit_tracks.user_id,
+#                 step.fit_tracks.id "ObjectID",
+#                 step.fit_tracks.logging_steps "ObjectValue",
+#                 'step tracker' as "ObjectType",
+#                 step.fit_tracks.created_at "event"
+#            FROM  step.fit_tracks
+#            UNION
+
 
   #PRIMARY KEY
   dimension: object_id {

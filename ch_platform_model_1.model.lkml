@@ -30,6 +30,21 @@ explore: users {
     relationship: many_to_one
   }
 
+  join: derived_logins_by_date {
+    sql_on: ${user_event_logs.created_date} = ${derived_logins_by_date.created_date}
+    ;;
+    relationship: many_to_one
+    view_label: "00. Date TEST"
+  }
+
+  join: derived_accounts_by_date {
+    sql_on: ${user_event_logs.created_date} = ${derived_accounts_by_date.created_date}
+      ;;
+    relationship: many_to_one
+    view_label: "00. Date TEST"
+  }
+
+
 #view_label: "0. General"
 
   join: user_3appts {

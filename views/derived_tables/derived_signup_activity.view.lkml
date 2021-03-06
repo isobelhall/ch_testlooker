@@ -14,7 +14,7 @@ view: derived_signup_activity {
                  personal_data_store.optional_data.user_id,
                  personal_data_store.optional_data.id "ObjectID",
                  personal_data_store.optional_data.value "ObjectValue",
-                 CONCAT("opt-", personal_data_store.optional_data.scope) as "ObjectType",
+                 CONCAT(personal_data_store.optional_data.scope) as "ObjectType",
                  personal_data_store.optional_data.created_at "event"
             FROM  personal_data_store.optional_data
             UNION
@@ -22,7 +22,7 @@ view: derived_signup_activity {
                  opd.pops_data_replica.user_id,
                  opd.pops_data_replica.id "ObjectID",
                  opd.pops_data_replica.value "ObjectValue",
-                 CONCAT("pops-", opd.pops_data_replica.scope) as "ObjectType",
+                 CONCAT(opd.pops_data_replica.scope) as "ObjectType",
                  opd.pops_data_replica.created_at "event"
             FROM  opd.pops_data_replica
             ORDER BY user_id, event
@@ -106,8 +106,7 @@ view: derived_signup_activity {
   }
 
   dimension: postcode_raw {
-    type: string
-    sql: CASE WHEN (${object_type} = "pops-address" OR ${object_type} = "opt-address")  THEN (${TABLE}.ObjectValue)
+    sql: CASE WHEN (${object_type} = "pops-address" OR ${object_type} = "opt-address" OR ${object_type} = "address")    THEN (${TABLE}.ObjectValue)
           ELSE NULL
           END;;
   }
@@ -115,7 +114,7 @@ view: derived_signup_activity {
   dimension: postcode_object {
     label: "Sign Up Activities - Postcode"
     type: string
-    sql: UCASE(LEFT(REPLACE(REPLACE(${postcode_raw}.ObjectValue,'"', ''),' ',''),2))
+    sql: UCASE(LEFT(REPLACE(REPLACE(${postcode_raw},'"', ''),' ',''),2))
     ;;
   }
 
@@ -243,7 +242,7 @@ view: derived_signup_activity {
     label: "between Account Creation and Signup Activity"
     description: "When used with CHUID, shows amount of time between this activity and the users account creation"
     type: duration
-    intervals: [day, week, month, hour,minute]
+    intervals: [day, week, month, hour,minute,second]
     sql_start: ${users.created_raw} ;;
     sql_end: ${signup_event_raw} ;;
   }
