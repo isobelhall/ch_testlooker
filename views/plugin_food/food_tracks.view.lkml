@@ -104,7 +104,7 @@ view: food_tracks {
     type: percent_of_total
     sql: ${count} ;;
     drill_fields: [id, users.ppuid]
-    value_format: "0.0%"
+    value_format: "0.0\%"
   }
 
   measure: user_has_tracked_meals {

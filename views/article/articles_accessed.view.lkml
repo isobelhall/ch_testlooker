@@ -74,7 +74,7 @@ view: articles_accessed {
     type: percent_of_total
     sql: ${count} ;;
     drill_fields: [id, users.id, articles.id, articles.name]
-    value_format: "0.0%"
+    value_format: "0.0\%"
   }
 
   measure: average {

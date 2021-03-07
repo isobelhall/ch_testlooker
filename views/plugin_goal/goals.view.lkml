@@ -85,7 +85,7 @@ view: goals {
     type: percent_of_total
     sql: ${count} ;;
     drill_fields: [id, users.ppuid]
-    value_format: "0.0%"
+    value_format: "0.0\%"
   }
 
   dimension: goal_completed {
