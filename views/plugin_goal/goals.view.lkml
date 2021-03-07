@@ -37,6 +37,8 @@ view: goals {
     timeframes: [
       raw,
       time,
+      time_of_day,
+      hour_of_day,
       date,
       week,
       month,
@@ -76,6 +78,14 @@ view: goals {
     label: "Count - Goals Tracked"
     type: count
     drill_fields: [id, users.ppuid]
+  }
+
+  measure: percent {
+    label: "Percent of Total  - Goals Tracked"
+    type: percent_of_total
+    sql: ${count} ;;
+    drill_fields: [id, users.ppuid]
+    value_format: "0.0%"
   }
 
   dimension: goal_completed {

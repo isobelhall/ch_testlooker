@@ -38,6 +38,8 @@ view: weight_tracks {
       raw,
       time,
       date,
+      time_of_day,
+      hour_of_day,
       week,
       month,
       quarter,
@@ -77,6 +79,15 @@ view: weight_tracks {
     type: count
     drill_fields: [id, users.ppuid]
   }
+
+  measure: percent {
+    label: "Percent of Total  - Weights Tracked"
+    type: percent_of_total
+    sql: ${count} ;;
+    drill_fields: [id, users.ppuid]
+    value_format: "0.0%"
+  }
+
 
   measure: count_hit_target {
     label: "Count - Times Weight Target Hit"

@@ -23,6 +23,8 @@ view: articles_accessed {
     timeframes: [
       raw,
       time,
+      time_of_day,
+      hour_of_day,
       date,
       week,
       month,
@@ -44,6 +46,7 @@ view: articles_accessed {
     timeframes: [
       raw,
       time,
+      hour_of_day,
       date,
       week,
       month,
@@ -64,6 +67,14 @@ view: articles_accessed {
     label: "Count - Articles Accessed"
     type: count
     drill_fields: [id, users.id, articles.id, articles.name]
+  }
+
+  measure: percent {
+    label: "Percent of Total  - Articles Accessed"
+    type: percent_of_total
+    sql: ${count} ;;
+    drill_fields: [id, users.id, articles.id, articles.name]
+    value_format: "0.0%"
   }
 
   measure: average {

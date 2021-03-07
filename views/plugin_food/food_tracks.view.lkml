@@ -15,6 +15,8 @@ view: food_tracks {
     timeframes: [
       raw,
       time,
+      time_of_day,
+      hour_of_day,
       date,
       week,
       month,
@@ -97,6 +99,13 @@ view: food_tracks {
     drill_fields: [id, users.ppuid]
   }
 
+  measure: percent {
+    label: "Percent of Total  - Food Tracker"
+    type: percent_of_total
+    sql: ${count} ;;
+    drill_fields: [id, users.ppuid]
+    value_format: "0.0%"
+  }
 
   measure: user_has_tracked_meals {
     label: "Has tracked Meals"

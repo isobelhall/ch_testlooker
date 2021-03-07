@@ -70,7 +70,7 @@ view: derived_time {
             ) as events ) as events_lag
           ) events_session_flag
        ;;
-      indexes: ["events"]
+      indexes: ["event"]
   }
 
   #PRIMARY KEY
