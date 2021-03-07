@@ -43,14 +43,6 @@ view: derived_time {
             FROM  plugin_weight.weight_tracks
             UNION
             SELECT
-                 step.fit_tracks.user_id,
-                 step.fit_tracks.id "ObjectID",
-                 step.fit_tracks.logging_steps "ObjectValue",
-                 'step tracker' as "ObjectType",
-                 step.fit_tracks.created_at "event"
-            FROM  step.fit_tracks
-            UNION
-            SELECT
                  plugin_food.food_tracks.user_id,
                  plugin_food.food_tracks.id "ObjectID",
                  plugin_food.food_tracks.label_foods "ObjectValue",
@@ -78,6 +70,7 @@ view: derived_time {
             ) as events ) as events_lag
           ) events_session_flag
        ;;
+      indexes: ["events"]
   }
 
   #PRIMARY KEY
@@ -182,10 +175,11 @@ view: derived_time {
     label: "between Account Creation and Activity"
     description: "When used with CHUID, shows amount of time between this activity and the users account creation"
     type: duration
-    intervals: [day, week, month, hour,minute]
+    intervals: [day, week, month, hour,minute,second]
     sql_start: ${users.created_raw} ;;
     sql_end: ${event_raw} ;;
   }
+
 
 #added 12/01 SL
   dimension: mnth_since_last_event {

@@ -211,6 +211,13 @@ explore: users {
     relationship: many_to_one
   }
 
+#  join: seconds {
+#    from: derived_signup_activity
+#    view_label: "7a. Sign Up Activity Data"
+#    sql_on:  ${derived_time.seconds_since_account_creation} = ${derived_signup_activity.seconds_since_account_creation_and_signup} ;;
+#    relationship: many_to_one
+#  }
+
 # REMOVED 25/02/2021 - sessions... needs linking to derived_activity_3,
 #  join: sessions {
 #    view_label: "7. Activity Data"

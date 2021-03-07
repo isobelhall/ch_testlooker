@@ -53,6 +53,7 @@ view: derived_activity_2 {
             FROM plugin_goal.goals
             JOIN plugin_goal.profiles ON plugin_goal.goals.profile_id = plugin_goal.profiles.id
        ;;
+      indexes: ["event"]
   }
 
 #fit track removed to see if it improves query time
