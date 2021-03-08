@@ -57,22 +57,22 @@ view: derived_signup_activity {
   }
 
 #COUNT OF SPECIFIC ACTIVITY TYPES A USER HAS COMPLETED
-  dimension: activated_account {
+  measure: activated_account {
     label: "Sign Up Activities - Activation"
-    type: date
+    type: date_time
     sql:
     CASE
-    WHEN ${object_type} = "status change" AND ${object_value} = "completed_activation" THEN ${object_accessed_date_raw}
+    WHEN ${object_type} = "status change" AND ${object_value} = "completed_activation" THEN MAX(${object_accessed_date_raw})
     ELSE NULL
     END;;
   }
 
-  dimension: invitation_sent_timestamp {
+  measure: invitation_sent_timestamp {
     label: "Sign Up Activities - Invitation Sent"
-    type: date
+    type: date_time
     sql:
     CASE
-    WHEN ${object_type} = "status change" AND ${object_value} = "invitation_sent" THEN ${object_accessed_date_raw}
+    WHEN ${object_type} = "status change" AND ${object_value} = "completed_activation" THEN MAX(${object_accessed_date_raw})
     ELSE NULL
     END;;
   }

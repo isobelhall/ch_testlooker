@@ -18,12 +18,12 @@ view: derived_signup_times {
   }
   dimension: invitation_sent_timestamp {
     label: "Invitation Sent"
-    type: date
+    type: date_time
   }
 
   dimension: activated_account {
     label: "Activation"
-    type: date
+    type: date_time
   }
 
   dimension_group: since_invitation_and_activation {
