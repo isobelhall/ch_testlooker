@@ -37,6 +37,12 @@ explore: users {
     view_label: "00. Date TEST"
   }
 
+  join: derived_signup_times {
+    view_label: "1. User Account"
+    sql_on: ${users.ppuid} = ${derived_signup_times.ppuid};;
+    relationship: many_to_one
+  }
+
   join: derived_accounts_by_date {
     sql_on: ${user_event_logs.created_date} = ${derived_accounts_by_date.created_date}
       ;;

@@ -41,6 +41,8 @@ view: derived_signup_activity {
     sql: ${TABLE}.ObjectID ;;
   }
 
+
+
   measure: count {
     label: "Count - Sign Up Activities"
     type: count
@@ -55,14 +57,25 @@ view: derived_signup_activity {
   }
 
 #COUNT OF SPECIFIC ACTIVITY TYPES A USER HAS COMPLETED
-#count - has accessed article
-#  measure: count_articles {
-#    group_label: "Sign Up Activity Counts"
-#    label: "Count - Articles"
-#    type: count
-#    filters: [object_type: "article"]
-#  }
+  dimension: activated_account {
+    label: "Sign Up Activities - Activation"
+    type: date
+    sql:
+    CASE
+    WHEN ${object_type} = "status change" AND ${object_value} = "completed_activation" THEN ${object_accessed_date_raw}
+    ELSE NULL
+    END;;
+  }
 
+  dimension: invitation_sent_timestamp {
+    label: "Sign Up Activities - Invitation Sent"
+    type: date
+    sql:
+    CASE
+    WHEN ${object_type} = "status change" AND ${object_value} = "invitation_sent" THEN ${object_accessed_date_raw}
+    ELSE NULL
+    END;;
+  }
 
   dimension: uid {
     hidden: yes
@@ -86,7 +99,7 @@ view: derived_signup_activity {
     drill_fields: [detail*]
   }
 
-
+#'completed_activation
 
 #v2 - replaced with has done activity in derived_characteristics
   measure:  has_done_activity{
@@ -256,7 +269,7 @@ view: derived_signup_activity {
   }
 
   dimension_group: since_account_creation_and_signup {
-    group_label: "Signup Activity Time Measures"
+    group_label: "Signup Activity Time Measures - Creation to Activity"
     label: "between Account Creation and Signup Activity"
     description: "When used with CHUID, shows amount of time between this activity and the users account creation"
     type: duration
@@ -266,11 +279,12 @@ view: derived_signup_activity {
   }
 
 
+
   set: detail {
     fields: [
       users.ppuid,
     ]
   }
 
-
+  set: timeframes {}
 }
