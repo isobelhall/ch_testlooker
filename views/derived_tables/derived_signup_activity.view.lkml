@@ -30,6 +30,7 @@ view: derived_signup_activity {
             FROM  opd.pops_data_replica
             ORDER BY user_id, event
        ;;
+      indexes: ["event"]
   }
 
   #PRIMARY KEY
