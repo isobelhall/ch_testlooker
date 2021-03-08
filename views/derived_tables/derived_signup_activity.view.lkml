@@ -6,6 +6,7 @@ view: derived_signup_activity {
               user_event_logs.user_id,
               user_event_logs.id "ObjectID",
               user_event_logs.event_type "ObjectValue",
+              user_event_logs.payload "Key",
               'status change' as "ObjectType",
               user_event_logs.created_at "event"
             FROM  userhub.user_event_logs
@@ -14,6 +15,7 @@ view: derived_signup_activity {
                  personal_data_store.optional_data.user_id,
                  personal_data_store.optional_data.id "ObjectID",
                  personal_data_store.optional_data.value "ObjectValue",
+                 personal_data_store.optional_data.key "Key",
                  CONCAT(personal_data_store.optional_data.scope) as "ObjectType",
                  personal_data_store.optional_data.created_at "event"
             FROM  personal_data_store.optional_data
@@ -22,6 +24,7 @@ view: derived_signup_activity {
                  opd.pops_data_replica.user_id,
                  opd.pops_data_replica.id "ObjectID",
                  opd.pops_data_replica.value "ObjectValue",
+                 opd.pops_data_replica.key "Key",
                  CONCAT(opd.pops_data_replica.scope) as "ObjectType",
                  opd.pops_data_replica.created_at "event"
             FROM  opd.pops_data_replica
@@ -99,6 +102,12 @@ view: derived_signup_activity {
   }
 
 
+  dimension: object_key {
+    label: "Sign Up Activities - Key"
+    type: string
+    sql: ${TABLE}.key ;;
+  }
+
   dimension: object_value {
     label: "Sign Up Activities - Value"
     type: string
@@ -166,6 +175,14 @@ view: derived_signup_activity {
     ${postcode_formatted}
     END;;
   }
+
+#  dimension: gender_formatted {
+#    label: "Postcode Formatted"
+#    sql:  UPPER(${postcode_raw})
+#      ;;
+#    ###  sql: INSERT PARCING SQL HERE
+#    #
+#  }
 
 
 
