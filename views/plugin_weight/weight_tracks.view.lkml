@@ -16,6 +16,8 @@ view: weight_tracks {
     timeframes: [
       raw,
       time,
+      time_of_day,
+      hour_of_day,
       date,
       week,
       month,
