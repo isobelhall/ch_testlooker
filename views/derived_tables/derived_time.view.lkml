@@ -175,7 +175,7 @@ view: derived_time {
     label: "between Account Creation and Activity"
     description: "When used with CHUID, shows amount of time between this activity and the users account creation"
     type: duration
-    intervals: [day, week, month, hour,minute,second]
+    intervals: [day, week, month, hour, minute, second]
     sql_start: ${users.created_raw} ;;
     sql_end: ${event_raw} ;;
   }

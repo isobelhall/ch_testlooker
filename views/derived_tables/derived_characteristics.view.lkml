@@ -162,9 +162,17 @@ view: derived_characteristics {
   }
 
   #HAS ACTIVATED
+  dimension: activation_date {
+    hidden: yes
+    type: date_time
+  }
+
   dimension: is_activated{
     group_label: "Programme Progress"
-    label: "2. Is Enabled"
+    label: "2. Is Enabled/Activated"
+    sql:
+    CASE WHERE ${activation_date} > 0 THEN TRUE
+    ELSE FALSE;;
     type: number
     drill_fields: [detail*]
   }

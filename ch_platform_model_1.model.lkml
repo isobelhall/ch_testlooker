@@ -39,7 +39,7 @@ explore: users {
 
   join: derived_signup_times {
     view_label: "1. User Account"
-    sql_on: ${users.ppuid} = ${derived_signup_times.ppuid};;
+    sql_on: ${derived_signup_times.uid} = ${users.id};;
     relationship: many_to_one
   }
 
@@ -210,6 +210,20 @@ explore: users {
     sql_on: ${derived_time.uid} = ${users.id} ;;
     relationship: many_to_one
   }
+
+#flattened_activationflattened_invitation
+  join: flattened_activation {
+    view_label: "1. User Account"
+    sql_on: ${flattened_activation.uid} = ${users.id} ;;
+    relationship: one_to_one
+  }
+
+  join: flattened_invitation {
+    view_label: "1. User Account"
+    sql_on: ${flattened_invitation.uid} = ${users.id} ;;
+    relationship: one_to_one
+  }
+
 
   join: derived_signup_activity {
     view_label: "7a. Sign Up Activity Data"
