@@ -137,12 +137,27 @@ view: derived_signup_activity {
           END;;
   }
 
+  dimension: gender_formatted {
+    sql:
+    CASE
+      WHEN ${object_key} = "gender-m-f-p" AND ${gender_raw} = 1 THEN "Male"
+      WHEN ${object_key} = "gender-m-f-p" AND ${gender_raw} = 2 THEN "Female"
+      WHEN ${object_key} = "gender-m-f-p" AND ${gender_raw} = 3 THEN "Prefer not to say"
+
+    ELSE
+      "Not Known"
+    END;;
+  }
+
+
+
 #ETHNICITY
   dimension: ethnicity_raw {
     sql: CASE WHEN INSTR(LCASE(${object_key}), "ethnic") > 0 THEN (${object_value})
           ELSE NULL
           END;;
   }
+
 
 
 #POSTCODE CONVERSION AND FORMATTING
