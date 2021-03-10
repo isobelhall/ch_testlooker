@@ -127,16 +127,34 @@ view: derived_signup_activity {
   dimension: object_value {
     label: "Sign Up Activities - Value"
     type: string
-    sql: ${TABLE}.ObjectValue ;;
+    sql: REPLACE(${TABLE}.ObjectValue,'"', '') ;;
   }
 
+#GENDER
+  dimension: gender_raw {
+    sql: CASE WHEN INSTR(LCASE(${object_key}), "gender") > 0 THEN (${object_value})
+          ELSE NULL
+          END;;
+  }
+
+#ETHNICITY
+  dimension: ethnicity_raw {
+    sql: CASE WHEN INSTR(LCASE(${object_key}), "ethnic") > 0 THEN (${object_value})
+          ELSE NULL
+          END;;
+  }
+
+
+#POSTCODE CONVERSION AND FORMATTING
   dimension: postcode_raw {
+    hidden: yes
     sql: CASE WHEN (${object_type} = "pops-address" OR ${object_type} = "opt-address" OR ${object_type} = "address")    THEN (${TABLE}.ObjectValue)
           ELSE NULL
           END;;
   }
 
   dimension: postcode_object {
+    hidden: yes
     label: "Sign Up Activities - Postcode"
     type: string
     sql: UCASE(LEFT(REPLACE(REPLACE(${postcode_raw},'"', ''),' ',''),2))
@@ -145,7 +163,7 @@ view: derived_signup_activity {
 
   dimension: postcode_location {
     label: "Postcode Area"
-    description: "Postcode area (eg. NG for Nottingham) for mapping to postcode area"
+    description: "Postcode area (eg. NG for Nottingham) for mapping to postcode area."
     type: string
     map_layer_name: uk_postcode_areas
     sql:
@@ -156,22 +174,8 @@ view: derived_signup_activity {
     END;;
   }
 
-
-#Tidying Postcode
-  # Remove spaces
-  # Upper case whole thing
-  # Re-insert space at the 3rd or 4th location or 5th depending, depending on format
-  #    - If  (ANNAA) then insert space in place 3(+1) (AN NAA)   INSERT(${postcode_raw},4,0," ")
-  #    - If  (ANNNAA) then insert space in place 4(+1) (ANN NAA)
-  #    - If  (AANNAA) then insert space into place 5(+1) (AANN NAA)
-  #    - If  (AANANAA) then insert space into place 5(+1) (AANA NAA)
-  #    - If  (AANNNAA) then insert space into place 5(+1) (AANN NAA)
-  #    - If  (ANANAA) then insert space in place 4(+1) (ANA NAA)
-  #   -  repeat for any other combinations not listed above
-
-   # INSERT(${postcode_raw},{3/4/5},1," ")
-
   dimension: postcode_formatted {
+    hidden: yes
     label: "Postcode Formatted"
     sql:  UPPER(${postcode_raw})
     ;;
@@ -181,7 +185,8 @@ view: derived_signup_activity {
 
 
   dimension: postcode_formatted_concat {
-    label: "Postcode with proper spacing"
+    label: "Postcode Formatted"
+    description: "Postcode data from POPS tables, with correct formatting. These postcodes have not been validated."
     sql:
     CASE WHEN LENGTH(${postcode_formatted}) > 4 THEN CONCAT(LEFT(REPLACE(${postcode_formatted},'.',' '),
                     LENGTH(REPLACE(${postcode_formatted},' ','')) - 3),
