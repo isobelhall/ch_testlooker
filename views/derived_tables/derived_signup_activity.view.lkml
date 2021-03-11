@@ -143,7 +143,12 @@ view: derived_signup_activity {
       WHEN ${object_key} = "gender-m-f-p" AND ${gender_raw} = 1 THEN "Male"
       WHEN ${object_key} = "gender-m-f-p" AND ${gender_raw} = 2 THEN "Female"
       WHEN ${object_key} = "gender-m-f-p" AND ${gender_raw} = 3 THEN "Prefer not to say"
-
+      WHEN ${object_key} = "gender-duk" AND ${gender_raw} = "Male" THEN "Male"
+      WHEN ${object_key} = "gender-duk" AND ${gender_raw} = "Female" THEN "Female"
+      WHEN ${object_key} = "gender-m-f-i-p" AND ${gender_raw} = 0 THEN "Male"
+      WHEN ${object_key} = "gender-m-f-i-p" AND ${gender_raw} = 1 THEN "Female"
+      WHEN ${object_key} = "gender-m-f-i-p" AND ${gender_raw} = 2 THEN "Intersex"
+      WHEN ${object_key} = "gender-m-f-i-p" AND ${gender_raw} = 3 THEN "Prefer not to say"
     ELSE
       "Not Known"
     END;;
@@ -158,6 +163,54 @@ view: derived_signup_activity {
           END;;
   }
 
+  dimension: ethnicity_formatted {
+    sql:
+    CASE
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 1 THEN "White - British"
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 2 THEN "White - Irish"
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 3 THEN "Any other white background"
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 4 THEN "Mixed - White and Black Caribbean"
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 5 THEN "Mixed - White and Black African"
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 6 THEN "Mixed - White and Asian"
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 7 THEN "Any other mixed background"
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 8 THEN "Asian - Indian"
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 9 THEN "Asian - Pakistani"
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 10 THEN "Asian - Bangladeshi"
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 11 THEN "Any other Asian background"
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 12 THEN "Black or Black British - Caribbean"
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 13 THEN "Black or Black British - African"
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 14 THEN "Any other Black background"
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 15 THEN "Any other"
+      WHEN ${object_key} = "ethnicity" AND ${ethnicity_raw} = 16 THEN "Prefer not to say"
+
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 1 THEN "White - British"
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 2 THEN "White - Irish"
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 3 THEN "Any other white background"
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 4 THEN "Mixed - White and Black Caribbean"
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 5 THEN "Mixed - White and Black African"
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 6 THEN "Mixed - White and Asian"
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 7 THEN "Any other mixed background"
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 8 THEN "Asian - Indian"
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 9 THEN "Asian - Pakistani"
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 10 THEN "Asian - Bangladeshi"
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 11 THEN "Black or Black British - Caribbean"
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 12 THEN "Black or Black British - African"
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 13 THEN "Any other Black background"
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 14 THEN "Any other"
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 15 THEN "Prefer not to say"
+      WHEN ${object_key} = "ethnicity-healthy-living" AND ${ethnicity_raw} = 16 THEN "Any other Asian background"
+
+      WHEN ${object_key} = "ethnic-background-duk" AND ${ethnicity_raw} = "South Asian" THEN "South Asian"
+      WHEN ${object_key} = "ethnic-background-duk" AND ${ethnicity_raw} = "Black" THEN "Black"
+      WHEN ${object_key} = "ethnic-background-duk" AND ${ethnicity_raw} = "Chinease" THEN "Chinease"
+      WHEN ${object_key} = "ethnic-background-duk" AND ${ethnicity_raw} = "Mixed Ethnicity" THEN "Mixed Ethnicity"
+      WHEN ${object_key} = "ethnic-background-duk" AND ${ethnicity_raw} = "White" THEN "White"
+      WHEN ${object_key} = "ethnic-background-duk" AND ${ethnicity_raw} = "None of these" THEN "None of these"
+
+    ELSE
+      "Not Known"
+    END;;
+  }
 
 
 #POSTCODE CONVERSION AND FORMATTING
