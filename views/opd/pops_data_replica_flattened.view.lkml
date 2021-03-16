@@ -1,11 +1,14 @@
 view: pops_data_replica_flattened {
   derived_table: {
     sql: SELECT  pops_data_replica.user_id,
-        JSON_OBJECTAGG(pops_data_replica.`key`, pops_data_replica.value) as properties
-FROM opd.pops_data_replica as pops_data_replica
+        JSON_OBJECTAGG(pops_data_replica.`key`, pops_data_replica.value) as properties,
+        JSON_OBJECTAGG(pops_data_replica.`key`, pops_data_replica.created_at) as properties_date
+        FROM opd.pops_data_replica as pops_data_replica
 GROUP BY 1
  ;;
   }
+
+
 
   measure: count {
     type: count
@@ -24,8 +27,18 @@ GROUP BY 1
     sql: ${TABLE}.properties ;;
   }
 
+  dimension: properties_date {
+    type: string
+    hidden: yes
+    sql: ${TABLE}.properties_date ;;
+  }
+
   dimension: activity_plan {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.activity_plan"));;}
+
   dimension: bmi {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.bmi"));;}
+
+  dimension: bmi_date {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties_date}, "$.bmi"));;}
+
   # add BMI score to measure points for BMI
   dimension: menzis_bmi_score {
     label: "Menzis BMI Score"

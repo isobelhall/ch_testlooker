@@ -315,6 +315,8 @@ view: users {
     drill_fields: [detail*]
   }
 
+
+
   measure: percent2 {
     view_label: "0. General"
     description: "Percent of all participants against other selected criteria"

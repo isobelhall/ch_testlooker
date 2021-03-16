@@ -40,6 +40,13 @@ view: user_data {
     sql: ${age} ;;
   }
 
+  measure: avg_age {
+    type: average_distinct
+    sql_distinct_key: ${id} ;;
+    sql: ${age} ;;
+    value_format: "#"
+  }
+
   dimension_group: created {
     hidden: yes
     type: time

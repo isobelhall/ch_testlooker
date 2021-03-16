@@ -57,6 +57,7 @@ view: derived_signup_activity {
   }
 
 #COUNT OF SPECIFIC ACTIVITY TYPES A USER HAS COMPLETED
+#example time measure SAM
   measure: activated_account {
     label: "Sign Up Activities - Activation (Measure)"
     type: date_time
