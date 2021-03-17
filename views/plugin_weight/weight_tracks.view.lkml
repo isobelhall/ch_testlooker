@@ -56,6 +56,7 @@ view: weight_tracks {
     sql: ${TABLE}.user_id ;;
   }
 
+  # When a user records their weight
   dimension: weight_goal {
     label: "Weight Recorded Value"
     type: number

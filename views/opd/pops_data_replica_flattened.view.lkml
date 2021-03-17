@@ -24,8 +24,9 @@ GROUP BY 1
   dimension: properties {
     type: string
     hidden: yes
-    sql: ${TABLE}.properties ;;
+    sql:${TABLE}.properties ;;
   }
+
 
   dimension: properties_date {
     type: string
@@ -33,11 +34,27 @@ GROUP BY 1
     sql: ${TABLE}.properties_date ;;
   }
 
-  dimension: activity_plan {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.activity_plan"));;}
+  dimension: activity_plan
+  {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.activity_plan"));;}
 
-  dimension: bmi {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.bmi"));;}
+  dimension: bmi
+  {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.bmi"));;}
 
-  dimension: bmi_date {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties_date}, "$.bmi"));;}
+  dimension: bmi_date
+  {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties_date}, "$.bmi"));;}
+
+  dimension: bmi_date_format_test
+  {sql: ${properties_date} ;;
+  html: {{ rendered_value | date: "%m/%d/%Y %T" }}
+    ;;}
+
+  dimension: height_date_format_test
+  {sql: ${properties_date} ;;
+    html: {{ rendered_value | date: "%m/%d/%Y %T" }}
+      ;;}
+
+
+
 
   # add BMI score to measure points for BMI
   dimension: menzis_bmi_score {
@@ -230,6 +247,7 @@ GROUP BY 1
   }
   dimension: gp_practice {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.gp_practice"));;}
   dimension: height {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.height"));;}
+  dimension: height_date {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties_date}, "$.height"));;}
   dimension: i_agree {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.i_agree"));;}
   dimension: insulin_check {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.insulin_check"));;}
   dimension: language {sql: JSON_UNQUOTE(JSON_EXTRACT(${properties}, "$.language"));;}
