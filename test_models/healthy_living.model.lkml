@@ -8,6 +8,8 @@ explore: users {
   group_label: "Master Build Test IH"
   label: "Healthy Living"
 
+  hidden:  yes
+
   always_filter: {
     filters: [units.display_name: "NHSE"]
   }

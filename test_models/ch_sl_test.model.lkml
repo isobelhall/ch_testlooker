@@ -24,6 +24,7 @@ label: "Test CH Master Model"
 #   }
 # }
 explore: users {
+  hidden:  yes
   #persist_for: "24 hours"
   persist_with: daily_refresh
   group_label: "Master Build Test SL"

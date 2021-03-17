@@ -59,6 +59,7 @@ view: derived_signup_activity {
 #COUNT OF SPECIFIC ACTIVITY TYPES A USER HAS COMPLETED
 #example time measure SAM
   measure: activated_account {
+    hidden: yes
     label: "Sign Up Activities - Activation (Measure)"
     type: date_time
     sql:
@@ -69,6 +70,7 @@ view: derived_signup_activity {
   }
 
   measure: invitation_sent_timestamp {
+    hidden: yes
     label: "Sign Up Activities - Invitation Sent (Measure)"
     type: date_time
     sql:

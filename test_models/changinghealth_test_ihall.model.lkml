@@ -29,11 +29,12 @@ explore: users {
   persist_for: "24 hours"
   group_label: "Master Build Test IH"
   label: "Platform Use Data"
-
+  hidden: yes
 #23/12/2020
 # - Users, any unnecessary headers hidden
 # - Logins, any unnecessary headers hidden
   join: logins {
+
     view_label: "1. User Account"
     sql_on: ${users.id} = ${logins.user_id} ;;
     #relationship changed from many_to_one, to one_to_many
