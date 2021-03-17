@@ -10,7 +10,7 @@ view: derived_engagement_6m {
       }
     }
     dimension: ppuid {
-      hidden: no
+      hidden: yes
       primary_key: yes
       label: "Users Active at 6 Months"
       description: "User was active at 6 month mark"
