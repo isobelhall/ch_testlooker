@@ -82,7 +82,7 @@ explore: users {
   join: feedbacks {
     sql_on: ${users.id} = ${feedbacks.user_id} ;;
     relationship: many_to_one
-    view_label: "1. User Account"
+    view_label: "8. Feedback Data"
   }
 
   join: articles_accessed {

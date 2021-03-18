@@ -17,7 +17,7 @@ view: feedbacks {
 
   dimension_group: created {
     type: time
-    label: "Feedback Date"
+    label: "Feedback Created"
     timeframes: [
       raw,
       time,
@@ -66,6 +66,12 @@ view: feedbacks {
     sql: ${TABLE}.rating ;;
   }
 
+  dimension: rating_number {
+    label: "Feedback Rating"
+    type: number
+    sql: CONVERT(${rating}, UNSIGNED INTEGER) ;;
+  }
+
   dimension: unit_id {
     type: number
     hidden: yes
@@ -98,15 +104,28 @@ view: feedbacks {
     drill_fields: [detail*]
   }
 
+  measure: average_rating {
+      type: average
+      sql: ${rating_number} ;;
+      value_format: "0.#"
+    }
+
+  measure: average_by_person {
+    type: average_distinct
+    sql_distinct_key: ${user_id};;
+    sql: ${rating_number};;
+    value_format: "0.#"
+  }
+
   # ----- Sets of fields for drilling ------
   set: detail {
     fields: [
       id,
       page_name,
-      users.id,
-      units.id,
+      users.ppuid,
       units.name,
-      units.display_name
+      comment,
+      rating_number
     ]
   }
 }

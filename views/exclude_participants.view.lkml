@@ -3,6 +3,7 @@ view: exclude_participants {
     ;;
 
   dimension: ch_uid {
+    hidden: yes
     type: string
     sql: ${TABLE}.CH_UID ;;
   }

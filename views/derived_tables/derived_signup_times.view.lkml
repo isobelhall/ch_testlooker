@@ -1,7 +1,5 @@
 view: derived_signup_times {
 
-
-
   derived_table: {
     explore_source: users {
       column: uid { field: derived_signup_activity.uid }

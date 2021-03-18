@@ -48,7 +48,9 @@ view: optional_data_flattened {
       }
     }
   }
-  dimension: diabetes_status_healthy_living_update {sql:TRIM(BOTH '"' FROM JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.hl_properties, '$."diabetes-status-healthy-living-update"')));;}
+
+  dimension: diabetes_status_healthy_living_update {
+    sql:TRIM(BOTH '"' FROM JSON_UNQUOTE(JSON_EXTRACT(${TABLE}.hl_properties, '$."diabetes-status-healthy-living-update"')));;}
   dimension: diabetes_status_healthy_living {
     type: string
     label: "diabetes_status_healthy_living_english"
